@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   content?: string;
+  loggedUser = localStorage.getItem.toString
 
   constructor() { }
 
@@ -19,5 +20,6 @@ export class HomeComponent implements OnInit {
     //     this.content = JSON.parse(err.error).message;
     //   }
     // });
+ 
   }
 }

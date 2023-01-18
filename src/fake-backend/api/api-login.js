@@ -40,7 +40,6 @@ module.exports = function (app) {
       userDetails: {
         employeeId: employee.id,
         username: employee.username,
-        team: employee.teamDetails,
         role: role,
       },
     };

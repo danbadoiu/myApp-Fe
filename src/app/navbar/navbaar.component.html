@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <span><mat-icon>eco</mat-icon>Health</span>
+    <div [style.visibility]="'hidden'"> <app-login (newItemEvent)="addItem($event)"></app-login></div>
+    <div class="spacer"></div>
+    <a mat-button routerLink="home">Home</a>
+    <a mat-button routerLink="profile">Profile</a>
+    <a mat-button routerLink="register">projects</a>
+    <a mat-button routerLink="home">About us</a>
+    <a *ngIf="!isloggedIn" mat-raised-button routerLink="login">Logout</a>
+
+</mat-toolbar>

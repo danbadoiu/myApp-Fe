@@ -5,10 +5,7 @@
  * @property {string} lastName
  * @property {string} username
  * @property {string} email
- * @property {string} crtUsr
  * @property {string} crtTms
- * @property {string} mdfUsr
- * @property {string} mdfTms
  * @property {'EMPLOYEE'|'HR'|'TEAMLEAD'} role
  * @property {'ACTIVE'|'INACTIVE'} status
  * @property {string} contractStartDate
@@ -80,34 +77,3 @@
  * @property {string} date
  * @property {string} description
  */
-
-/**
- * @typedef LegallyDaysOffDetailsListBE
- * @property {Array<LegallyDaysOffBE>} items
- */
-
-/**
- * @typedef DataBE
- * @property {Array<TeamBE>} teams
- * @property {Array<EmployeeBE>} employees
- * @property {Array<RequestBE>} requests
- * @property {Array<FreeDayBE>} freeDays
- * @property {Array<HolidayBE>} holidays
- * @property {Array<LegallyDaysOffBE>} legalDaysOff
- */
-
-/**
- * @typedef AddHolidayBE
- * @property {Array<string>} employeeIds
- * @property {string} noDays
- * @property {'INCREASE'|'DECREASE'} type
- * @property {string} description
- */
-
-/**
- * @typedef LegalDayOff
- * @property {Date} date
- * @property {string} description
- */
-
-

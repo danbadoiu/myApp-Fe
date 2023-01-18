@@ -42,10 +42,7 @@ module.exports = function (app) {
           lastName: reqBody.lastName,
           username: reqBody.username,
           email: reqBody.email,
-          role: reqBody.role,
-          totalVacationDays: reqBody.noDaysOff,
-          teamDetails: { id: reqBody.teamId, name: team.name },
-          contractStartDate: reqBody.contractStartDate,
+          role: reqBody.role
         }) - 1;
       res
         .status(201)
