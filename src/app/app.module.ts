@@ -15,6 +15,8 @@ import {MatToolbarModule} from '@angular/material/toolbar'
 
 import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon'
+import { UserService } from './user.service';
+import { AuthguardGuard } from './authguard.guard';
 
 @NgModule({
     declarations: [
@@ -25,7 +27,7 @@ import {MatIconModule} from '@angular/material/icon'
         ProfileComponent,
         NavbaarComponent
     ],
-    providers: [],
+    providers: [UserService, AuthguardGuard],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

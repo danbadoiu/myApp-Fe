@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../shared/services/login.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -23,20 +24,21 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   credentialsInvalid: any = false;
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router,
+    private user: UserService) {}
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
+
     const { username, password } = this.form;
 
     this.loginSubscription = this.loginService
       .login(username, password)
       .subscribe(() => {
         this.userLogged = true;
-        this.newItemEvent.emit(this.userLogged);
-        localStorage.setItem(username,password);
+        this.user.setUserLoggedIn(username);
         this.router.navigate(['home']);
       });
   }
