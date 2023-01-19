@@ -11,6 +11,9 @@ import { UserService } from '../user.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+onRegister() {
+  this.router.navigate(['register']);
+}
   form: any = {
     username: null,
     password: null,
@@ -39,7 +42,7 @@ export class LoginComponent implements OnInit {
       .subscribe(() => {
         this.userLogged = true;
         this.user.setUserLoggedIn(username);
-        this.router.navigate(['home']);
+        this.router.navigate(['admin']);
       });
   }
 }

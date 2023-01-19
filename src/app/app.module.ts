@@ -7,10 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbaarComponent } from './navbar/navbaar.component';
 import {MatToolbarModule} from '@angular/material/toolbar'
 
 import {MatButtonModule} from '@angular/material/button'
@@ -23,9 +20,7 @@ import { AuthguardGuard } from './authguard.guard';
         AppComponent,
         LoginComponent,
         RegisterComponent,
-        HomeComponent,
-        ProfileComponent,
-        NavbaarComponent
+
     ],
     providers: [UserService, AuthguardGuard],
     bootstrap: [AppComponent],
