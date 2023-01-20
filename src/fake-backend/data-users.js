@@ -1,14 +1,14 @@
 /**
- * @type {EmployeeBE}
+ * @type {UserBE}
  */
-const EMPLOYEES = [
+const USERS = [
   {
     id: "1",
     firstName: "Alex",
     lastName: "Deac",
     username: "alex",
     email: "alex.deac@axonsoft.ro",
-    role: "TEAM_LEAD"
+    role: "PATIENT"
   },
   {
     id: "2",
@@ -16,8 +16,8 @@ const EMPLOYEES = [
     lastName: "Gretyniuc",
     username: "ionel",
     email: "ionel.gretyniuc@axonsoft.ro",
-    role: "HR"
+    role: "DOCTOR"
   }
 ];
 
-module.exports = EMPLOYEES;
+module.exports = USERS;

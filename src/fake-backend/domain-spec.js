@@ -1,37 +1,13 @@
 /**
- * @typedef EmployeeBE
+ * @typedef UserBE
  * @property {string} id
  * @property {string} firstName
  * @property {string} lastName
  * @property {string} username
  * @property {string} email
- * @property {string} crtTms
- * @property {'EMPLOYEE'|'HR'|'TEAMLEAD'} role
- * @property {'ACTIVE'|'INACTIVE'} status
- * @property {string} contractStartDate
- * @property {string} contractEndDate
- * @property {string} v
- * @property {TeamBE} teamDetails
- * @property {number} totalVacationDays
+ * @property {'DOCTOR'|'PATIENT'} role
  */
 
-/**
- * @typedef RequestBE
- * @property {string} id
- * @property {string} crtUsr
- * @property {string} crtTms
- * @property {string} mdfUsr
- * @property {string} mdfTms
- * @property {string} startDate
- * @property {string} endDate
- * @property {'PENDING'|'APPROVED'|'REJECTED'} status
- * @property {'VACATION'|'MEDICAL'} type
- * @property {string} description
- * @property {string} rejectReason
- * @property {string} noOfDays
- * @property {number} v
- * @property {EmployeeDetailsBE} employeeDetails
- */
 
 /**
  * @typedef EmployeeDetailsBE

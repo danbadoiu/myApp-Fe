@@ -2,7 +2,7 @@
  * @type DataBE
  */
 const DATA = {
-  employees: [...require('./data-employees')]
+  users: [...require('./data-users')]
 };
 
 module.exports = DATA;

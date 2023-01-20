@@ -1,23 +1,38 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { User } from './login/models/login.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   private isUserLoggedIn;
-  username:string = '';
-  constructor() { 
+  username: string = '';
+  users: User[] = [];
+  constructor(private http: HttpClient) {
     this.isUserLoggedIn = false;
   }
-  setUserLoggedIn(username: string){
+  setUserLoggedIn(username: string) {
     this.isUserLoggedIn = true;
     this.username = username;
   }
-  getUserLoggedIn(){
+  getUserLoggedIn() {
     return this.isUserLoggedIn;
   }
-  getUsername(){
+  getUsername() {
     return this.username;
+  }
+  getUsers() : Observable<User[]>{
+    return this.http
+      .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
+      .pipe(
+        map((responseData) => {
+          console.log(responseData.items)
+          return responseData.items;
+          
+        })
+      );
   }
 }

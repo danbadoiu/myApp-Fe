@@ -2,11 +2,11 @@ module.exports = function (app) {
   const DATA = require('../data');
   app.post('/core/api/v1/login', (req, res) => {
     const reqBody = req.body;
-    const employee = DATA.employees.find(
-      employee => employee.username === reqBody.username
+    const user = DATA.users.find(
+      user => user.username === reqBody.username
     );
 
-    if (!reqBody.username || !reqBody.password || !employee) {
+    if (!reqBody.username || !reqBody.password || !user) {
       res
         .status(400)
         .contentType('application/json')
@@ -21,15 +21,12 @@ module.exports = function (app) {
 
     let role;
 
-    switch (employee.role) {
-      case 'HR':
-        role = 'ROLE_HR';
+    switch (user.role) {
+      case 'DOCTOR':
+        role = 'ROLE_DOCTOR';
         break;
-      case 'TEAM_LEAD':
-        role = 'ROLE_TEAM_LEAD';
-        break;
-      case 'USER':
-        role = 'ROLE_EMPLOYEE';
+      case 'PATIENT':
+        role = 'ROLE_PATIENT';
         break;
     }
 
@@ -38,8 +35,8 @@ module.exports = function (app) {
       refreshToken: 'RT',
       expiresIn: '3600',
       userDetails: {
-        employeeId: employee.id,
-        username: employee.username,
+        userId: user.id,
+        username: user.username,
         role: role,
       },
     };

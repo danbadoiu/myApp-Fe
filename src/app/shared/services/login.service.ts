@@ -15,7 +15,7 @@ export class LoginService {
   logout(): void {
     this.http
       .post(`${environment.apiUrl}/core/api/v1/logout`, {
-        refreshToken: this.userLogged.value ? this.userLogged.value.refreshToken : null,
+        refreshToken: this.userLogged.value ? this.userLogged : null,
       })
       .subscribe(() => {
         this.userLogged.next(null);
@@ -37,7 +37,7 @@ export class LoginService {
         tap(user => {
           this.userLogged.next(user);
           localStorage.setItem('userData', JSON.stringify(user));
-          this.redirectUserByRole(user.userDetails.role);
+          this.redirectUserByRole(user.role);
         })
       );
   }
@@ -45,12 +45,12 @@ export class LoginService {
   refresh(): Observable<User> {
     return this.http
       .post<User>(`${environment.apiUrl}/core/api/v1/refresh`, {
-        refreshToken: this.userLogged.value ? this.userLogged.value.refreshToken : null,
+        refreshToken: this.userLogged.value ? this.userLogged : null,
       })
       .pipe(
         map(responseData => {
           const expirationDate = new Date(
-            new Date().getTime() + +responseData.expiresIn * 1000
+            new Date().getTime() + +responseData * 1000
           );
           return { ...responseData, expirationDate };
         }),
@@ -65,29 +65,29 @@ export class LoginService {
       const localStorageData = localStorage.getItem('userData');
       if(localStorageData){
         const userData: User = JSON.parse(localStorageData);
-        if (userData && userData.accessToken) {
+        if (userData) {
           this.userLogged.next(userData);
         }
       }
   }
 
-  getUserDetails(): Observable<UserDetails> {
-    return this.userLogged.asObservable().pipe(
-      map(user => {
-        return {
-          idUser: user ? user.userDetails.employeeId : "",
-          username: user ? user.userDetails.username : "",
-        };
-      })
-    );
-  }
+  // getUserDetails(): Observable<UserDetails> {
+  //   return this.userLogged.asObservable().pipe(
+  //     map(user => {
+  //       return {
+  //         idUser: user ? user.userDetails.userId : "",
+  //         username: user ? user.userDetails.username : "",
+  //       };
+  //     })
+  //   );
+  // }
 
   private redirectUserByRole(role: Role): void {
     switch (role) {
-      case Role.HR:
+      case Role.DOCTOR:
         this.router.navigate(['/requests']);
         break;
-      case Role.TEAMLEAD:
+      case Role.PATIENT:
         this.router.navigate(['/requests']);
         break;
       default:
