@@ -3,12 +3,14 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthguardGuard } from "src/app/authguard.guard";
 import { AdminDashbordComponent } from "./components/admin-dashbord/admin-dashbord.component";
 import { HomeComponent } from "./components/home/home.component";
+import { ProfileComponent } from "./components/profile/profile.component";
 import { ServicesComponent } from "./components/services/services.component";
 const routes: Routes=[{
     path:'', component: AdminDashbordComponent,
     children:[
         {path: 'home', component:HomeComponent, canActivate:[AuthguardGuard]},
         {path:'services',component:ServicesComponent},
+        {path: 'profile', component:ProfileComponent},
         {path: '', redirectTo:'/admin/home', pathMatch:'full'}
     ]
 }];

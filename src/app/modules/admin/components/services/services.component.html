@@ -1,3 +1,7 @@
-<p>
-  services works!
-</p>
+<div>
+  <ul>
+      <li *ngFor="let message of messages">{{ message }}</li>
+  </ul>
+  <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
+  <button (click)="sendMessage()">Send</button>
+</div>

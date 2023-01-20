@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/login/models/login.model';
+import { Role, User } from 'src/app/login/models/login.model';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
+  
   users: User[] = [];
   private userSubscription = new Subscription();
 

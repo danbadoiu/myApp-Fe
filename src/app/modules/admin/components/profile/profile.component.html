@@ -1,0 +1,16 @@
+<form>
+  <div>
+    <label>Name:</label>
+    <input [(ngModel)]="name" name="name" disabled>
+  </div>
+  <div>
+    <label>Email:</label>
+    <input [(ngModel)]="email" name="email" disabled>
+  </div>
+  <div>
+    <label>Profile Picture:</label>
+    <img [src]="profilePic">
+    <input type="file" (change)="uploadFile($event)">
+  </div>
+  <button (click)="updateProfile()">Save</button>
+</form>

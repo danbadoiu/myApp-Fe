@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar'
+import { MatTableModule} from '@angular/material/table'
+import { MatColumnDef } from '@angular/material/table';
 
 import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon'
@@ -19,7 +21,7 @@ import { AuthguardGuard } from './authguard.guard';
     declarations: [
         AppComponent,
         LoginComponent,
-        RegisterComponent,
+        RegisterComponent
 
     ],
     providers: [UserService, AuthguardGuard],
@@ -32,7 +34,10 @@ import { AuthguardGuard } from './authguard.guard';
         BrowserAnimationsModule,
         MatToolbarModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        MatTableModule,
+        MatIconModule,
+
     ]
 })
 export class AppModule { }

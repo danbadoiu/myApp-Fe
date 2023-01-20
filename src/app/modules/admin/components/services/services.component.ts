@@ -12,4 +12,11 @@ export class ServicesComponent implements OnInit {
   ngOnInit() {
   }
 
+  messages:string[] = [];
+  newMessage = '';
+
+  sendMessage() {
+    this.messages.push(this.newMessage);
+    this.newMessage = '';
+  }
 }
