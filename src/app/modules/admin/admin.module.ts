@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -39,5 +39,6 @@ import { ProfileComponent } from './components/profile/profile.component';
     ServicesComponent,
     ProfileComponent
   ],
+  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
 })
 export class AdminModule {}

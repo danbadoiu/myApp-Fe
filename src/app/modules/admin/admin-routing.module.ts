@@ -8,7 +8,8 @@ import { ServicesComponent } from "./components/services/services.component";
 const routes: Routes=[{
     path:'', component: AdminDashbordComponent,
     children:[
-        {path: 'home', component:HomeComponent, canActivate:[AuthguardGuard]},
+        // {path: 'home', component:HomeComponent, canActivate:[AuthguardGuard]},
+        {path: 'home', component:HomeComponent},
         {path:'services',component:ServicesComponent},
         {path: 'profile', component:ProfileComponent},
         {path: '', redirectTo:'/admin/home', pathMatch:'full'}

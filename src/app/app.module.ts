@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon'
 import { UserService } from './user.service';
 import { AuthguardGuard } from './authguard.guard';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,7 @@ import { AuthguardGuard } from './authguard.guard';
         RegisterComponent
 
     ],
-    providers: [UserService, AuthguardGuard],
+    providers: [UserService, AuthguardGuard, { provide: LocationStrategy, useClass: PathLocationStrategy }],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

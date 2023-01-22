@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     }
    
     this.userSubscription = this.userService.getUsers().subscribe((data)=>{this.users = data
-    console.log(this.users)});
+    });
     console.log(this.users)
   }
 

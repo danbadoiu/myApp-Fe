@@ -8,6 +8,14 @@
  * @property {'DOCTOR'|'PATIENT'} role
  */
 
+/**
+ * @typedef MessageBE
+ * @property {string} id
+ * @property {string} idSender
+ * @property {string} idReceiver
+ * @property {string} date
+
+ */
 
 /**
  * @typedef EmployeeDetailsBE
