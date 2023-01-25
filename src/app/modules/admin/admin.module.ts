@@ -15,6 +15,8 @@ import { TableComponent } from './components/home/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { ServicesComponent } from './components/services/services.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MessageDetailComponent } from './components/services/message-detail/message-detail.component';
+import { MessageListComponent } from './components/services/message-list/message-list.component';
 
 
 // Material Modules
@@ -37,7 +39,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     HomeComponent,
     TableComponent,
     ServicesComponent,
-    ProfileComponent
+    ProfileComponent,
+    MessageDetailComponent,
+    MessageListComponent
   ],
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
 })

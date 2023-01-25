@@ -29,7 +29,7 @@ export class UserService {
       .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
       .pipe(
         map((responseData) => {
-          console.log(responseData.items)
+          // console.log(responseData.items)
           return responseData.items;
           
         })
