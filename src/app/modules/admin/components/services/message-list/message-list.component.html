@@ -11,11 +11,14 @@
       <i class="fas fa-search"></i>
     </span>
   </div>
-
+  <div style="overflow-y: scroll; height: 400px; width: 100%;">
+    <table>
+      <!-- table content here -->
+    
   <div data-mdb-perfect-scrollbar="true"
        style="position: relative; height: 400px">
     <ul class="list-unstyled mb-0"
-        *ngFor="let user of data" (click)="selectEmployee(user)">
+        *ngFor="let user of data" (click)="selectUser(user)">
       <li class="p-2 border-bottom">
         <a 
         
@@ -42,3 +45,5 @@
 
     </ul>
   </div>
+</table>
+</div>

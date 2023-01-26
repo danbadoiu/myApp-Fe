@@ -17,6 +17,8 @@ import { ServicesComponent } from './components/services/services.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MessageDetailComponent } from './components/services/message-detail/message-detail.component';
 import { MessageListComponent } from './components/services/message-list/message-list.component';
+import { LocationComponent } from './components/location/location.component';
+
 
 
 // Material Modules
@@ -30,7 +32,10 @@ import { MessageListComponent } from './components/services/message-list/message
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule
+    
+
   ],
   declarations: [
     AdminDashbordComponent,
@@ -41,7 +46,8 @@ import { MessageListComponent } from './components/services/message-list/message
     ServicesComponent,
     ProfileComponent,
     MessageDetailComponent,
-    MessageListComponent
+    MessageListComponent,
+    LocationComponent
   ],
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
 })

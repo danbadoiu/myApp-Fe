@@ -13,7 +13,7 @@
  * @property {string} id
  * @property {string} idSender
  * @property {string} idReceiver
- * @property {string} date
+ * @property {Date} date
 
  */
 

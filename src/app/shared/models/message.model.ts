@@ -1,7 +1,7 @@
 export interface Message {
     id: string;
-    idSender: string;
-    idReceiver: string;
-    message: string;
-    date: string;
+    idSender: string|undefined;
+    idReceiver: string|undefined;
+    message: string|undefined;
+    date: Date;
   }

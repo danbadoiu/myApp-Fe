@@ -18,6 +18,7 @@ import { UserService } from './user.service';
 import { AuthguardGuard } from './authguard.guard';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -38,7 +39,6 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
         MatIconModule,
         MatTableModule,
         MatIconModule,
-
     ]
 })
 export class AppModule { }

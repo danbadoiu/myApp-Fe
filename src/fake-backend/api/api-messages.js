@@ -6,6 +6,22 @@ module.exports = function (app) {
     res
       .status(200)
       .contentType("application/json")
-      .send(JSON.stringify(messages));
+      .send(JSON.stringify({ items: messages }));
+  });
+  app.post("/core/api/v1/messages", (req, res) => {
+    const reqBody = req.body;
+
+    const newEmpIndex =
+      DATA.messages.push({
+        id: `${DATA.messages.length + 1}`,
+        idSender: reqBody.idSender,
+        idReceiver: reqBody.idReceiver,
+        message: reqBody.message,
+        date: reqBody.date,
+      }) - 1;
+    res
+      .status(201)
+      .contentType("application/json")
+      .send({ items: DATA.messages[newEmpIndex] });
   });
 };

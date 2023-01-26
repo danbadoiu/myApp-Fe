@@ -14,12 +14,12 @@ export class MessageListComponent implements OnInit {
 
   ngOnInit() {}
 
-  @Output() selectedEmployeeChanged = new EventEmitter<User>();
-  @Input() employeesSubject = new BehaviorSubject<User[]>([]);
-  selectedEmployee?: User;
+  @Output() selectedUserChanged = new EventEmitter<User>();
+  @Input() usersSubject = new BehaviorSubject<User[]>([]);
+  selectedUser?: User;
 
-  selectEmployee(employee: User): void {
-    this.selectedEmployee = employee;
-    this.selectedEmployeeChanged.emit(this.selectedEmployee);
+  selectUser(user: User): void {
+    this.selectedUser = user;
+    this.selectedUserChanged.emit(this.selectedUser);
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { User } from 'src/app/login/models/login.model';
+import { Message } from 'src/app/shared/models/message.model';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { environment } from 'src/environments/environment';
 
@@ -11,49 +12,45 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./services.component.css'],
 })
 export class ServicesComponent implements OnInit {
-onSelectedEmployee(user: User):void {
-  this.selectedEmployee = user;
-  this.showEmployeeDetails = true;
-}
-
-selectedEmployee?: User | null;
-showEmployeeDetails = false;
-  adauga() {this.getData();
-  console.log(this.data)}
-  messages2: any;
+  selectedUser?: User | null;
+  showUserDetails = false;
+  adauga() {
+    console.log(this.users);
+  }
 
   constructor(private message: MessageService, private http: HttpClient) {}
 
-  data: User[] | undefined=[];
- 
+  users: User[] | undefined = [];
+
   async ngOnInit() {
-    this.data = await this.http
+    this.users = await this.http
       .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
       .pipe(
         map((responseData) => {
-          // console.log(responseData.items)
           return responseData.items;
         })
       )
       .toPromise();
-
+    this.getData2();
   }
 
-  data2: any;
-
-  getData() {
-    this.http
-      .get(`${environment.apiUrl}/core/api/v1/messages`)
-      .subscribe((data) => {
-        this.data2 = data;
-      });
+  async getData2() {
+    this.messages = await this.http
+      .get<{ items: Message[] }>(`${environment.apiUrl}/core/api/v1/messages`)
+      .pipe(
+        map((responseData) => {
+          return responseData.items;
+        })
+      )
+      .toPromise();
   }
 
-  messages: string[] = [];
-  newMessage = '';
-
-  sendMessage() {
-    this.messages.push(this.newMessage);
-    this.newMessage = '';
+  messages: Message[] | undefined = [];
+  onMessageAction(refreshData: boolean) {
+    this.getData2();
+  }
+  onSelectedUser(user: User): void {
+    this.selectedUser = user;
+    this.showUserDetails = true;
   }
 }

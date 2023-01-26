@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { User } from 'src/app/login/models/login.model';
+import { LoginService } from 'src/app/shared/services/login.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,21 +11,39 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: User | undefined;
-  constructor(private http: HttpClient) { }
+  users: User[] | undefined;
+  username?: string;
+  loggedUser?: User;
+  constructor(private http: HttpClient, private loginService: LoginService) { }
 
    async ngOnInit() {
-    // this.user = await this.http
-    // .get(`${environment.apiUrl}/core/api/v1/users`)
-    // .pipe(
-    //   map((responseData) => {
-    //     // console.log(responseData.items)
-    //     return responseData;
-    //   })
-    // )
-    // .toPromise();
+    this.users = await this.http
+    .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
+    .pipe(
+      map((responseData) => {
+        // console.log(responseData.items)
+        return responseData.items;
+      })
+    )
+    .toPromise();
+    this.loginService.userLogged.subscribe(user => {
+      if (user) {
+        this.username = user.username;
+      } else {
+        this.username = undefined;
+      }
+      console.log(user)
+    });
+    this.loggedUser = this.users?.find(
+      employee => employee.username === this.username
+    );
+    console.log(this.loginService.userLogged)
+    this.name = this.users?.find(
+      employee => employee.username === this.username
+    )?.firstName;
+    console.log(this.name)
   }
-  name = '';
+  name:string|undefined
   email = '';
   profilePic = '';
 

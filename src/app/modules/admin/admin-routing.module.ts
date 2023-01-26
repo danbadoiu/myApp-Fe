@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthguardGuard } from "src/app/authguard.guard";
 import { AdminDashbordComponent } from "./components/admin-dashbord/admin-dashbord.component";
 import { HomeComponent } from "./components/home/home.component";
+import { LocationComponent } from "./components/location/location.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { ServicesComponent } from "./components/services/services.component";
 const routes: Routes=[{
@@ -12,6 +13,7 @@ const routes: Routes=[{
         {path: 'home', component:HomeComponent},
         {path:'services',component:ServicesComponent},
         {path: 'profile', component:ProfileComponent},
+        {path: 'location', component:LocationComponent},
         {path: '', redirectTo:'/admin/home', pathMatch:'full'}
     ]
 }];
