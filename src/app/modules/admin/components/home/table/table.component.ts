@@ -58,30 +58,30 @@ export class TableComponent implements OnInit {
   
 }
 
-const data: User[] = 
-[
-  {
-    id: 'dfs',
-    firstName: 'Hydrogen',
-    lastName: 'sd',
-    username: 'H',
-    email: 'sdas',
-    role: Role.DOCTOR,
-  },
-  {
-    id: 'dfs',
-    firstName: 'Hydrogen',
-    lastName: 'sd',
-    username: 'H',
-    email: 'sdas',
-    role: Role.PATIENT,
-  },
-];
+// const data: User[] = 
+// [
+//   {
+//     id: 'dfs',
+//     firstName: 'Hydrogen',
+//     lastName: 'sd',
+//     username: 'H',
+//     email: 'sdas',
+//     role: Role.DOCTOR,
+//   },
+//   {
+//     id: 'dfs',
+//     firstName: 'Hydrogen',
+//     lastName: 'sd',
+//     username: 'H',
+//     email: 'sdas',
+//     role: Role.PATIENT,
+//   },
+// ];
 export class ExampleDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<User[]> {
     const rows: any[] = [];
-    data.forEach((element) => rows.push(element, { detailRow: true, element }));
+    // data.forEach((element) => rows.push(element, { detailRow: true, element }));
     return of(rows);
   }
 

@@ -8,7 +8,8 @@ const USERS = [
     lastName: "Deac",
     username: "alex",
     email: "alex.deac@axonsoft.ro",
-    role: "PATIENT"
+    role: "PATIENT",
+    password: "alex"
   },
   {
     id: "2",
@@ -16,7 +17,8 @@ const USERS = [
     lastName: "Gretyniuc",
     username: "ionel",
     email: "ionel.gretyniuc@axonsoft.ro",
-    role: "DOCTOR"
+    role: "DOCTOR",
+    password: "ionel"
   },
   {
     id: "3",

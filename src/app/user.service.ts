@@ -35,4 +35,11 @@ export class UserService {
         })
       );
   }
+ 
+  addUser(user: User):Observable<User>{
+    return this.http.post<User>(
+      `${environment.apiUrl}/core/api/v1/users`,
+      user
+    );
+  }
 }

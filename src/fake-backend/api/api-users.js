@@ -42,7 +42,8 @@ module.exports = function (app) {
           lastName: reqBody.lastName,
           username: reqBody.username,
           email: reqBody.email,
-          role: reqBody.role
+          role: reqBody.role,
+          password: reqBody.password
         }) - 1;
       res
         .status(201)
