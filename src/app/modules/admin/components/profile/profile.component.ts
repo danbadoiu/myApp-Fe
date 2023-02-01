@@ -3,47 +3,52 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { User } from 'src/app/login/models/login.model';
 import { LoginService } from 'src/app/shared/services/login.service';
+import { UserService } from 'src/app/user.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
   users: User[] | undefined;
   username?: string;
   loggedUser?: User;
-  constructor(private http: HttpClient, private loginService: LoginService) { }
+  profilePicture?:string;
+  constructor(
+    private http: HttpClient,
+    private loginService: LoginService,
+    private userService: UserService
+  ) {}
 
-   async ngOnInit() {
+  async ngOnInit() {
     this.users = await this.http
-    .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
-    .pipe(
-      map((responseData) => {
-        // console.log(responseData.items)
-        return responseData.items;
-      })
-    )
-    .toPromise();
-    this.loginService.userLogged.subscribe(user => {
-      if (user) {
-        this.username = user.username;
-      } else {
-        this.username = undefined;
-      }
-      console.log(user)
-    });
+      .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
+      .pipe(
+        map((responseData) => {
+          return responseData.items;
+        })
+      )
+      .toPromise();
+    this.setUser();
+    let storedUser = JSON.parse(localStorage.getItem("userData")!);
+    this.username = storedUser.userDetails.username;
+    
     this.loggedUser = this.users?.find(
-      employee => employee.username === this.username
+      (employee) => employee.username === this.username
     );
-    console.log(this.loginService.userLogged)
     this.name = this.users?.find(
-      employee => employee.username === this.username
+      (employee) => employee.username === this.username
     )?.firstName;
-    console.log(this.name)
+    console.log(this.loggedUser)
+    this.profilePicture = this.loggedUser?.profilePicture
+    
+
+    
+
   }
-  name:string|undefined
+  name: string | undefined;
   email = '';
   profilePic = '';
 
@@ -53,5 +58,11 @@ export class ProfileComponent implements OnInit {
   uploadFile(event: any) {
     const file = event.target.files[0];
     this.profilePic = file;
-    console.log(this.profilePic);
-  }}
+    
+  }
+  setUser() {
+    this.loggedUser = this.users?.find(
+      (user) => user.username == this.userService.getUsername()
+    );
+  }
+}

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
@@ -15,12 +16,19 @@ export class RegisterComponent implements OnInit {
     firstName: null,
     lastName: null,
     role: null,
+    profilePicture: null,
   };
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  profilePic: any;
+  profilePicture: string = '';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {}
 
@@ -35,9 +43,22 @@ export class RegisterComponent implements OnInit {
         password: this.form.password,
         email: this.form.email,
         role: this.form.role,
+        profilePicture: this.profilePicture,
       })
       .subscribe(() => {
         this.router.navigate(['/login']);
       });
+  }
+  onFileChanged(event: any) {
+    const file = event.target.files[0]
+    console.log(file)
+     this.profilePicture = file.name
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      if(reader.result != null){
+      this.profilePic = reader.result;}
+    };
+    console.log(event.target.files[0])
   }
 }

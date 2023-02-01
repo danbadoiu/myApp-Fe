@@ -19,7 +19,7 @@
        style="position: relative; height: 400px">
     <ul class="list-unstyled mb-0"
         *ngFor="let user of data" (click)="selectUser(user)">
-      <li class="p-2 border-bottom">
+      <li class="p-2 border-bottom" *ngIf="user.id!==loggedUser?.id">
         <a 
         
            class="d-flex justify-content-between">
@@ -33,7 +33,7 @@
             </div>
             <div class="pt-1">
               <p class="fw-bold mb-0">{{user.firstName}} {{user.lastName}}</p>
-              <p class="small text-muted">Hello, Are you there?</p>
+              <p class="small text-muted">{{messages![messages!.length-1].message}}</p>
             </div>
           </div>
           <div class="pt-1">

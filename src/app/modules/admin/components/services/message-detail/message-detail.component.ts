@@ -12,6 +12,7 @@ export class MessageDetailComponent implements OnInit {
   
   @Input() selectedUser?: User | null;
   @Input() messages: Message[] | undefined;
+  @Input() loggedUser: User | undefined
   @Output() savedChanges = new EventEmitter<boolean>();
   messageDate: string | null = '';
   message: string | undefined;
@@ -26,12 +27,13 @@ export class MessageDetailComponent implements OnInit {
       .addMessage({id:'',
         message: this.message,
         idReceiver:this.selectedUser?.id,
-        idSender: this.selectedUser?.id,
+        idSender: this.loggedUser?.id,
         date: new Date()
       })
       .subscribe(() => {
         // formRef.reset();
         this.savedChanges.emit(true);
+        
       });
   }
 }

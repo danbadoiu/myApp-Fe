@@ -40,11 +40,12 @@ export class TableComponent implements OnInit {
       .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
       .pipe(
         map((responseData) => {
-          // console.log(responseData.items)
+           console.log(responseData.items)
           return responseData.items;
         })
       )
       .toPromise();
+      this.data = this.data?.filter((user)=>user.role == Role.DOCTOR)
     this.dataSource = new MatTableDataSource(this.data);
   }
   displayedColumns = ['id', 'firstName', 'lastName', 'username', 'email'];

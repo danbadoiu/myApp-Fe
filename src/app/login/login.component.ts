@@ -26,6 +26,7 @@ onRegister() {
   errorMessage = '';
   roles: string[] = [];
   credentialsInvalid: any = false;
+  // const storedUser = JSON.parse(localStorage.getItem("user"));
 
   constructor(private loginService: LoginService, private router: Router,
     private user: UserService) {}
@@ -41,8 +42,12 @@ onRegister() {
       .login(username, password)
       .subscribe(() => {
         this.userLogged = true;
-        this.user.setUserLoggedIn(username);
+        // this.user.setUserLoggedIn(username);
+        // // localStorage.setItem("user", JSON.stringify(this.user));
+
+
         this.router.navigate(['admin']);
+
       });
   }
 }

@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AuthguardGuard } from "src/app/authguard.guard";
 import { AdminDashbordComponent } from "./components/admin-dashbord/admin-dashbord.component";
 import { HomeComponent } from "./components/home/home.component";
 import { LocationComponent } from "./components/location/location.component";

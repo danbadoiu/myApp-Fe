@@ -1,6 +1,6 @@
 export enum Role {
-  DOCTOR = 'ROLE_DOCTOR',
-  PATIENT = 'ROLE_PATIENT',
+  DOCTOR = 'DOCTOR',
+  PATIENT = 'PATIENT',
 }
 export interface User {
   id: string;
@@ -9,5 +9,6 @@ export interface User {
   username: string;
   email: string;
   role: Role;
-  password: string
+  password: string;
+  profilePicture: string;
 }

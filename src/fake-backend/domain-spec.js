@@ -7,6 +7,7 @@
  * @property {string} email
  * @property {'DOCTOR'|'PATIENT'} role
  * @property {string} password
+ * @property {string} profilePicture
  */
 
 /**

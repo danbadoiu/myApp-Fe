@@ -8,17 +8,19 @@ import { User } from './login/models/login.model';
   providedIn: 'root',
 })
 export class UserService {
-  private isUserLoggedIn;
+  private isUserLoggedIn = false;
+  userLogged: User | undefined
   username: string = '';
   users: User[] = [];
   constructor(private http: HttpClient) {
-    this.isUserLoggedIn = false;
+    // this.isUserLoggedIn = false;
   }
   setUserLoggedIn(username: string) {
     this.isUserLoggedIn = true;
     this.username = username;
   }
   getUserLoggedIn() {
+    
     return this.isUserLoggedIn;
   }
   getUsername() {

@@ -9,7 +9,8 @@ const USERS = [
     username: "alex",
     email: "alex.deac@axonsoft.ro",
     role: "PATIENT",
-    password: "alex"
+    password: "alex",
+    profilePicture:""
   },
   {
     id: "2",
@@ -18,39 +19,44 @@ const USERS = [
     username: "ionel",
     email: "ionel.gretyniuc@axonsoft.ro",
     role: "DOCTOR",
-    password: "ionel"
+    password: "ionel",
+    profilePicture:""
   },
   {
     id: "3",
-    firstName: "Alex",
-    lastName: "Deac",
-    username: "alex",
+    firstName: "Alin",
+    lastName: "Pop",
+    username: "alin",
     email: "alex.deac@axonsoft.ro",
-    role: "PATIENT"
+    role: "PATIENT",
+    profilePicture:""
   },
   {
     id: "4",
-    firstName: "Ionel",
+    firstName: "Alexandra",
     lastName: "Gretyniuc",
-    username: "ionel",
+    username: "alexandra",
     email: "ionel.gretyniuc@axonsoft.ro",
-    role: "DOCTOR"
+    role: "DOCTOR",
+    profilePicture:""
   },
   {
     id: "5",
-    firstName: "Alex",
+    firstName: "Andreea",
     lastName: "Deac",
-    username: "alex",
+    username: "andreea",
     email: "alex.deac@axonsoft.ro",
-    role: "PATIENT"
+    role: "PATIENT",
+    profilePicture:""
   },
   {
     id: "6",
-    firstName: "Ionel",
-    lastName: "Gretyniuc",
-    username: "ionel",
+    firstName: "Denis",
+    lastName: "den",
+    username: "denis",
     email: "ionel.gretyniuc@axonsoft.ro",
-    role: "DOCTOR"
+    role: "DOCTOR",
+    profilePicture:""
   }
 ];
 
