@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MessageDetailComponent } from './components/services/message-detail/message-detail.component';
 import { MessageListComponent } from './components/services/message-list/message-list.component';
 import { LocationComponent } from './components/location/location.component';
+import { AuthGuard } from './authguard.guard';
 
 
 
@@ -49,6 +50,7 @@ import { LocationComponent } from './components/location/location.component';
     MessageListComponent,
     LocationComponent
   ],
+
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
 })
 export class AdminModule {}

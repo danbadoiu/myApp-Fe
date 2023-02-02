@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "./authguard.guard";
 import { AdminDashbordComponent } from "./components/admin-dashbord/admin-dashbord.component";
 import { HomeComponent } from "./components/home/home.component";
 import { LocationComponent } from "./components/location/location.component";
@@ -12,7 +13,7 @@ const routes: Routes=[{
         {path: 'home', component:HomeComponent},
         {path:'services',component:ServicesComponent},
         {path: 'profile', component:ProfileComponent},
-        {path: 'location', component:LocationComponent},
+        {path: 'location', component:LocationComponent,canActivate:[AuthGuard]},
         {path: '', redirectTo:'/admin/home', pathMatch:'full'}
     ]
 }];

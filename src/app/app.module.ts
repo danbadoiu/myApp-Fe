@@ -15,7 +15,7 @@ import { MatColumnDef } from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon'
 import { UserService } from './user.service';
-import { AuthguardGuard } from './authguard.guard';
+import { AuthGuard } from './modules/admin/authguard.guard';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 
@@ -26,7 +26,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
         RegisterComponent
 
     ],
-    providers: [UserService, AuthguardGuard, { provide: LocationStrategy, useClass: PathLocationStrategy }],
+    providers: [UserService, AuthGuard, { provide: LocationStrategy, useClass: PathLocationStrategy }],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

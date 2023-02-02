@@ -53,5 +53,10 @@
   </form>
   <a mat-button
      (click)="sendMessage()">Send</a>
+     <div>
+      <label>Profile Picture:</label>
+      <img [src]="profilePic">
+      <input type="file" (change)="onFileChanged($event)">
+    </div>
 
 </div>

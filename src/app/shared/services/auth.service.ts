@@ -6,6 +6,15 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
+  hasRole(role: any) {
+    if(role == "DOCTOR"){
+      return true
+    }
+    else return false
+  }
+  isAuthenticated() {
+    return true
+  }
   constructor(private router: Router) {}
 
   setToken(token: string): void {

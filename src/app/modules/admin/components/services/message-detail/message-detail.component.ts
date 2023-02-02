@@ -14,6 +14,7 @@ export class MessageDetailComponent implements OnInit {
   @Input() messages: Message[] | undefined;
   @Input() loggedUser: User | undefined
   @Output() savedChanges = new EventEmitter<boolean>();
+  profilePic: any;
   messageDate: string | null = '';
   message: string | undefined;
   email: string|undefined;
@@ -35,5 +36,17 @@ export class MessageDetailComponent implements OnInit {
         this.savedChanges.emit(true);
         
       });
+  }
+  onFileChanged(event: any) {
+    const file = event.target.files[0]
+    console.log(file)
+    //  this.profilePicture = file.name
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      if(reader.result != null){
+      this.profilePic = reader.result;}
+    };
+    console.log(event.target.files[0])
   }
 }

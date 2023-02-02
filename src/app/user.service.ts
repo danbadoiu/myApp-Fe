@@ -20,8 +20,10 @@ export class UserService {
     this.username = username;
   }
   getUserLoggedIn() {
-    
-    return this.isUserLoggedIn;
+    if(this.userLogged?.role === 'DOCTOR'){
+      console.log(this.userLogged.role)
+    return this.isUserLoggedIn;}
+    else return false
   }
   getUsername() {
     return this.username;
