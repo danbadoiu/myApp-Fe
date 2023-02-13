@@ -1,0 +1,28 @@
+
+
+.list-group.list-group-flush {
+  height: 400px;
+  overflow-y: scroll;
+}
+.employees {
+  height: 100px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+.highlight-selected-user{
+  background-color: gray;
+  color: white;
+}
+.textarea {
+  width: 250px;
+  height: 130px;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+.card{
+    width: 600px;
+    margin: 20px;
+    
+}

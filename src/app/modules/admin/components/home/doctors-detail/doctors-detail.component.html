@@ -1,0 +1,74 @@
+<div class="col">
+  <div class="row"
+       *ngIf="selectedUser && selectedUser.id">
+
+
+    <button class="btn btn-primary ms-auto mb-1"
+            (click)="onEditModeOn()">
+      <i class="fa-solid fa-pen-to-square"> </i>
+    </button>
+  </div>
+  <form class="row g-3"
+       [formGroup]="form"
+        *ngIf="form">
+    <div class="col-6 form-floating form-group">
+      <input type="text"
+             class="form-control"
+             formControlName="firstName"
+             adoValidationError="firstName"
+             id="firstName" />
+      <label 
+             for="firstName"
+             class="form-label">Nume</label>
+    </div>
+
+    <div class="col-6 form-floating form-group">
+      <input type="text"
+             class="form-control"
+             formControlName="lastName"
+             adoValidationError="lastName"
+             id="lastName" />
+      <label 
+             for="lastName"
+             class="form-label">Prenume</label>
+    </div>
+
+    <div class="col-6 form-floating form-group">
+      <input type="text"
+             class="form-control"
+             formControlName="username"
+             adoValidationError="username"
+             id="numeUtilizator" />
+      <label 
+             for="numeUtilizator"
+             class="form-label">Nume Utilizator</label>
+    </div>
+
+    <div class="col-6 form-floating form-group">
+      <input type="text"
+             class="form-control"
+             formControlName="email"
+             adoValidationError="email"
+             id="email" />
+      <label 
+             for="email"
+             class="form-label">Email</label>
+    </div>
+
+  </form>
+  <div class="row">
+    <div class="d-flex justify-content-end mt-5">
+      <button 
+              class="btn btn-secondary"
+              (click)="onClear()">
+        Renunta
+      </button>
+      <!-- <button i18n
+              class="btn btn-success text-white ms-2"
+              [disabled]="form?.disabled || form?.invalid"
+              (click)="onAddEditEmployee()">
+        {{ mode === 'ADD' ? add : save }}
+      </button> -->
+    </div>
+  </div>
+</div>

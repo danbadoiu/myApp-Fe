@@ -8,10 +8,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { TableComponent } from './components/home/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { ServicesComponent } from './components/services/services.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -19,6 +17,8 @@ import { MessageDetailComponent } from './components/services/message-detail/mes
 import { MessageListComponent } from './components/services/message-list/message-list.component';
 import { LocationComponent } from './components/location/location.component';
 import { AuthGuard } from './authguard.guard';
+import { DoctorsDetailComponent } from './components/home/doctors-detail/doctors-detail.component';
+import { DoctorsListComponent } from './components/home/doctors-list/doctors-list.component';
 
 
 
@@ -34,7 +34,8 @@ import { AuthGuard } from './authguard.guard';
     MatIconModule,
     FormsModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
     
 
   ],
@@ -43,12 +44,13 @@ import { AuthGuard } from './authguard.guard';
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    TableComponent,
     ServicesComponent,
     ProfileComponent,
     MessageDetailComponent,
     MessageListComponent,
-    LocationComponent
+    LocationComponent,
+    DoctorsDetailComponent,
+    DoctorsListComponent
   ],
 
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
