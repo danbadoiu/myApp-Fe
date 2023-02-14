@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   profilePic: any;
-  profilePicture: string = '';
+  profilePicture: any;
 
   constructor(
     private userService: UserService,
@@ -36,7 +36,6 @@ export class RegisterComponent implements OnInit {
     const { username, email, password } = this.form;
     this.userService
       .addUser({
-        id: '',
         username: this.form.username,
         firstName: this.form.firstName,
         lastName: this.form.lastName,
@@ -47,18 +46,21 @@ export class RegisterComponent implements OnInit {
       })
       .subscribe(() => {
         this.router.navigate(['/login']);
+        console.log(this.profilePicture);
       });
   }
   onFileChanged(event: any) {
-    const file = event.target.files[0]
-    console.log(file)
-     this.profilePicture = file.name
+    const file = event.target.files[0];
+    console.log(file);
+    const myString = file;
+const myBlob = new Blob([myString], { type: 'text/plain' });
+    this.profilePicture = myBlob;
     let reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(this.profilePicture);
     reader.onload = () => {
-      if(reader.result != null){
-      this.profilePic = reader.result;}
+      if (reader.result != null) {
+        this.profilePic = reader.result;
+      }
     };
-    console.log(event.target.files[0])
   }
 }

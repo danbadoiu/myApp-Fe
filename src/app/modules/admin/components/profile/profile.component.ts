@@ -15,7 +15,8 @@ export class ProfileComponent implements OnInit {
   users: User[] | undefined;
   username?: string;
   loggedUser?: User;
-  profilePicture?:string;
+  profilePicture?:any;
+  profilePic:any
   constructor(
     private http: HttpClient,
     private loginService: LoginService,
@@ -43,14 +44,31 @@ export class ProfileComponent implements OnInit {
     )?.firstName;
     console.log(this.loggedUser)
     this.profilePicture = this.loggedUser?.profilePicture
-    
+    // let reader = new FileReader();
+    // reader.readAsDataURL(this.profilePicture);
+    // reader.onload = () => {
+    //   if (reader.result != null) {
+    //     this.profilePic = reader.result;
+    //   }
+    // };
+    const myString = this.loggedUser?.profilePicture;
+    console.log(myString)
+
+
+const fileReader = new FileReader();
+fileReader.onload = function(event) {
+  const contents = event.target!.result;
+  console.log(contents);
+};
+fileReader.readAsDataURL(myString!);
 
     
 
   }
+  
   name: string | undefined;
   email = '';
-  profilePic = '';
+
 
   updateProfile() {
     // code to update the user's information

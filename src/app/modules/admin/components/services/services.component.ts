@@ -53,7 +53,7 @@ export class ServicesComponent implements OnInit {
         })
       )
       .toPromise();
-      console.log(this.messages)
+      // console.log(this.messages)
   }
 
   messages: Message[] | undefined = [];

@@ -3,12 +3,12 @@ export enum Role {
   PATIENT = 'PATIENT',
 }
 export interface User {
-  id: string;
+  id?: string;
   firstName: string;
   lastName: string;
   username: string;
   email: string;
   role: Role;
   password: string;
-  profilePicture: string;
+  profilePicture: Blob;
 }

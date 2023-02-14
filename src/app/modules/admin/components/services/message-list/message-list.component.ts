@@ -1,4 +1,3 @@
-
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/login/models/login.model';
@@ -17,7 +16,17 @@ export class MessageListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-
+  }
+  getLastMessage(id: string): string{
+    const filteredList = this.messages!.filter(
+      (obj) => obj.idReceiver === id || obj.idSender === id
+    );
+    if (filteredList && filteredList.length > 0) {
+      return filteredList[filteredList.length - 1].message!;
+    } else {
+      return '';
+    }
+    
   }
 
   @Output() selectedUserChanged = new EventEmitter<User>();
