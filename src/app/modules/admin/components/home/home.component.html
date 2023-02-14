@@ -7,7 +7,11 @@
               class="row row-cols-sm-auto">
             
         </form>
-        <input [(ngModel)]="searchTerm" (ngModelChange)="search()" type="text" placeholder="Search">
+        <input [(ngModel)]="searchTerm" (ngModelChange)="search()"  type="text"
+        class="form-control rounded"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="search-addon">
     </div>
     <app-doctors-list [users]="filteredUsers"
                       (selectedUserChanged)="onSelectedUser($event)"></app-doctors-list>

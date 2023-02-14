@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/login/models/login.model';
 import { Message } from 'src/app/shared/models/message.model';
@@ -12,6 +13,9 @@ export class MessageListComponent implements OnInit {
   @Input() data?: User[] | null;
   @Input() loggedUser: User | undefined;
   @Input() messages?: Message[] | undefined;
+  filterUsersForm?: FormGroup;
+  searchTerm = '';
+  filteredUsers: User[] = [];
 
   constructor() {}
 
@@ -28,6 +32,17 @@ export class MessageListComponent implements OnInit {
     }
     
   }
+  search() {
+    if (this.searchTerm === '') {
+      this.filteredUsers = this.data!;
+    } else {
+      this.filteredUsers = this.data!.filter((user) =>
+        user.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) || user.lastName.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+    this.data = this.filteredUsers
+  }
+
 
   @Output() selectedUserChanged = new EventEmitter<User>();
   @Input() usersSubject = new BehaviorSubject<User[]>([]);
