@@ -20,6 +20,15 @@
  */
 
 /**
+ * @typedef MedicineBE
+ * @property {string} id
+ * @property {string} name
+ * @property {string} description
+ * @property {string} image
+
+ */
+
+/**
  * @typedef EmployeeDetailsBE
  * @property {string} firstName
  * @property {string} lastName

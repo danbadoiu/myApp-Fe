@@ -17,13 +17,15 @@ import {MatIconModule} from '@angular/material/icon'
 import { UserService } from './user.service';
 import { AuthGuard } from './modules/admin/authguard.guard';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { MedicineComponent } from './modules/admin/components/medicine/Medicine/Medicine.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        MedicineComponent
 
     ],
     providers: [UserService, AuthGuard, { provide: LocationStrategy, useClass: PathLocationStrategy }],

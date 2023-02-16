@@ -19,6 +19,7 @@ import { LocationComponent } from './components/location/location.component';
 import { AuthGuard } from './authguard.guard';
 import { DoctorsDetailComponent } from './components/home/doctors-detail/doctors-detail.component';
 import { DoctorsListComponent } from './components/home/doctors-list/doctors-list.component';
+import { MedicineComponent } from './components/medicine/Medicine/Medicine.component';
 
 
 
