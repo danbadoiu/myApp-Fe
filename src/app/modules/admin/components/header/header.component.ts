@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/shared/services/login.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  cartItemCount = 0
   constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit() {}

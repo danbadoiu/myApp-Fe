@@ -4,6 +4,7 @@ import { AuthGuard } from './authguard.guard';
 import { AdminDashbordComponent } from './components/admin-dashbord/admin-dashbord.component';
 import { HomeComponent } from './components/home/home.component';
 import { LocationComponent } from './components/location/location.component';
+import { MedicineBoxComponent } from './components/medicine/medicine-box/medicine-box.component';
 import { MedicineComponent } from './components/medicine/Medicine/Medicine.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ServicesComponent } from './components/services/services.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'services', component: ServicesComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'medicine', component: MedicineComponent },
+      { path: 'medicine-box', component:MedicineBoxComponent },
       {
         path: 'location',
         component: LocationComponent,

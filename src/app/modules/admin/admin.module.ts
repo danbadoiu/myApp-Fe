@@ -20,6 +20,8 @@ import { AuthGuard } from './authguard.guard';
 import { DoctorsDetailComponent } from './components/home/doctors-detail/doctors-detail.component';
 import { DoctorsListComponent } from './components/home/doctors-list/doctors-list.component';
 import { MedicineComponent } from './components/medicine/Medicine/Medicine.component';
+import { MedicineBoxComponent } from './components/medicine/medicine-box/medicine-box.component';
+
 
 
 
@@ -51,7 +53,9 @@ import { MedicineComponent } from './components/medicine/Medicine/Medicine.compo
     MessageListComponent,
     LocationComponent,
     DoctorsDetailComponent,
-    DoctorsListComponent
+    DoctorsListComponent,
+    MedicineComponent,
+    MedicineBoxComponent
   ],
 
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]

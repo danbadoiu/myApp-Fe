@@ -25,7 +25,6 @@ import { MedicineComponent } from './modules/admin/components/medicine/Medicine/
         AppComponent,
         LoginComponent,
         RegisterComponent,
-        MedicineComponent
 
     ],
     providers: [UserService, AuthGuard, { provide: LocationStrategy, useClass: PathLocationStrategy }],

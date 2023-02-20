@@ -15,8 +15,8 @@ export class ProfileComponent implements OnInit {
   users: User[] | undefined;
   username?: string;
   loggedUser?: User;
-  profilePicture?:any;
-  profilePic:any
+  profilePicture?: any;
+  profilePic: any;
   constructor(
     private http: HttpClient,
     private loginService: LoginService,
@@ -33,17 +33,17 @@ export class ProfileComponent implements OnInit {
       )
       .toPromise();
     this.setUser();
-    let storedUser = JSON.parse(localStorage.getItem("userData")!);
+    let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.username = storedUser.userDetails.username;
-    
+
     this.loggedUser = this.users?.find(
       (employee) => employee.username === this.username
     );
     this.name = this.users?.find(
       (employee) => employee.username === this.username
     )?.firstName;
-    console.log(this.loggedUser)
-    this.profilePicture = this.loggedUser?.profilePicture
+    console.log(this.loggedUser);
+    this.profilePicture = this.loggedUser?.profilePicture;
     // let reader = new FileReader();
     // reader.readAsDataURL(this.profilePicture);
     // reader.onload = () => {
@@ -52,23 +52,18 @@ export class ProfileComponent implements OnInit {
     //   }
     // };
     const myString = this.loggedUser?.profilePicture;
-    console.log(myString)
+    console.log(myString);
 
-
-const fileReader = new FileReader();
-fileReader.onload = function(event) {
-  const contents = event.target!.result;
-  console.log(contents);
-};
-fileReader.readAsDataURL(myString!);
-
-    
-
+    const fileReader = new FileReader();
+    fileReader.onload = function (event) {
+      const contents = event.target!.result;
+      console.log(contents);
+    };
+    fileReader.readAsDataURL(myString!);
   }
-  
+
   name: string | undefined;
   email = '';
-
 
   updateProfile() {
     // code to update the user's information
@@ -76,7 +71,6 @@ fileReader.readAsDataURL(myString!);
   uploadFile(event: any) {
     const file = event.target.files[0];
     this.profilePic = file;
-    
   }
   setUser() {
     this.loggedUser = this.users?.find(
