@@ -20,6 +20,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { MedicineComponent } from './modules/admin/components/medicine/Medicine/Medicine.component';
 
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -40,6 +41,7 @@ import { MedicineComponent } from './modules/admin/components/medicine/Medicine/
         MatIconModule,
         MatTableModule,
         MatIconModule,
+      
     ]
 })
 export class AppModule { }

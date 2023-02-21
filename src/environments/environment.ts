@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8081',
+  mapbox:{
+    accessToken:'pk.eyJ1IjoiZGFuaWJhZG9pdSIsImEiOiJjbGVlNWZ5d2wwZGlrM3BveWtmZXh0OHR4In0.AIbejDigEnXHUl2x8DeBCw'
+  }
 
 };
 
