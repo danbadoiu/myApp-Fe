@@ -1,3 +1,4 @@
+
 <div class="col">
   <div class="row"
        *ngIf="selectedUser && selectedUser.id">
@@ -9,7 +10,7 @@
     </button>
   </div>
   <form class="row g-3"
-       [formGroup]="form"
+        [formGroup]="form"
         *ngIf="form">
     <div class="col-6 form-floating form-group">
       <input type="text"
@@ -17,8 +18,7 @@
              formControlName="firstName"
              adoValidationError="firstName"
              id="firstName" />
-      <label 
-             for="firstName"
+      <label for="firstName"
              class="form-label">Nume</label>
     </div>
 
@@ -28,8 +28,7 @@
              formControlName="lastName"
              adoValidationError="lastName"
              id="lastName" />
-      <label 
-             for="lastName"
+      <label for="lastName"
              class="form-label">Prenume</label>
     </div>
 
@@ -39,8 +38,7 @@
              formControlName="username"
              adoValidationError="username"
              id="numeUtilizator" />
-      <label 
-             for="numeUtilizator"
+      <label for="numeUtilizator"
              class="form-label">Nume Utilizator</label>
     </div>
 
@@ -50,25 +48,40 @@
              formControlName="email"
              adoValidationError="email"
              id="email" />
-      <label 
-             for="email"
+      <label for="email"
              class="form-label">Email</label>
     </div>
 
   </form>
   <div class="row">
     <div class="d-flex justify-content-end mt-5">
-      <button 
-              class="btn btn-secondary"
+      <button class="btn btn-secondary"
               (click)="onClear()">
         Renunta
       </button>
-      <!-- <button i18n
-              class="btn btn-success text-white ms-2"
-              [disabled]="form?.disabled || form?.invalid"
-              (click)="onAddEditEmployee()">
-        {{ mode === 'ADD' ? add : save }}
-      </button> -->
+
+      <button type="button" class="btn btn-primary" (click)="openModal()">Launch demo modal</button>
+      <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal content goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>
+

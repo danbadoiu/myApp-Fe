@@ -3,12 +3,15 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/login/models/login.model';
 
+
+
 @Component({
   selector: 'app-doctors-detail',
   templateUrl: './doctors-detail.component.html',
   styleUrls: ['./doctors-detail.component.css']
 })
 export class DoctorsDetailComponent implements OnInit, OnChanges, OnDestroy{
+
 
   @Input() selectedUser?: User | null;
   @Output() savedChanges = new EventEmitter<boolean>();
@@ -19,7 +22,7 @@ export class DoctorsDetailComponent implements OnInit, OnChanges, OnDestroy{
 
   constructor(
 
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -115,6 +118,12 @@ export class DoctorsDetailComponent implements OnInit, OnChanges, OnDestroy{
       this.form?.reset();
     }
   }
+  onSendMessage() {
+    
+    }
+    openModal() {
+      
+    }
 
 
   

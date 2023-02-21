@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { User } from 'src/app/login/models/login.model';
 import { Message } from 'src/app/shared/models/message.model';
 import { MessageService } from 'src/app/shared/services/message.service';
@@ -14,6 +14,7 @@ export class MessageDetailComponent implements OnInit {
   @Input() messages: Message[] | undefined;
   @Input() loggedUser: User | undefined
   @Output() savedChanges = new EventEmitter<boolean>();
+  @ViewChild('formRef') myForm: any;
   profilePic: any;
   messageDate: string | null = '';
   message: string | undefined;
@@ -34,6 +35,7 @@ export class MessageDetailComponent implements OnInit {
       .subscribe(() => {
         // formRef.reset();
         this.savedChanges.emit(true);
+        this.myForm.reset()
         
       });
   }

@@ -53,8 +53,7 @@ export class RegisterComponent implements OnInit {
     const file = event.target.files[0];
     console.log(file);
     const myString = file;
-const myBlob = new Blob([myString], { type: 'text/plain' });
-    this.profilePicture = myBlob;
+    this.profilePicture = myString;
     let reader = new FileReader();
     reader.readAsDataURL(this.profilePicture);
     reader.onload = () => {
@@ -63,4 +62,5 @@ const myBlob = new Blob([myString], { type: 'text/plain' });
       }
     };
   }
+
 }

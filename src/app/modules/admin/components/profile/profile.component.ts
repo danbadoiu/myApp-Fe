@@ -43,14 +43,15 @@ export class ProfileComponent implements OnInit {
       (employee) => employee.username === this.username
     )?.firstName;
     console.log(this.loggedUser);
+    console.log(this.loggedUser?.profilePicture)
     this.profilePicture = this.loggedUser?.profilePicture;
-    // let reader = new FileReader();
-    // reader.readAsDataURL(this.profilePicture);
-    // reader.onload = () => {
-    //   if (reader.result != null) {
-    //     this.profilePic = reader.result;
-    //   }
-    // };
+    let reader = new FileReader();
+    reader.readAsDataURL(this.profilePicture);
+    reader.onload = () => {
+      if (reader.result != null) {
+        this.profilePic = reader.result;
+      }
+    };
     const myString = this.loggedUser?.profilePicture;
     console.log(myString);
 
