@@ -20,6 +20,8 @@ export class MessageListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    
+    
   }
   getLastMessage(id: string): string{
     const filteredList = this.messages!.filter(

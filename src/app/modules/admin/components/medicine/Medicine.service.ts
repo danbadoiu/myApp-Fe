@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Medicine } from 'src/app/models/medicine.model';
+import { Medicine, MedicineBox } from 'src/app/models/medicine.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -35,8 +35,8 @@ export class MedicineService {
         })
       );
   }
-  public addMedicine(medicine: Medicine): Observable<Medicine> {
-    return this.http.post<Medicine>(
+  public addMedicine(medicine: MedicineBox): Observable<Medicine> {
+    return this.http.post<MedicineBox>(
       `${environment.apiUrl}/core/api/v1/medicinesBox`,
       medicine
     );

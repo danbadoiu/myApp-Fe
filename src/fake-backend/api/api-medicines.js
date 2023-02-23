@@ -36,6 +36,7 @@ module.exports = function (app) {
     const newEmpIndex =
       DATA.medicinesBox.push({
         id: `${DATA.medicinesBox.length + 1}`,
+        idReceiver: reqBody.idReceiver,
         name: reqBody.name,
         description: reqBody.description,
         image: reqBody.image,

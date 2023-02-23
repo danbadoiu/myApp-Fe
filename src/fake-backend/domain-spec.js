@@ -38,6 +38,15 @@
  * @property {string} image
 
  */
+/**
+ * @typedef MedicineBoxBE
+ * @property {string} id
+ * @property {string} idReceiver
+ * @property {string} name
+ * @property {string} description
+ * @property {string} image
+
+ */
 
 /**
  * @typedef EmployeeDetailsBE

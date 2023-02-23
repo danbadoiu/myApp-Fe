@@ -14,6 +14,7 @@ export class MedicineComponent implements OnInit {
   @Input() medicinesBox2: Medicine[] | undefined;
 
   medicines: Medicine[] | undefined;
+  
   medicinesBox: Medicine[] = [];
   searchTerm = '';
   filteredMedicines: Medicine[] = [];
@@ -51,7 +52,8 @@ export class MedicineComponent implements OnInit {
 
   onAddToBox(id: string) {
     const medicine = this.medicines?.find((medicine) => medicine?.id === id);
-    this.medicinesBox?.push(medicine!);
-    this.medicineService.addMedicine(medicine!).subscribe(() => {});
+
+    this.medicinesBox?.push();
+    this.medicineService.addMedicine({...medicine!,idReceiver:""}).subscribe(() => {});
   }
 }

@@ -1,5 +1,5 @@
 /**
- * @type {MedicineBE}
+ * @type {MedicineBoxBE}
  */
 const MEDICINESBOX = [];
 

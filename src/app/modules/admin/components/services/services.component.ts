@@ -34,14 +34,12 @@ export class ServicesComponent implements OnInit {
       )
       .toPromise();
     this.getData2();
-    let storedUser = JSON.parse(localStorage.getItem("userData")!);
+    let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.username = storedUser.userDetails.username;
-    
+
     this.loggedUser = this.users?.find(
       (employee) => employee.username === this.username
     );
-
-    console.log(this.loggedUser)
   }
 
   async getData2() {
@@ -53,7 +51,6 @@ export class ServicesComponent implements OnInit {
         })
       )
       .toPromise();
-      // console.log(this.messages)
   }
 
   messages: Message[] | undefined = [];
