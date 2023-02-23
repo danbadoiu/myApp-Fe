@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs';
-import { Medicine } from 'src/app/login/models/medicine.model';
+import { Medicine } from 'src/app/models/medicine.model';
 import { environment } from 'src/environments/environment';
 import { MedicineService } from '../Medicine.service';
 
@@ -15,6 +15,18 @@ export class MedicineComponent implements OnInit {
 
   medicines: Medicine[] | undefined;
   medicinesBox: Medicine[] = [];
+  searchTerm = '';
+  filteredMedicines: Medicine[] = [];
+
+  search() {
+    if (this.searchTerm === '') {
+      this.filteredMedicines = this.medicines!;
+    } else {
+      this.filteredMedicines = this.medicines!.filter((medicine) =>
+        medicine.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+  }
   constructor(
     private medicineService: MedicineService,
     private http: HttpClient

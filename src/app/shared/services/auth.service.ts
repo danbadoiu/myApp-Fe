@@ -1,21 +1,25 @@
-import { Observable, of, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   hasRole(role: any) {
-    if(role == "DOCTOR"){
-      return true
-    }
-    else return false
+    if (role == 'DOCTOR') {
+      return true;
+    } else return false;
   }
   isAuthenticated() {
-    return true
+    return true;
   }
   constructor(private router: Router) {}
+  getLoggedInUserRole(): string{
+    let storedUser = JSON.parse(localStorage.getItem('userData')!);
+    return storedUser.userDetails.role;
+   
+  }
 
   setToken(token: string): void {
     localStorage.setItem('token', token);

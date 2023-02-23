@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { User } from 'src/app/login/models/login.model';
+import { User } from 'src/app/models/login.model';
 import { UserService } from 'src/app/user.service';
 
 @Component({

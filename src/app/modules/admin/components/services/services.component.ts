@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
-import { User } from 'src/app/login/models/login.model';
+import { User } from 'src/app/models/login.model';
 import { Message } from 'src/app/shared/models/message.model';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { environment } from 'src/environments/environment';

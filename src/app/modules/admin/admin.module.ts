@@ -21,6 +21,7 @@ import { DoctorsDetailComponent } from './components/home/doctors-detail/doctors
 import { DoctorsListComponent } from './components/home/doctors-list/doctors-list.component';
 import { MedicineComponent } from './components/medicine/Medicine/Medicine.component';
 import { MedicineBoxComponent } from './components/medicine/medicine-box/medicine-box.component';
+import { PostsComponent } from './components/posts/posts.component';
 
 
 
@@ -55,7 +56,8 @@ import { MedicineBoxComponent } from './components/medicine/medicine-box/medicin
     DoctorsDetailComponent,
     DoctorsListComponent,
     MedicineComponent,
-    MedicineBoxComponent
+    MedicineBoxComponent,
+    PostsComponent
   ],
 
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]

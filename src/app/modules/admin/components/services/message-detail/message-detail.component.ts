@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { User } from 'src/app/login/models/login.model';
+import { User } from 'src/app/models/login.model';
 import { Message } from 'src/app/shared/models/message.model';
 import { MessageService } from 'src/app/shared/services/message.service';
 

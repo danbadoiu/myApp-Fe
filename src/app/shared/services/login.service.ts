@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, map,tap,  Observable } from "rxjs";
-import { Role, User } from "src/app/login/models/login.model";
+import { Role, User } from "src/app/models/login.model";
 import { environment } from "src/environments/environment";
 import { UserDetails } from "../models/user.model";
 

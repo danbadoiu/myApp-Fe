@@ -1,25 +1,24 @@
-<!-- <app-table></app-table> -->
-<div class="container">
 <div class="row">
-    <div class=" col-md-8">
-        <form [formGroup]="filterUsersForm!"
+    <div class="col-lg-6 col-md-12">
+        <!-- <form [formGroup]="filterUsersForm!"
            
               class="row row-cols-sm-auto">
             
-        </form>
-        <input [(ngModel)]="searchTerm" (ngModelChange)="search()"  type="text"
-        class="form-control rounded"
-        placeholder="Search"
-        aria-label="Search"
-        aria-describedby="search-addon">
+        </form> -->
+        <input [(ngModel)]="searchTerm"
+               (ngModelChange)="search()"
+               type="text"
+               class="form-control rounded"
+               placeholder="Search"
+               aria-label="Search"
+               aria-describedby="search-addon">
     </div>
     <app-doctors-list [users]="filteredUsers"
                       (selectedUserChanged)="onSelectedUser($event)"></app-doctors-list>
-    <div class="col-md-4 mt-3 pt-2">
+    <div class="col-lg-6 col-md-6 mt-3 pt-2">
         <app-doctors-detail *ngIf="showUserDetails"
                             (savedChanges)="onUserDetailAction($event)"
                             [selectedUser]="selectedUser">
         </app-doctors-detail>
     </div>
-</div>
 </div>

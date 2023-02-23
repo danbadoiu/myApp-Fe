@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/login/models/login.model';
+import { User } from 'src/app/models/login.model';
 
 @Component({
   selector: 'app-doctors-list',

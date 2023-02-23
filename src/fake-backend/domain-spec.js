@@ -15,7 +15,18 @@
  * @property {string} id
  * @property {string} idSender
  * @property {string} idReceiver
+ * @property {string} message
  * @property {Date} date
+
+ */
+
+/**
+ * @typedef PostBE
+ * @property {string} id
+ * @property {string} idUser
+ * @property {string} message
+ * @property {Date} date
+ * @property {string} image
 
  */
 

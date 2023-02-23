@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/login/models/login.model';
+import { User } from 'src/app/models/login.model';
 
 
 
