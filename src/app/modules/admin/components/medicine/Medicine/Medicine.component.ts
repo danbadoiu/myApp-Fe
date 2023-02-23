@@ -14,10 +14,12 @@ export class MedicineComponent implements OnInit {
   @Input() medicinesBox2: Medicine[] | undefined;
 
   medicines: Medicine[] | undefined;
-  
+
   medicinesBox: Medicine[] = [];
   searchTerm = '';
   filteredMedicines: Medicine[] = [];
+  idReceiver: string | undefined;
+  selectedMedicineId: string | undefined;
 
   search() {
     if (this.searchTerm === '') {
@@ -51,9 +53,16 @@ export class MedicineComponent implements OnInit {
   }
 
   onAddToBox(id: string) {
-    const medicine = this.medicines?.find((medicine) => medicine?.id === id);
+    this.selectedMedicineId = id;
+  }
+  addToBox(arg0: string) {
+    const medicine = this.medicines?.find(
+      (medicine) => medicine?.id === this.selectedMedicineId
+    );
 
     this.medicinesBox?.push();
-    this.medicineService.addMedicine({...medicine!,idReceiver:""}).subscribe(() => {});
+    this.medicineService
+      .addMedicine({ ...medicine!, idReceiver: this.idReceiver! })
+      .subscribe(() => {});
   }
 }

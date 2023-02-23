@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
-import { Medicine } from 'src/app/models/medicine.model';
+import { Medicine, MedicineBox } from 'src/app/models/medicine.model';
 import { environment } from 'src/environments/environment';
 import { MedicineService } from '../Medicine.service';
 
@@ -11,11 +11,11 @@ import { MedicineService } from '../Medicine.service';
   styleUrls: ['./medicine-box.component.css'],
 })
 export class MedicineBoxComponent implements OnInit {
-  medicines: Medicine[]|undefined
-  ;
+  medicines: MedicineBox[] | undefined;
   medicinesBox: Medicine[] = [];
   searchTerm = '';
   filteredMedicines: Medicine[] = [];
+  loggedUserId: string | undefined;
 
   search() {
     if (this.searchTerm === '') {
@@ -36,7 +36,7 @@ export class MedicineBoxComponent implements OnInit {
   }
   async loadMedicines() {
     this.medicines = await this.http
-      .get<{ items: Medicine[] }>(
+      .get<{ items: MedicineBox[] }>(
         `${environment.apiUrl}/core/api/v1/medicinesBox`
       )
       .pipe(
@@ -45,7 +45,8 @@ export class MedicineBoxComponent implements OnInit {
         })
       )
       .toPromise();
-    console.log(this.medicines);
+    let storedUser = JSON.parse(localStorage.getItem('userData')!);
+    this.loggedUserId = storedUser.userDetails.userId;
   }
   onDelete(id: string) {
     this.medicineService

@@ -1,17 +1,22 @@
 <div class="medicine-card-list">
   <div class="row row-cols-5">
     <input [(ngModel)]="searchTerm"
-               (ngModelChange)="search()"
-               type="text"
-               class="form-control rounded"
-               placeholder="Search"
-               aria-label="Search"
-               aria-describedby="search-addon">
+           (ngModelChange)="search()"
+           type="text"
+           class="form-control rounded"
+           placeholder="Search"
+           aria-label="Search"
+           aria-describedby="search-addon">
     <div *ngFor="let medicine of medicines">
-      <div class="col mb-4">
-        <div class="card" style="width: 15rem;">
-          <div class="d-flex align-items-center justify-content-center" style="height: 10rem;">
-            <img [src]="medicine.image" class="card-img-top" alt="...">
+      <div class="col mb-4"
+           *ngIf="medicine.idReceiver===loggedUserId">
+        <div class="card"
+             style="width: 15rem;">
+          <div class="d-flex align-items-center justify-content-center"
+               style="height: 10rem;">
+            <img [src]="medicine.image"
+                 class="card-img-top"
+                 alt="...">
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">{{medicine.name}}</h5>

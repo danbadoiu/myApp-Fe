@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'services', component: ServicesComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'medicine', component: MedicineComponent },
+      { path: 'medicine', component: MedicineComponent,canActivate:[DoctorGuard]},
       { path: 'medicine-box', component: MedicineBoxComponent },
       { path: 'posts', component: PostsComponent, canActivate:[DoctorGuard]},
       {
