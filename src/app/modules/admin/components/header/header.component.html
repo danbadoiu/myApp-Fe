@@ -3,7 +3,7 @@
   <div [style.visibility]="'hidden'"></div>
   <div class="spacer"></div>
   
-  <span><mat-icon mat-button routerLink="./medicine-box">add_shopping_cart</mat-icon></span>
+  <span *ngIf="loggedUserRole!=='ROLE_DOCTOR'"><mat-icon mat-button routerLink="./medicine-box">add_shopping_cart</mat-icon></span>
   <a mat-button routerLink="./home">Home</a>
   <a mat-button routerLink="profile">Profile</a>
   <a mat-button routerLink="medicine" *ngIf="loggedUserRole==='ROLE_DOCTOR'">Medicine</a>

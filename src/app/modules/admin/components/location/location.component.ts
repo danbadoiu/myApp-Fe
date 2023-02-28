@@ -14,9 +14,10 @@ export class LocationComponent implements OnInit {
   longitude: number = 0;
   map: mapboxgl.Map | undefined;
   style = 'mapbox://stylee/mapbox/streets-v11';
-  lat =  46.770439;
+  lat = 46.770439;
   lng = 23.591423;
-  zoom = 5;
+  zoom = 11;
+  marker:mapboxgl.Marker[]|undefined
   constructor() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.latitude = position.coords.latitude;
@@ -26,20 +27,6 @@ export class LocationComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.latitude)
-    // const myLatLng = { lat: this.latitude, lng: this.longitude };
-    // const mapOptions = {
-    //   center: myLatLng,
-    //   zoom: 8
-    // };
-    // const map = new google.maps.Map(
-    //   document.getElementById('map')!,
-    //   mapOptions
-    // );
-    // const marker = new google.maps.Marker({
-    //   position: myLatLng,
-    //   map: map
-    // });
     this.buildMap();
   }
   buildMap() {
@@ -54,11 +41,25 @@ export class LocationComponent implements OnInit {
       attributionControl: false,
     });
     this.map.addControl(navControl, 'top-right');
-    this.map.addControl(new mapboxgl.GeolocateControl({
-      positionOptions:{enableHighAccuracy:true},
-      trackUserLocation:true,
-      showUserHeading:true
-    }))
+    this.map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+        showUserHeading: true,
+      })
+    );
+    this.marker?.push(new mapboxgl.Marker({
+      color: '#FFFFFF',
+      draggable: true,
+    })
+      .setLngLat([23.6205449, 46.7633466134])
+      .addTo(this.map!))
+    const marker2 = new mapboxgl.Marker({
+      color: '#FFFFFF',
+      draggable: true,
+    })
+      .setLngLat([23.5872364478, 46.7761506])
+      .addTo(this.map!);
   }
 
   x = document.getElementById('demo');
@@ -74,5 +75,12 @@ export class LocationComponent implements OnInit {
     //  "Latitude: " + position.coords.latitude +
     // "<br>Longitude: " + position.coords.longitude;
     console.log(position.coords.latitude);
+  }
+  onFindClosestHospital() {
+    //  const myLocation = new mapboxgl.LngLat(this.longitude, this.latitude);
+    // const markerLocation = new mapboxgl.LngLat(this.marker?.getLngLat().lng!,this.marker?.getLngLat().lat!);
+    // const locations:number[]|undefined=[];
+    // myLocation.distanceTo(markerLocation);
+    // console.log(myLocation.distanceTo(markerLocation))
   }
 }
