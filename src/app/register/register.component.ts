@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
@@ -22,15 +23,25 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   profilePic: any;
-  profilePicture: any;
+  profilePicture: File | undefined;
+  profileImage: SafeUrl | undefined;
 
   constructor(
     private userService: UserService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.userService
+    //   .getUserById()
+    //   .subscribe((user) => this.createProfileImage(user.profilePicture));
+  }
+  createProfileImage(image: Blob): void {
+    const objectURL = 'data:image/png;base64,' + image;
+    this.profileImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+  }
 
   onSubmit(): void {
     const { username, email, password } = this.form;
@@ -42,25 +53,23 @@ export class RegisterComponent implements OnInit {
         password: this.form.password,
         email: this.form.email,
         role: this.form.role,
-        profilePicture: this.profilePicture,
+        profilePicture: this.profilePicture!,
       })
       .subscribe(() => {
         this.router.navigate(['/login']);
-        console.log(this.profilePicture);
+        // console.log(this.profilePicture);
       });
   }
   onFileChanged(event: any) {
     const file = event.target.files[0];
-    console.log(file);
-    const myString = file;
-    this.profilePicture = myString;
+
+    this.profilePicture = file;
     let reader = new FileReader();
-    reader.readAsDataURL(this.profilePicture);
+    reader.readAsDataURL(this.profilePicture!);
     reader.onload = () => {
       if (reader.result != null) {
         this.profilePic = reader.result;
       }
     };
   }
-
 }

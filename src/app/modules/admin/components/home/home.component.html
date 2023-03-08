@@ -5,7 +5,7 @@
               class="row row-cols-sm-auto">
             
         </form> -->
-        <input [(ngModel)]="searchTerm"
+        <!-- <input [(ngModel)]="searchTerm"
                (ngModelChange)="search()"
                type="text"
                class="form-control rounded"
@@ -20,5 +20,104 @@
                             (savedChanges)="onUserDetailAction($event)"
                             [selectedUser]="selectedUser">
         </app-doctors-detail>
+    </div> -->
+        <div class="card"
+             style="width: 18rem;">
+            <form (ngSubmit)="createPost()"
+                  #formRef="ngForm">
+                <img [src]="image"
+                     class="card-img-top"
+                     alt="Card image cap">
+
+                <input type="file"
+                       (change)="onFileChanged($event)">
+                <div class="card-body">
+                    <input type="text"
+                           class="form-control form-control-lg"
+                           placeholder="Type description"
+                           type="text"
+                           id="message"
+                           [(ngModel)]="message"
+                           name="message">
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Domain</mat-label>
+                        <mat-select [(value)]="domain">
+                            <mat-option *ngFor="let domain of domains"
+                                        [value]="domain">
+                                {{domain}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <a class="btn btn-primary"
+                       type="submit"
+                       (click)="createPost()">Create</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+
+    <form #formRef="ngForm"
+          (ngSubmit)="createPost()">
+        <!-- Select -->
+
+        <div class="mb-3 form-floating">
+            <!-- <ado-ngb-select [options]="holidayList"
+                            [placeholder]="'Tipul concediului'"
+                            formControlName="holidaysType">
+            </ado-ngb-select> -->
+        </div>
+
+        <!-- Datepicker -->
+        <div formGroupName="dates"
+             class="mb-3 row">
+            <div class="input-group col">
+                <!-- <ado-core-datepicker formControlName="startDate"
+                                     [ngClass]="{
+                'invalid-class': holidaysForm.get('dates')!.invalid,
+                invalidRemainingDays: holidaysForm.hasError('notEnoughRemainingDays')
+              }"
+                                     [minDate]="minDate"
+                                     [maxDate]="maxDate">
+                </ado-core-datepicker> -->
+            </div>
+            <div class="input-group col">
+                <!-- <ado-core-datepicker formControlName="endDate"
+                                     [ngClass]="{
+                'invalid-class': holidaysForm.get('dates')!.invalid,
+                invalidRemainingDays: holidaysForm.hasError('notEnoughRemainingDays')
+              }"
+                                     [minDate]="minDate"
+                                     [maxDate]="maxDate">
+                </ado-core-datepicker> -->
+            </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="mb-6 form-floating">
+            <textarea class="form-control"
+                      id="mentionsTextArea"
+                      formControlName="mentions">
+          </textarea>
+            <label 
+                   for="mentionsTextArea">Mentiuni (optional)</label>
+        </div>
+
+        <!-- Buttons -->
+        <div 
+             class="d-flex justify-content-end">
+            <button 
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="onCancel()">
+                Anulare
+            </button>
+            <button
+                    class="btn btn-success text-white ms-3"
+                    type="submit"
+                   >
+                Adaugare
+            </button>
+        </div>
+    </form>

@@ -26,6 +26,7 @@
  * @property {string} idUser
  * @property {string} message
  * @property {Date} date
+ * @property {string} domain
  * @property {string} image
 
  */

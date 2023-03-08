@@ -17,7 +17,7 @@ export class LocationComponent implements OnInit {
   lat = 46.770439;
   lng = 23.591423;
   zoom = 11;
-  marker:mapboxgl.Marker[]|undefined
+  marker: mapboxgl.Marker[] | undefined;
   constructor() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.latitude = position.coords.latitude;
@@ -48,18 +48,20 @@ export class LocationComponent implements OnInit {
         showUserHeading: true,
       })
     );
-    this.marker?.push(new mapboxgl.Marker({
-      color: '#FFFFFF',
-      draggable: true,
-    })
-      .setLngLat([23.6205449, 46.7633466134])
-      .addTo(this.map!))
+    this.marker?.push(
+      new mapboxgl.Marker({
+        color: '#FFFFFF',
+        draggable: true,
+      })
+        .setLngLat([23.6205449, 46.7633466134])
+        // .addTo(this.map!)
+    );
     const marker2 = new mapboxgl.Marker({
       color: '#FFFFFF',
       draggable: true,
     })
       .setLngLat([23.5872364478, 46.7761506])
-      .addTo(this.map!);
+      // .addTo(this.map!);
   }
 
   x = document.getElementById('demo');
@@ -77,10 +79,23 @@ export class LocationComponent implements OnInit {
     console.log(position.coords.latitude);
   }
   onFindClosestHospital() {
-    //  const myLocation = new mapboxgl.LngLat(this.longitude, this.latitude);
+    const myLocation = new mapboxgl.LngLat(this.longitude, this.latitude);
     // const markerLocation = new mapboxgl.LngLat(this.marker?.getLngLat().lng!,this.marker?.getLngLat().lat!);
     // const locations:number[]|undefined=[];
     // myLocation.distanceTo(markerLocation);
     // console.log(myLocation.distanceTo(markerLocation))
+
+    let transformedList = [];
+    console.log(this.marker)
+
+    for (let i = 0; i < this.marker!.length; i++) {
+      let marker = this.marker![i];
+      const markerLocation = new mapboxgl.LngLat(
+        marker.getLngLat().lng!,
+        marker.getLngLat().lat!
+      ); // Perform a transformation on the element
+      transformedList.push(myLocation.distanceTo(markerLocation)); // Add the transformed element to the new
+    }
+    console.log(transformedList);
   }
 }

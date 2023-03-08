@@ -3,5 +3,6 @@ export interface Post {
   idUser: string;
   message: string;
   image: string;
+  domain: string;
   date: Date;
 }

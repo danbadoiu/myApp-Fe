@@ -22,6 +22,7 @@ import { DoctorsListComponent } from './components/home/doctors-list/doctors-lis
 import { MedicineComponent } from './components/medicine/Medicine/Medicine.component';
 import { MedicineBoxComponent } from './components/medicine/medicine-box/medicine-box.component';
 import { PostsComponent } from './components/posts/posts.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -39,7 +40,8 @@ import { PostsComponent } from './components/posts/posts.component';
     FormsModule,
     MatTableModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
     
 
   ],

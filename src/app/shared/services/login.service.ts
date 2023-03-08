@@ -26,7 +26,10 @@ export class LoginService {
 
   login(username: string, password: string): Observable<User> {
     return this.http
-      .post<User>(`${environment.apiUrl}/core/api/v1/login`, {
+      .post<User>(`${environment.apiUrl}/core/api/v1/login`, 
+      
+      // .post<User>('http://localhost:8080/login',
+      {
         username,
         password,
       })

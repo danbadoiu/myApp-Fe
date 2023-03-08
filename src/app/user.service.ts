@@ -4,13 +4,12 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from './models/login.model';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private isUserLoggedIn = false;
-  userLogged: User | undefined
+  userLogged: User | undefined;
   username: string = '';
   users: User[] = [];
   constructor(private http: HttpClient) {
@@ -21,30 +20,43 @@ export class UserService {
     this.username = username;
   }
   getUserLoggedIn() {
-    if(this.userLogged?.role === 'DOCTOR'){
-      console.log(this.userLogged.role)
-    return this.isUserLoggedIn;}
-    else return false
+    if (this.userLogged?.role === 'DOCTOR') {
+      console.log(this.userLogged.role);
+      return this.isUserLoggedIn;
+    } else return false;
   }
   getUsername() {
     return this.username;
   }
-  getUsers() : Observable<User[]>{
+  getUsers(): Observable<User[]> {
     return this.http
       .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
       .pipe(
         map((responseData) => {
           // console.log(responseData.items)
           return responseData.items;
-          
         })
       );
   }
- 
-  addUser(user: User):Observable<User>{
+  getUserById(): Observable<User> {
+    return this.http.get<User>('http://localhost:8080/user/2');
+  }
+
+  addUser(user: User): Observable<User> {
+    const user2 = JSON.stringify(user);
+    const formData = new FormData();
+    formData.append('profilePicture', user.profilePicture);
+    formData.append('firstName', user.firstName);
+    formData.append('lastName', user.lastName);
+    formData.append('username', user.username);
+    formData.append('email', user.email);
+    formData.append('role', user.role);
+    formData.append('password', user.password);
+
     return this.http.post<User>(
-      `${environment.apiUrl}/core/api/v1/users`,
-      user
+      // `${environment.apiUrl}/core/api/v1/users`,
+      'http://localhost:8080/user',
+      formData
     );
   }
 }

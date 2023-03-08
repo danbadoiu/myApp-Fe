@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { LoginService } from 'src/app/shared/services/login.service';
@@ -17,10 +18,12 @@ export class ProfileComponent implements OnInit {
   loggedUser?: User;
   profilePicture?: any;
   profilePic: any;
+  profileImage: SafeUrl | undefined;
   constructor(
     private http: HttpClient,
     private loginService: LoginService,
-    private userService: UserService
+    private userService: UserService,
+    private sanitizer: DomSanitizer
   ) {}
 
   async ngOnInit() {
@@ -43,24 +46,25 @@ export class ProfileComponent implements OnInit {
       (employee) => employee.username === this.username
     )?.firstName;
     console.log(this.loggedUser);
-    console.log(this.loggedUser?.profilePicture)
+    console.log(this.loggedUser?.profilePicture);
     this.profilePicture = this.loggedUser?.profilePicture;
-    let reader = new FileReader();
-    reader.readAsDataURL(this.profilePicture);
-    reader.onload = () => {
-      if (reader.result != null) {
-        this.profilePic = reader.result;
-      }
-    };
-    const myString = this.loggedUser?.profilePicture;
-    console.log(myString);
+    // let reader = new FileReader();
+    // reader.readAsDataURL(this.profilePicture);
+    // reader.onload = () => {
+    //   if (reader.result != null) {
+    //     this.profilePic = reader.result;
+    //   }
+    // };
+    // const myString = this.loggedUser?.profilePicture;
+    // console.log(myString);
 
-    const fileReader = new FileReader();
-    fileReader.onload = function (event) {
-      const contents = event.target!.result;
-      console.log(contents);
-    };
-    fileReader.readAsDataURL(myString!);
+    // const fileReader = new FileReader();
+    // fileReader.onload = function (event) {
+    //   const contents = event.target!.result;
+    //   console.log(contents);
+    // };
+    // fileReader.readAsDataURL(myString!);
+    this.createProfileImage(this.loggedUser?.profilePicture!)
   }
 
   name: string | undefined;
@@ -77,5 +81,12 @@ export class ProfileComponent implements OnInit {
     this.loggedUser = this.users?.find(
       (user) => user.username == this.userService.getUsername()
     );
+  }
+  createProfileImage(image: Blob): void {
+    const objectURL = 'data:image/png;base64,' + image;
+    this.profileImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    if (!image) {
+      this.profileImage = './assets/user_image_placeholder.svg';
+    }
   }
 }
