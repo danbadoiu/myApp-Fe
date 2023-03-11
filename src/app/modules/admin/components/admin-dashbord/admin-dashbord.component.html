@@ -1,3 +1,25 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<head>
+    <style>
+        /* Set the height of the content area to fill the remaining space */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ensure the content area takes up all available space */
+        .container {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <app-header></app-header>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="footer">
+        <app-footer></app-footer>
+    </div>
+</body>

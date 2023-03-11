@@ -12,7 +12,7 @@ import { UserService } from 'src/app/user.service';
 })
 export class HomeComponent implements OnInit {
 onCancel() {
-throw new Error('Method not implemented.');
+this.myForm.reset();
 }
   selectedUser?: User | null;
   usersObservable?: Observable<User[]>;
@@ -93,7 +93,17 @@ throw new Error('Method not implemented.');
       })
       .subscribe();
   }
-  onFileChanged($event: Event) {
+  onFileChanged(event: any) {
     this.image = '';
+    const file = event.target.files[0];
+
+    this.image = file;
+    let reader = new FileReader();
+    reader.readAsDataURL(this.image!);
+    reader.onload = () => {
+      if (reader.result != null) {
+        this.image = reader.result;
+      }
+    };
   }
 }

@@ -1,6 +1,29 @@
-/* form{
-    display: inline-block;
+.profile-img-card {
+  width: 200px;
+  height: 200px;
+  margin: 10px auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 5%;
 }
-a{
-    display: inline-block;
-} */
+.form-element {
+  width: 70%;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+
+  -webkit-box-shadow: inset -1px 3px 8px 5px white, 2px 5px 16px 0px #aba99a,
+    2px 2px 16px 8px rgba(188, 154, 108, 0.4);
+  box-shadow: inset -1px 3px 8px 5px white, 2px 5px 16px 0px #aba99a,
+    2px 2px 16px 8px rgba(188, 154, 108, 0.4);
+  display: inline-block;
+  width: 500px;
+  height: 500px;
+  margin-top: 20px;
+}

@@ -1,123 +1,66 @@
-<div class="row">
-    <div class="col-lg-6 col-md-12">
-        <!-- <form [formGroup]="filterUsersForm!"
-           
-              class="row row-cols-sm-auto">
-            
-        </form> -->
-        <!-- <input [(ngModel)]="searchTerm"
-               (ngModelChange)="search()"
-               type="text"
-               class="form-control rounded"
-               placeholder="Search"
-               aria-label="Search"
-               aria-describedby="search-addon">
-    </div>
-    <app-doctors-list [users]="filteredUsers"
-                      (selectedUserChanged)="onSelectedUser($event)"></app-doctors-list>
-    <div class="col-lg-6 col-md-6 mt-3 pt-2">
-        <app-doctors-detail *ngIf="showUserDetails"
-                            (savedChanges)="onUserDetailAction($event)"
-                            [selectedUser]="selectedUser">
-        </app-doctors-detail>
-    </div> -->
-        <div class="card"
-             style="width: 18rem;">
-            <form (ngSubmit)="createPost()"
-                  #formRef="ngForm">
-                <img [src]="image"
-                     class="card-img-top"
-                     alt="Card image cap">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+            <div class="card">
+                <form (ngSubmit)="createPost()"
+                      #formRef="ngForm">
+                    <div class="card-body">
+                        <img *ngIf="!image"
+                             id="profile-img"
+                             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                             class="profile-img-card" />
+                        <img *ngIf="image"
+                             [src]="image"
+                             class="profile-img-card"
+                             [(ngModel)]="image"
+                             name="image" />
+                        <input type="file"
+                               class="form-control form-element mb-3"
+                               id="customFile"
+                               [(ngModel)]="image"
+                               name="image"
+                               (change)="onFileChanged($event)" />
 
-                <input type="file"
-                       (change)="onFileChanged($event)">
-                <div class="card-body">
-                    <input type="text"
-                           class="form-control form-control-lg"
-                           placeholder="Type description"
-                           type="text"
-                           id="message"
-                           [(ngModel)]="message"
-                           name="message">
-
-                    <mat-form-field appearance="fill">
-                        <mat-label>Domain</mat-label>
-                        <mat-select [(value)]="domain">
-                            <mat-option *ngFor="let domain of domains"
-                                        [value]="domain">
-                                {{domain}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <a class="btn btn-primary"
-                       type="submit"
-                       (click)="createPost()">Create</a>
+                        <input type="text"
+                               class="form-control form-control-lg form-element mb-3"
+                               placeholder="Type description"
+                               type="text"
+                               id="message"
+                               [(ngModel)]="message"
+                               name="message">
+                        <!-- <mat-form-field class="form-element">
+                            <mat-label>Domain</mat-label>
+                            <mat-select [(value)]="domain"
+                                        [(ngModel)]="domain"
+                                        name="domain">
+                                <mat-option *ngFor="let domain of domains"
+                                            [value]="domain">
+                                    {{domain}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+                        <select class="form-select form-select-lg mb-2 form-element"
+                                aria-label=".form-select-lg example">
+                            <option selected
+                                    [value]="domain"
+                                    [(ngModel)]="domain"
+                                    name="domain">Choose domain</option>
+                            <option *ngFor="let domain of domains"
+                                    [value]="domain">{{domain}}</option>
+                        </select>
+                    </div>
+                </form>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-12 mt-3 d-flex justify-content-center">
+                        <button class="btn btn-primary me-3"
+                                type="button"
+                                (click)="onCancel()">Anulare</button>
+                        <button class="btn btn-success text-white"
+                                type="submit"
+                                (click)="createPost()">Adaugare</button>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-
-    <form #formRef="ngForm"
-          (ngSubmit)="createPost()">
-        <!-- Select -->
-
-        <div class="mb-3 form-floating">
-            <!-- <ado-ngb-select [options]="holidayList"
-                            [placeholder]="'Tipul concediului'"
-                            formControlName="holidaysType">
-            </ado-ngb-select> -->
-        </div>
-
-        <!-- Datepicker -->
-        <div formGroupName="dates"
-             class="mb-3 row">
-            <div class="input-group col">
-                <!-- <ado-core-datepicker formControlName="startDate"
-                                     [ngClass]="{
-                'invalid-class': holidaysForm.get('dates')!.invalid,
-                invalidRemainingDays: holidaysForm.hasError('notEnoughRemainingDays')
-              }"
-                                     [minDate]="minDate"
-                                     [maxDate]="maxDate">
-                </ado-core-datepicker> -->
-            </div>
-            <div class="input-group col">
-                <!-- <ado-core-datepicker formControlName="endDate"
-                                     [ngClass]="{
-                'invalid-class': holidaysForm.get('dates')!.invalid,
-                invalidRemainingDays: holidaysForm.hasError('notEnoughRemainingDays')
-              }"
-                                     [minDate]="minDate"
-                                     [maxDate]="maxDate">
-                </ado-core-datepicker> -->
-            </div>
-        </div>
-
-        <!-- Textarea -->
-        <div class="mb-6 form-floating">
-            <textarea class="form-control"
-                      id="mentionsTextArea"
-                      formControlName="mentions">
-          </textarea>
-            <label 
-                   for="mentionsTextArea">Mentiuni (optional)</label>
-        </div>
-
-        <!-- Buttons -->
-        <div 
-             class="d-flex justify-content-end">
-            <button 
-                    class="btn btn-primary"
-                    type="button"
-                    (click)="onCancel()">
-                Anulare
-            </button>
-            <button
-                    class="btn btn-success text-white ms-3"
-                    type="submit"
-                   >
-                Adaugare
-            </button>
-        </div>
-    </form>
+</div>

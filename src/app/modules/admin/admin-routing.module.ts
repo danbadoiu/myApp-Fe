@@ -17,7 +17,7 @@ const routes: Routes = [
     children: [
       // {path: 'home', component:HomeComponent, canActivate:[AuthguardGuard]},
       { path: 'home', component: HomeComponent },
-      { path: 'services', component: ServicesComponent },
+      { path: 'messages', component: ServicesComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'medicine', component: MedicineComponent,canActivate:[DoctorGuard]},
       { path: 'medicine-box', component: MedicineBoxComponent },

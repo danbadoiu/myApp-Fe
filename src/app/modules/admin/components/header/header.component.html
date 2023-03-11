@@ -7,7 +7,7 @@
   <a mat-button routerLink="./home">Home</a>
   <a mat-button routerLink="profile">Profile</a>
   <a mat-button routerLink="medicine" *ngIf="loggedUserRole==='ROLE_DOCTOR'">Medicine</a>
-  <a mat-button routerLink="./services">Services</a>
+  <a mat-button routerLink="./messages">Messages</a>
   <a mat-button routerLink="./posts" *ngIf="loggedUserRole==='ROLE_DOCTOR'">Posts</a>
   <a mat-button routerLink="location">Location</a>
   <a mat-raised-button routerLink="login" (click)="onLogout()">Logout</a>
