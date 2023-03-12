@@ -4,4 +4,5 @@ export interface Message {
     idReceiver: string|undefined;
     message: string|undefined;
     date: Date;
+    picture: Blob;
   }

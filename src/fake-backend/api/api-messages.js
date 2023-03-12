@@ -18,6 +18,7 @@ module.exports = function (app) {
         idReceiver: reqBody.idReceiver,
         message: reqBody.message,
         date: reqBody.date,
+        picture: reqBody.picture
       }) - 1;
     res
       .status(201)

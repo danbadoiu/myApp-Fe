@@ -54,11 +54,14 @@
   </form>
   <a mat-button
      (click)="sendMessage()">Send</a>
+  <button class="btn btn-primary" (click)="toggleExpand()">Select picture</button>
+<div *ngIf="expanded">
   <div>
     <label>Profile Picture:</label>
     <img [src]="profilePic">
     <input type="file"
            (change)="onFileChanged($event)">
   </div>
+</div>
 
 </div>

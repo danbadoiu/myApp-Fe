@@ -55,7 +55,7 @@ export class UserService {
 
     return this.http.post<User>(
       // `${environment.apiUrl}/core/api/v1/users`,
-      'http://localhost:8080/user',
+      'http://localhost:8080/auth/signup',
       formData
     );
   }

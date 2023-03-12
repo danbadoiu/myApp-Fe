@@ -24,6 +24,7 @@ export class PostsComponent implements OnInit {
   idLoggedUser: string | undefined;
   selectedPostUserId: string | undefined;
   users: User[] | undefined = [];
+  picture: File | undefined;
 
   search() {
     // if (this.searchTerm === '') {
@@ -75,6 +76,7 @@ export class PostsComponent implements OnInit {
         idReceiver: this.selectedPostUserId,
         idSender: this.idLoggedUser,
         date: new Date(),
+        picture: this.picture!
       })
       .subscribe(() => {
         this.myForm.reset();

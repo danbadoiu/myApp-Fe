@@ -25,7 +25,7 @@
             (click)="selectUser(user)">
           <li class="p-2 border-bottom"
               *ngIf="user.id!==loggedUser?.id">
-            <a class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between">
               <div class="d-flex flex-row">
                 <div>
                   <img src="https://www.saffronhealth.ca/wp-content/uploads/2021/12/Dr-Goldie-300x271.png"
@@ -43,7 +43,7 @@
                 <p class="small text-muted mb-1">Just now</p>
 
               </div>
-            </a>
+            </div>
           </li>
 
         </ul>

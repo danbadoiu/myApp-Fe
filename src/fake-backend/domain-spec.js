@@ -17,6 +17,7 @@
  * @property {string} idReceiver
  * @property {string} message
  * @property {Date} date
+ * @property {File} picture
 
  */
 
