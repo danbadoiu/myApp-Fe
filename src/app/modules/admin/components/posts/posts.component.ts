@@ -52,17 +52,21 @@ export class PostsComponent implements OnInit {
       .toPromise();
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.userId;
-    this.users = await this.http
-      .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
+    // this.users = await 
+    this.http
+      // .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
+      .get<User[]>('http://localhost:8080/user')
       .pipe(
         map((responseData) => {
-          return responseData.items;
+          console.log(responseData);
+          return responseData;
         })
       )
       .toPromise();
       this.loggedUser = this.users?.find(
         (employee) => employee.id === this.idLoggedUser
       );
+      console.log(this.users)
   
   }
   onSendMessage(idUser: string) {
@@ -72,9 +76,9 @@ export class PostsComponent implements OnInit {
     this.messageService
       .addMessage({
         id: '',
-        message: this.message,
-        idReceiver: this.selectedPostUserId,
-        idSender: this.idLoggedUser,
+        message: this.message!,
+        idReceiver: this.selectedPostUserId!,
+        idSender: this.idLoggedUser!,
         date: new Date(),
         picture: this.picture!
       })

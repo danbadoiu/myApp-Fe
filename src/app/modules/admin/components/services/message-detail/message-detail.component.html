@@ -3,6 +3,7 @@
          data-mdb-perfect-scrollbar="true"
          style="position: relative; height: 200px">
     <div *ngFor="let message of messages">
+ 
       <div class="d-flex flex-row justify-content-start"
            *ngIf="selectedUser?.id === message.idSender">
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
@@ -27,6 +28,7 @@
       </div>
     </div>
   </table>
+
 
 
 
@@ -65,3 +67,4 @@
 </div>
 
 </div>
+

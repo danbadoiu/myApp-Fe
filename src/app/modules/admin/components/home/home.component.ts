@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { PostService } from 'src/app/shared/services/post.service';
@@ -11,6 +12,7 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
 onCancel() {
 this.myForm.reset();
 }
@@ -45,7 +47,8 @@ this.myForm.reset();
 
   constructor(
     private userService: UserService,
-    private postService: PostService
+    private postService: PostService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -56,7 +59,9 @@ this.myForm.reset();
     this.userSubscription = this.userService.getUsers().subscribe((data) => {
       this.users = data;
       this.filteredUsers = data;
+      console.log(data)
     });
+
     console.log(this.users);
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.loggedUserId = storedUser.userDetails.userId;
@@ -78,6 +83,7 @@ this.myForm.reset();
 
     this.userSubscription = this.userService.getUsers().subscribe((data) => {
       this.users = data;
+      console.log(this.users);
     });
     console.log(this.users);
   }
@@ -106,4 +112,7 @@ this.myForm.reset();
       }
     };
   }
+  onSearchDoctors() {
+    this.router.navigate(['admin/doctors']);
+    }
 }

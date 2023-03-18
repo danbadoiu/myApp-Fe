@@ -23,6 +23,10 @@ import { MedicineComponent } from './components/medicine/Medicine/Medicine.compo
 import { MedicineBoxComponent } from './components/medicine/medicine-box/medicine-box.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { MatSelectModule } from '@angular/material/select';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './auth-interceptor.service';
+import { DoctorsComponent } from './components/home/doctors/doctors.component';
+import { ShoppingCartMedicineComponent } from './components/medicine/medicine-box/shopping-cart-medicine/shopping-cart-medicine.component';
 
 
 
@@ -59,9 +63,15 @@ import { MatSelectModule } from '@angular/material/select';
     DoctorsListComponent,
     MedicineComponent,
     MedicineBoxComponent,
-    PostsComponent
+    PostsComponent,
+    DoctorsComponent,
+    ShoppingCartMedicineComponent
   ],
 
-  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }]
+  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy },{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }]
 })
 export class AdminModule {}

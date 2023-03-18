@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DoctorGuard } from '../doctor.guard';
 import { AuthGuard } from './authguard.guard';
 import { AdminDashbordComponent } from './components/admin-dashbord/admin-dashbord.component';
+import { DoctorsComponent } from './components/home/doctors/doctors.component';
 import { HomeComponent } from './components/home/home.component';
 import { LocationComponent } from './components/location/location.component';
 import { MedicineBoxComponent } from './components/medicine/medicine-box/medicine-box.component';
@@ -17,11 +18,16 @@ const routes: Routes = [
     children: [
       // {path: 'home', component:HomeComponent, canActivate:[AuthguardGuard]},
       { path: 'home', component: HomeComponent },
+      { path: 'doctors', component: DoctorsComponent },
       { path: 'messages', component: ServicesComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'medicine', component: MedicineComponent,canActivate:[DoctorGuard]},
+      {
+        path: 'medicine',
+        component: MedicineComponent,
+        canActivate: [DoctorGuard],
+      },
       { path: 'medicine-box', component: MedicineBoxComponent },
-      { path: 'posts', component: PostsComponent, canActivate:[DoctorGuard]},
+      { path: 'posts', component: PostsComponent, canActivate: [DoctorGuard] },
       {
         path: 'location',
         component: LocationComponent,

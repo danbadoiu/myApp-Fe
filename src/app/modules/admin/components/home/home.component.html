@@ -1,10 +1,30 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-12 d-flex justify-content-center">
-            <div class="card">
+<div class="row">
+    <div class="col-lg-6 col-auto">
+        <div class="card d-flex justify-content-start card-news">
+            <div class="card-body card-news-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><app-doctors></app-doctors></li>
+                    <li class="list-group-item"><app-doctors></app-doctors></li>
+                    <li class="list-group-item"><app-doctors></app-doctors></li>
+                    <li class="list-group-item"><app-doctors></app-doctors></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 d-flex justify-content-end card-container align-items-center">
+        <div class="row">
+            <div class="two">
+                <h1>Create a post
+                    <span>So every doctor can solve your case</span>
+                </h1>
+            </div>
+
+            <div class="card post-card">
                 <form (ngSubmit)="createPost()"
                       #formRef="ngForm">
-                    <div class="card-body">
+                    <div class="card-body post-card-body">
                         <img *ngIf="!image"
                              id="profile-img"
                              src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -28,17 +48,6 @@
                                id="message"
                                [(ngModel)]="message"
                                name="message">
-                        <!-- <mat-form-field class="form-element">
-                            <mat-label>Domain</mat-label>
-                            <mat-select [(value)]="domain"
-                                        [(ngModel)]="domain"
-                                        name="domain">
-                                <mat-option *ngFor="let domain of domains"
-                                            [value]="domain">
-                                    {{domain}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field> -->
                         <select class="form-select form-select-lg mb-2 form-element"
                                 aria-label=".form-select-lg example">
                             <option selected
@@ -59,6 +68,7 @@
                                 type="submit"
                                 (click)="createPost()">Adaugare</button>
                     </div>
+
                 </div>
             </div>
         </div>

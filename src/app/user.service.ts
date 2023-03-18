@@ -30,11 +30,19 @@ export class UserService {
   }
   getUsers(): Observable<User[]> {
     return this.http
-      .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
+      // .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
+      // .get<{ items: User[] }>('http://localhost:8080/user')
+      // .pipe(
+      //   map((responseData) => {
+      //     // console.log(responseData.items)
+      //     return responseData.items;
+      //   })
+      // );
+      .get<User[]>('http://localhost:8080/user')
       .pipe(
         map((responseData) => {
           // console.log(responseData.items)
-          return responseData.items;
+          return responseData;
         })
       );
   }

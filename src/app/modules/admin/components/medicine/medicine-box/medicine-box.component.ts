@@ -12,6 +12,7 @@ import { MedicineService } from '../Medicine.service';
 })
 export class MedicineBoxComponent implements OnInit {
   medicines: MedicineBox[] | undefined;
+  medicine: MedicineBox|undefined
   medicinesBox: Medicine[] = [];
   searchTerm = '';
   filteredMedicines: Medicine[] = [];
@@ -33,6 +34,7 @@ export class MedicineBoxComponent implements OnInit {
 
   ngOnInit() {
     this.loadMedicines();
+
   }
   async loadMedicines() {
     this.medicines = await this.http
@@ -41,6 +43,7 @@ export class MedicineBoxComponent implements OnInit {
       )
       .pipe(
         map((responseData) => {
+          console.log(responseData)
           return responseData.items;
         })
       )

@@ -5,11 +5,20 @@
   
   <span *ngIf="loggedUserRole!=='ROLE_DOCTOR'"><mat-icon mat-button routerLink="./medicine-box">add_shopping_cart</mat-icon></span>
   <a mat-button routerLink="./home">Home</a>
-  <a mat-button routerLink="profile">Profile</a>
+  <!-- <a mat-button routerLink="profile">Profile</a> -->
   <a mat-button routerLink="medicine" *ngIf="loggedUserRole==='ROLE_DOCTOR'">Medicine</a>
   <a mat-button routerLink="./messages">Messages</a>
   <a mat-button routerLink="./posts" *ngIf="loggedUserRole==='ROLE_DOCTOR'">Posts</a>
   <a mat-button routerLink="location">Location</a>
-  <a mat-raised-button routerLink="login" (click)="onLogout()">Logout</a>
+  
+  <div class="dropdown">
+    <a mat-raised-button type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <mat-icon>expand_more</mat-icon>
+    </a >
+    <ul class="dropdown-menu">
+      <li><button mat-button routerLink="profile">Profile</button></li>
+      <li><button mat-button routerLink="login" (click)="onLogout()">Logout</button></li>
+    </ul>
+  </div>
 
 </mat-toolbar>

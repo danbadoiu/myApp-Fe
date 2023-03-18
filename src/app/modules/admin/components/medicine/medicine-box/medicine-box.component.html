@@ -1,4 +1,4 @@
-<div class="medicine-card-list">
+<!-- <div class="medicine-card-list">
   <div class="row row-cols-5">
 
     <div *ngFor="let medicine of medicines">
@@ -24,4 +24,20 @@
       </div>
     </div>
   </div>
+</div> -->
+<!-- <div class="col-lg-12 col-auto"> -->
+<div class="card d-flex justify-content-start card-news">
+  <div class="card-body card-news-body">
+    <ul class="list-group"
+        *ngFor="let medicine of medicines">
+      <li class="list-group-item">
+        <app-shopping-cart-medicine [medicine]="medicine"></app-shopping-cart-medicine>
+      </li>
+      <li class="list-group-item" *ngIf="!medicines">
+        Your shopping cart is empty.
+      </li>
+
+    </ul>
+  </div>
 </div>
+<!-- </div> -->

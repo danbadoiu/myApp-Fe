@@ -1,22 +1,6 @@
-<head>
-    <style>
-        /* Set the height of the content area to fill the remaining space */
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Ensure the content area takes up all available space */
-        .container {
-            flex: 1;
-        }
-    </style>
-</head>
-
 <body>
     <app-header></app-header>
-    <div class="container">
+    <div class="main">
         <router-outlet></router-outlet>
     </div>
     <div class="footer">

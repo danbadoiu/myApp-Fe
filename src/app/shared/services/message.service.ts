@@ -15,10 +15,34 @@ export class MessageService {
     );
   }
 
+  // public addMessage(message: Message): Observable<Message> {
+  //   return this.http.post<Message>(
+  //     `${environment.apiUrl}/core/api/v1/messages`,
+  //     message
+  //   );
+  // }
   public addMessage(message: Message): Observable<Message> {
+    const message2 = JSON.stringify(message);
+    console.log(message2)
+    const formData = new FormData();
+    const date = new Date();
+    const dateString = date.toISOString();
+    if (message.picture !== undefined) {
+      formData.append('picture', message.picture);
+    } else {
+      formData.append('picture', '');
+    }
+
+    formData.append('idSender', message.idSender);
+    formData.append('idReceiver', message.idReceiver);
+    formData.append('date', dateString);
+    formData.append('message', message.message);
+
     return this.http.post<Message>(
-      `${environment.apiUrl}/core/api/v1/messages`,
-      message
+      // `${environment.apiUrl}/core/api/v1/users`,
+      'http://localhost:8080/message',
+      formData
     );
   }
+  
 }

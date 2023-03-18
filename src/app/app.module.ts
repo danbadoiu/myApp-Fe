@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthGuard } from './modules/admin/authguard.guard';
 import { UserService } from './user.service';
+import { AuthInterceptorService } from './modules/admin/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,11 @@ import { UserService } from './user.service';
     UserService,
     AuthGuard,
     { provide: LocationStrategy, useClass: PathLocationStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
   imports: [
