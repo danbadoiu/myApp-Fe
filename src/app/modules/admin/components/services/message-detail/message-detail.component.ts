@@ -32,8 +32,6 @@ export class MessageDetailComponent implements OnInit {
   constructor(private messageService: MessageService,private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-    console.log(this.messages)
-    console.log(typeof this.messages)
   }
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
@@ -57,7 +55,6 @@ export class MessageDetailComponent implements OnInit {
   }
   onFileChanged(event: any) {
     const file = event.target.files[0];
-    console.log(file);
     //  this.profilePicture = file.name
     this.picture = file;
     let reader = new FileReader();
@@ -67,7 +64,6 @@ export class MessageDetailComponent implements OnInit {
         this.profilePic = reader.result;
       }
     };
-    console.log(event.target.files[0]);
   }
   expanded = false;
 

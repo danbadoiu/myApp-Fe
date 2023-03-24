@@ -2,11 +2,13 @@
     <div class="col-lg-6 col-auto">
         <div class="card d-flex justify-content-start card-news">
             <div class="card-body card-news-body">
-                <ul class="list-group">
-                    <li class="list-group-item"><app-doctors></app-doctors></li>
-                    <li class="list-group-item"><app-doctors></app-doctors></li>
-                    <li class="list-group-item"><app-doctors></app-doctors></li>
-                    <li class="list-group-item"><app-doctors></app-doctors></li>
+                <ul class="list-group"
+                    *ngFor="let user of users">
+                    <li class="list-group-item"
+                        *ngIf="user.role==='DOCTOR'">
+                        <app-doctors [user]="user"></app-doctors>
+                    </li>
+
 
                 </ul>
             </div>

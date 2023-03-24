@@ -11,7 +11,7 @@ import { AuthService } from "../shared/services/auth.service";
     constructor(private authService: AuthService, private router: Router) {}
   
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.authService.getLoggedInUserRole() == "ROLE_DOCTOR") {
+      if (this.authService.getLoggedInUserRole() == "DOCTOR") {
         return true;
       } else {
         // this.router.navigate(['home']);

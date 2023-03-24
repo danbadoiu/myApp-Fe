@@ -1,9 +1,19 @@
 .gradient-custom {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,0.8057816876750701) 0%, rgba(9,9,121,0.6489189425770308) 39%, rgba(0,93,255,0.5480786064425771) 100%);
-    margin-bottom: 20px;
-    margin-top: 20px;
-    }
-button{
-    font-size: small;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 0.8057816876750701) 0%,
+    rgba(9, 9, 121, 0.6489189425770308) 39%,
+    rgba(0, 93, 255, 0.5480786064425771) 100%
+  );
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+button {
+  font-size: small;
+}
+img {
+  margin-top: 20px;
+  height: 120px;
+  width: 70px;
 }

@@ -3,12 +3,12 @@
   <div [style.visibility]="'hidden'"></div>
   <div class="spacer"></div>
   
-  <span *ngIf="loggedUserRole!=='ROLE_DOCTOR'"><mat-icon mat-button routerLink="./medicine-box">add_shopping_cart</mat-icon></span>
+  <span *ngIf="loggedUserRole!=='DOCTOR'"><mat-icon mat-button routerLink="./medicine-box">add_shopping_cart</mat-icon></span>
   <a mat-button routerLink="./home">Home</a>
   <!-- <a mat-button routerLink="profile">Profile</a> -->
-  <a mat-button routerLink="medicine" *ngIf="loggedUserRole==='ROLE_DOCTOR'">Medicine</a>
+  <a mat-button routerLink="medicine" *ngIf="loggedUserRole==='DOCTOR'">Medicine</a>
   <a mat-button routerLink="./messages">Messages</a>
-  <a mat-button routerLink="./posts" *ngIf="loggedUserRole==='ROLE_DOCTOR'">Posts</a>
+  <a mat-button routerLink="./posts" *ngIf="loggedUserRole==='DOCTOR'">Posts</a>
   <a mat-button routerLink="location">Location</a>
   
   <div class="dropdown">

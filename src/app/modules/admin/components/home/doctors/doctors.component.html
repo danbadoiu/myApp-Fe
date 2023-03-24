@@ -2,38 +2,34 @@
   <div class="col-md-4 gradient-custom text-center text-white"
        style=" border-radius: .5rem;">
 
-
     <img [src]="profileImage"
-         alt="avatar 1"
-         style="width: 200px; height: 100%;">
-    <h5>{{username}}</h5>
-    <p>Web Designer</p>
+         alt="avatar 1">
+    <h4>Doctor</h4>
+   
     <i class="far fa-edit mb-5"></i>
   </div>
   <div class="col-md-8">
     <div class="card-body p-4">
-      <h6>Information</h6>
-      <hr class="mt-0 mb-4">
+
       <div class="row pt-1">
         <div class="col-6 mb-3">
-          <h6>Email</h6>
-          <p class="text-muted">{{loggedUser?.email}}</p>
+          <h5>Email</h5>
+          <p class="text-muted">{{user?.email}}</p>
         </div>
         <div class="col-6 mb-3">
-          <h6>Username</h6>
-          <p class="text-muted">{{loggedUser?.username}}</p>
+          <h5>Username</h5>
+          <p class="text-muted">{{user?.username}}</p>
         </div>
       </div>
-      <h6>Projects</h6>
-      <hr class="mt-0">
+     
       <div class="row pt-1">
         <div class="col-6">
           <h6>Nume</h6>
-          <p class="text-muted">{{loggedUser?.firstName}}</p>
+          <p class="text-muted">{{user?.firstName}}</p>
         </div>
         <div class="col-6">
           <h6>Prenume</h6>
-          <p class="text-muted">{{loggedUser?.lastName}}</p>
+          <p class="text-muted">{{user?.lastName}}</p>
         </div>
       </div>
       <div class="d-flex justify-content-start">
@@ -43,42 +39,42 @@
       </div>
       <!-- Button trigger modal -->
       <div class="d-flex justify-content-end">
-      <button type="button"
-              class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal">
-        Send message
-      </button>
+        <button type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+          Send message
+        </button>
 
-      <!-- Modal -->
-      <div class="modal fade"
-           id="exampleModal"
-      
-           aria-labelledby="exampleModalLabel"
-           aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title"
-                  id="exampleModalLabel">Modal title</h5>
-              <button type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal">Close</button>
-              <button type="button"
-                      class="btn btn-primary">Save changes</button>
+        <!-- Modal -->
+        <div class="modal fade"
+             id="exampleModal"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"
+                    id="exampleModalLabel">Modal title</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                <button type="button"
+                        class="btn btn-primary">Save changes</button>
+              </div>
             </div>
           </div>
         </div>
-      </div></div>
+      </div>
 
     </div>
   </div>

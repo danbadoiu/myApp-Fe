@@ -23,7 +23,6 @@ export class MessageService {
   // }
   public addMessage(message: Message): Observable<Message> {
     const message2 = JSON.stringify(message);
-    console.log(message2)
     const formData = new FormData();
     const date = new Date();
     const dateString = date.toISOString();
