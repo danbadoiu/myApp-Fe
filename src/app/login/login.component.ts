@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../shared/services/login.service';
-import { UserService } from '../user.service';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-login',

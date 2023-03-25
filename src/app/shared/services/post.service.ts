@@ -15,10 +15,26 @@ export class PostService {
     );
   }
 
+  // public addPost(post: Post): Observable<Post> {
+  //   return this.http.post<Post>(
+  //     `${environment.apiUrl}/core/api/v1/posts`,
+  //     post
+  //   );
+  // }
   public addPost(post: Post): Observable<Post> {
+    const post2 = JSON.stringify(post);
+    const formData = new FormData();
+    const date = new Date();
+    const dateString = date.toISOString().replace('T',' ').slice(0,19);
+    formData.append('image', post.image);
+    formData.append('idUser', post.idUser);
+    formData.append('message', post.message);
+    formData.append('date', dateString);
+    formData.append('domain', post.domain);
     return this.http.post<Post>(
-      `${environment.apiUrl}/core/api/v1/posts`,
-      post
+      // `${environment.apiUrl}/core/api/v1/users`,
+      'http://localhost:8080/post',
+      formData
     );
   }
 }

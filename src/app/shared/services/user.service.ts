@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from './models/login.model';
+import { User } from '../../models/login.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,18 +30,9 @@ export class UserService {
   }
   getUsers(): Observable<User[]> {
     return this.http
-      // .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
-      // .get<{ items: User[] }>('http://localhost:8080/user')
-      // .pipe(
-      //   map((responseData) => {
-      //     // console.log(responseData.items)
-      //     return responseData.items;
-      //   })
-      // );
       .get<User[]>('http://localhost:8080/user')
       .pipe(
         map((responseData) => {
-          // console.log(responseData.items)
           return responseData;
         })
       );
@@ -62,7 +53,6 @@ export class UserService {
     formData.append('password', user.password);
 
     return this.http.post<User>(
-      // `${environment.apiUrl}/core/api/v1/users`,
       'http://localhost:8080/auth/signup',
       formData
     );

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { PostService } from 'src/app/shared/services/post.service';
-import { UserService } from 'src/app/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   filteredUsers: User[] = [];
   message: string | undefined;
   image: any;
+  imagePosted: File | undefined;
   loggedUserId: string | undefined;
   @ViewChild('formRef') myForm: any;
   domain: string | undefined = '';
@@ -62,7 +63,8 @@ export class HomeComponent implements OnInit {
     });
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
-    this.loggedUserId = storedUser.userDetails.userId;
+    this.loggedUserId = storedUser.userDetails.id;
+    console.log(this.loggedUserId)
   }
   onSelectedUser(user: User): void {
     this.selectedUser = user;
@@ -86,10 +88,9 @@ export class HomeComponent implements OnInit {
   createPost() {
     this.postService
       .addPost({
-        id: '',
         message: this.message!,
         idUser: this.loggedUserId!,
-        image: this.image,
+        image: this.imagePosted!,
         domain: this.domain!,
         date: new Date(),
       })
@@ -100,6 +101,7 @@ export class HomeComponent implements OnInit {
     const file = event.target.files[0];
 
     this.image = file;
+    this.imagePosted = file;
     let reader = new FileReader();
     reader.readAsDataURL(this.image!);
     reader.onload = () => {

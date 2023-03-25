@@ -15,7 +15,7 @@
                 <app-message-list [data]="users"
                                   (selectedUserChanged)="onSelectedUser($event)"
                                   [loggedUser]="loggedUser"
-                                  [messages]="messages"></app-message-list>
+                                  [messages]="filteredMessages"></app-message-list>
 
               </div>
 
@@ -23,7 +23,7 @@
               <div class="col-md-6 col-lg-7 col-xl-8">
                 <app-message-detail *ngIf="showUserDetails"
                                     [selectedUser]="selectedUser"
-                                    [messages]="messages"
+                                    [messages]="filteredMessages"
                                     [loggedUser]="loggedUser"
                                     (savedChanges)="onMessageAction($event)"></app-message-detail>
               </div>

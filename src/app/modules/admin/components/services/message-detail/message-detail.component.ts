@@ -29,26 +29,37 @@ export class MessageDetailComponent implements OnInit {
   password: string | undefined;
   picture: File | undefined;
   profileImage: SafeUrl | undefined;
-  constructor(private messageService: MessageService,private sanitizer: DomSanitizer) {}
+  profileImageLoggedUser: SafeUrl | undefined;
+  constructor(
+    private messageService: MessageService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
+    this.createProfileImage(this.selectedUser?.profilePicture!);
+    this.createProfileImage2(this.loggedUser?.profilePicture!);
   }
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
     this.profileImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
   }
+  createProfileImage2(image: Blob): void {
+    const objectURL = 'data:image/png;base64,' + image;
+    this.profileImageLoggedUser =
+      this.sanitizer.bypassSecurityTrustUrl(objectURL);
+  }
   sendMessage() {
     this.messageService
       .addMessage({
         message: this.message!,
-        idReceiver: this.selectedUser?.id!,
-        idSender: this.loggedUser?.id!,
+        idSender: this.selectedUser?.id!,
+        idReceiver: this.loggedUser?.id!,
         date: new Date(),
         picture: this.picture!,
       })
       .subscribe(() => {
         // formRef.reset();
-        console.log(this.message+"sfsfsfsfsdfd")
+        console.log(this.message + 'message sent');
         this.savedChanges.emit(true);
         this.myForm.reset();
       });

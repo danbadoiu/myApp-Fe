@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -34,9 +34,6 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.userService
-    //   .getUserById()
-    //   .subscribe((user) => this.createProfileImage(user.profilePicture));
   }
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
@@ -57,7 +54,6 @@ export class RegisterComponent implements OnInit {
       })
       .subscribe(() => {
         this.router.navigate(['/login']);
-        // console.log(this.profilePicture);
       });
   }
   onFileChanged(event: any) {

@@ -15,7 +15,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthGuard } from './modules/admin/authguard.guard';
-import { UserService } from './user.service';
+import { UserService } from './shared/services/user.service';
 import { AuthInterceptorService } from './modules/admin/auth-interceptor.service';
 
 @NgModule({
