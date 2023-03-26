@@ -35,7 +35,6 @@ export class ServicesComponent implements OnInit, OnChanges {
       .toPromise();
     this.getData2().subscribe((responseData) => {
       this.messages = responseData;
-      // console.log(this.loggedUser?.id)
       this.filteredMessages = this.messages?.filter((obj) => {
         return (
           obj.idReceiver === this.loggedUser?.id ||
@@ -53,15 +52,6 @@ export class ServicesComponent implements OnInit, OnChanges {
   }
 
   getData2(): Observable<Message[] | undefined> {
-    // this.messages = await this.http
-    //   .get<{ items: Message[] }>(`${environment.apiUrl}/core/api/v1/messages`)
-    //   .pipe(
-    //     map((responseData) => {
-    //       return responseData.items;
-    //     })
-    //   )
-    //   .toPromise();
-    // this.messages =
     return this.http
       .get<Message[] | undefined>('http://localhost:8080/message')
       .pipe(
@@ -72,8 +62,16 @@ export class ServicesComponent implements OnInit, OnChanges {
   }
 
   onMessageAction(refreshData: boolean) {
-    this.getData2();
-    console.log('dsfsdfsdfsdfsdfsdf');
+    this.getData2().subscribe((responseData) => {
+      this.messages = responseData;
+
+      this.filteredMessages = this.messages?.filter((obj) => {
+        return (
+          obj.idReceiver === this.loggedUser?.id ||
+          obj.idSender === this.loggedUser?.id
+        );
+      });
+    });
   }
   onSelectedUser(user: User): void {
     this.selectedUser = user;

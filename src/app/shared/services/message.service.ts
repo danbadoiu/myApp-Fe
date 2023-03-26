@@ -31,6 +31,13 @@ export class MessageService {
     // } else {
     //   formData.append('picture', '');
     // }
+    // if (message.picture !== undefined && message.picture !== null) {
+    //   formData.append('picture', message.picture);
+    // } else {
+    //   formData.append('picture', '');
+    // }
+
+
     formData.append('picture', message.picture);
     formData.append('idSender', message.idSender);
     formData.append('idReceiver', message.idReceiver);

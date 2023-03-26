@@ -23,9 +23,9 @@
 }
 .post-card {
   -webkit-box-shadow: inset -1px 3px 8px 5px white, 2px 5px 16px 0px #aba99a,
-    2px 2px 16px 8px  rgba(5, 17, 152, 0.164);
+    2px 2px 16px 8px rgba(5, 17, 152, 0.164);
   box-shadow: inset -1px 3px 8px 5px white, 2px 5px 16px 0px #aba99a,
-    2px 2px 16px 8px  rgba(5, 17, 152, 0.164);
+    2px 2px 16px 8px rgba(5, 17, 152, 0.164);
 
   width: 400px;
   height: 400px;
@@ -38,7 +38,6 @@
   width: 80%;
   border-radius: 0%;
   background-color: rgba(5, 17, 152, 0.164);
-
 }
 .card-news-body {
   height: 100%;
@@ -88,9 +87,13 @@ h1 em {
   padding-bottom: 10px;
 }
 .alt-two h1 {
-  text-align:center;
+  text-align: center;
 }
 .alt-two h1:before {
-  left:50%; margin-left:-30px;
+  left: 50%;
+  margin-left: -30px;
 }
 
+img {
+  width: 100px !important;
+}

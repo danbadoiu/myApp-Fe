@@ -30,6 +30,7 @@ export class MessageDetailComponent implements OnInit {
   picture: File | undefined;
   profileImage: SafeUrl | undefined;
   profileImageLoggedUser: SafeUrl | undefined;
+  pictureMessage: SafeUrl | undefined;
   constructor(
     private messageService: MessageService,
     private sanitizer: DomSanitizer
@@ -38,10 +39,17 @@ export class MessageDetailComponent implements OnInit {
   ngOnInit() {
     this.createProfileImage(this.selectedUser?.profilePicture!);
     this.createProfileImage2(this.loggedUser?.profilePicture!);
+    this.messages!.forEach((arrayItem) => {
+      this.createProfileImageMessage(arrayItem.picture);
+    });
   }
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
     this.profileImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+  }
+  createProfileImageMessage(image: Blob): void {
+    const objectURL = 'data:image/png;base64,' + image;
+    this.pictureMessage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
   }
   createProfileImage2(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;

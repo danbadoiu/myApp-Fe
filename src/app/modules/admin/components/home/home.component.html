@@ -48,7 +48,7 @@
                                name="message">
 
                         <select name="domain"
-                                class="form-select form-select-lg form-element">
+                                class="form-select form-select-lg form-element" [(ngModel)]="domain">
                             <option *ngFor="let option of domains"
                                     [value]="option">{{ option }}</option>
                         </select>

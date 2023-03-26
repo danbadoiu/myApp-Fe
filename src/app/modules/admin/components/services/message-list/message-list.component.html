@@ -2,10 +2,6 @@
 
 
   <div class=" col-md-8">
-    <form [formGroup]="filterUsersForm!"
-          class="row row-cols-sm-auto">
-
-    </form>
     <input [(ngModel)]="searchTerm"
            (ngModelChange)="search()"
            type="text"

@@ -27,6 +27,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { DoctorsComponent } from './components/home/doctors/doctors.component';
 import { ShoppingCartMedicineComponent } from './components/medicine/medicine-box/shopping-cart-medicine/shopping-cart-medicine.component';
+import { PostDetailedComponent } from './components/posts/post-detailed/post-detailed.component';
 
 
 
@@ -65,7 +66,9 @@ import { ShoppingCartMedicineComponent } from './components/medicine/medicine-bo
     MedicineBoxComponent,
     PostsComponent,
     DoctorsComponent,
-    ShoppingCartMedicineComponent
+    ShoppingCartMedicineComponent,
+    PostDetailedComponent
+    
   ],
 
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy },{

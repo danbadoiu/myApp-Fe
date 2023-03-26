@@ -13,7 +13,6 @@ export class MessageListComponent implements OnInit {
   @Input() data?: User[] | null;
   @Input() loggedUser: User | undefined;
   @Input() messages?: Message[] | undefined;
-  filterUsersForm?: FormGroup;
   searchTerm = '';
   filteredUsers: User[] = [];
 

@@ -19,3 +19,10 @@
         height: 60px;
         border-radius: 50%;
       }
+.messageImage{
+  border-radius: 0;
+  height: 50%;
+}
+p{
+  width: 200px;
+}

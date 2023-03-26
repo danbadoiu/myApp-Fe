@@ -37,4 +37,10 @@ export class PostService {
       formData
     );
   }
+  public deletePost(postId: string):Observable<unknown>{
+    return this.http.delete(
+      `http://localhost:8080/post/${postId}`
+    );
+  }
+ 
 }

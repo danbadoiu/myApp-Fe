@@ -3,7 +3,7 @@
          data-mdb-perfect-scrollbar="true"
          style="position: relative; height: 200px">
     <div *ngFor="let message of messages">
- 
+
       <div class="d-flex flex-row justify-content-start"
            *ngIf="selectedUser?.id === message.idSender">
         <img [src]="profileImage"
@@ -11,7 +11,13 @@
              style="width: 60px;">
         <div>
           <p class="small p-2 ms-3 mb-1 rounded-3"
-             style="background-color: #f5f6f7;">{{message.message}}</p>
+             style="background-color: #f5f6f7;">{{message.message}}<img *ngIf="message.picture"
+                 [src]="pictureMessage"
+                 alt="message image"
+                 style="max-width: 100%;"
+                 class="messageImage"></p>
+
+
           <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{message.date}}</p>
         </div>
       </div>
@@ -19,7 +25,12 @@
       <div class="d-flex flex-row justify-content-end"
            *ngIf="selectedUser?.id === message.idReceiver">
         <div>
-          <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">{{message.message}}</p>
+          <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">{{message.message}} <img
+                 *ngIf="message.picture"
+                 [src]="pictureMessage"
+                 alt="message image"
+                 style="max-width: 100%;"
+                 class="messageImage"></p>
           <p class="small me-3 mb-3 rounded-3 text-muted">{{message.date}}</p>
         </div>
         <img [src]="profileImageLoggedUser"
@@ -56,15 +67,17 @@
   </form>
   <a mat-button
      (click)="sendMessage()">Send</a>
-  <button class="btn btn-primary" (click)="toggleExpand()"><mat-icon>camera_enhance</mat-icon></button>
-<div *ngIf="expanded">
-  <div>
-    <label>Profile Picture:</label>
-    <img [src]="profilePic">
-    <input type="file"
-           (change)="onFileChanged($event)">
+  <button class="btn btn-primary"
+          (click)="toggleExpand()">
+    <mat-icon>camera_enhance</mat-icon>
+  </button>
+  <div *ngIf="expanded">
+    <div>
+      <label>Profile Picture:</label>
+      <img [src]="profilePic">
+      <input type="file"
+             (change)="onFileChanged($event)">
+    </div>
   </div>
-</div>
 
 </div>
-

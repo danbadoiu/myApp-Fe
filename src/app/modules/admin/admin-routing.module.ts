@@ -27,7 +27,7 @@ const routes: Routes = [
         canActivate: [DoctorGuard],
       },
       { path: 'medicine-box', component: MedicineBoxComponent },
-      { path: 'posts', component: PostsComponent, canActivate: [DoctorGuard] },
+      { path: 'posts', component: PostsComponent },
       {
         path: 'location',
         component: LocationComponent,
