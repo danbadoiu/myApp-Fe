@@ -25,20 +25,12 @@ export class MessageService {
     const message2 = JSON.stringify(message);
     const formData = new FormData();
     const date = new Date();
-    const dateString = date.toISOString().replace('T',' ').slice(0,19);
-    // if (message.picture !== undefined) {
-    //   formData.append('picture', message.picture);
-    // } else {
-    //   formData.append('picture', '');
-    // }
-    // if (message.picture !== undefined && message.picture !== null) {
-    //   formData.append('picture', message.picture);
-    // } else {
-    //   formData.append('picture', '');
-    // }
+    const dateString = date.toISOString().replace('T', ' ').slice(0, 19);
 
+    if (message.picture !== undefined) {
+      formData.append('picture', message.picture);
+    }
 
-    formData.append('picture', message.picture);
     formData.append('idSender', message.idSender);
     formData.append('idReceiver', message.idReceiver);
     formData.append('date', dateString);
@@ -50,5 +42,4 @@ export class MessageService {
       formData
     );
   }
-  
 }

@@ -28,6 +28,8 @@ import { AuthInterceptorService } from './auth-interceptor.service';
 import { DoctorsComponent } from './components/home/doctors/doctors.component';
 import { ShoppingCartMedicineComponent } from './components/medicine/medicine-box/shopping-cart-medicine/shopping-cart-medicine.component';
 import { PostDetailedComponent } from './components/posts/post-detailed/post-detailed.component';
+import { MessageSentComponent } from './components/services/message-detail/message-sent/message-sent.component';
+import { MessageReceivedComponent } from './components/services/message-detail/message-received/message-received.component';
 
 
 
@@ -67,7 +69,9 @@ import { PostDetailedComponent } from './components/posts/post-detailed/post-det
     PostsComponent,
     DoctorsComponent,
     ShoppingCartMedicineComponent,
-    PostDetailedComponent
+    PostDetailedComponent,
+    MessageSentComponent,
+    MessageReceivedComponent
     
   ],
 

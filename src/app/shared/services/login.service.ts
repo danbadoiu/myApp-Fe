@@ -13,15 +13,18 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router) {}
 
   logout(): void {
-    this.http
-      .post(`${environment.apiUrl}/core/api/v1/logout`, {
-        refreshToken: this.userLogged.value ? this.userLogged : null,
-      })
-      .subscribe(() => {
-        this.userLogged.next(null);
+    // this.http
+    //   .post(`${environment.apiUrl}/core/api/v1/logout`, {
+    //     refreshToken: this.userLogged.value ? this.userLogged : null,
+    //   })
+    //   .subscribe(() => {
+    //     this.userLogged.next(null);
+    //     localStorage.removeItem('userData');
+    //     this.router.navigate(['/login']);
+    //   });
+    this.userLogged.next(null);
         localStorage.removeItem('userData');
         this.router.navigate(['/login']);
-      });
   }
 
   login(username: string, password: string): Observable<AuthResponse> {

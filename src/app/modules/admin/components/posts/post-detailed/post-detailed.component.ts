@@ -55,16 +55,16 @@ export class PostDetailedComponent implements OnInit {
     this.selectedPostUserId = idUser;
   }
   sendMessage(id: string) {
+  
     this.messageService
-      .addMessage({
-        id: '',
-        message: this.message!,
-        idReceiver: this.selectedPostUserId!,
-        idSender: this.idLoggedUser!,
-        date: new Date(),
-        picture: this.picture!,
-      })
+    .addMessage({
+      message: this.message!,
+      idSender: this.post?.idUser!,
+      idReceiver: this.idLoggedUser!,
+      date: new Date(),
+      picture: this.picture!,})
       .subscribe(() => {
+        
         this.myForm.reset();
       });
   }

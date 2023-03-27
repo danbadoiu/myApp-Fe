@@ -38,7 +38,7 @@
         <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
       </div>
       <!-- Button trigger modal -->
-      <div class="d-flex justify-content-end">
+      <!-- <div class="d-flex justify-content-end">
         <button type="button"
                 class="btn btn-primary"
                 data-bs-toggle="modal"
@@ -46,7 +46,7 @@
           Send message
         </button>
 
-        <!-- Modal -->
+
         <div class="modal fade"
              id="exampleModal"
              aria-labelledby="exampleModalLabel"
@@ -74,7 +74,59 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
+     
+        <button class="btn btn-primary"
+               
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+               >Send message</button>
+
+        <div class="modal fade"
+             id="exampleModal"
+             tabindex="-1"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"
+                    id="exampleModalLabel"></h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form (ngSubmit)="onSendMessage(user?.id)"
+                      #formRef="ngForm">
+                  <input type="text"
+                         class="form-control form-control-lg"
+                         placeholder="Type message"
+                         type="text"
+                         id="message"
+                         [(ngModel)]="message"
+                         name="message">
+                  <a class="ms-1 text-muted"
+                     href="#!"><i class="fas fa-paperclip"></i></a>
+                  <a class="ms-3 text-muted"
+                     href="#!"><i class="fas fa-smile"></i></a>
+                  <a class="ms-3"
+                     href="#!"><i class="fas fa-paper-plane"></i></a>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                <a mat-button
+                   (click)="onSendMessage(user?.id)">Send</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
     </div>
   </div>

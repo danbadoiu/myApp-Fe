@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { User } from 'src/app/models/login.model';
+import { MessageService } from 'src/app/shared/services/message.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -9,19 +10,27 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./doctors.component.css'],
 })
 export class DoctorsComponent implements OnInit {
+  message: any;
+
   @Input() user: User | undefined;
   users: User[] | undefined;
   username?: string;
   loggedUser?: User;
+  idLoggedUser: string | undefined;
+  @ViewChild('formRef') myForm: any;
+  picture: File | undefined;
 
   profileImage: SafeUrl | undefined;
   constructor(
     private userService: UserService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.createProfileImage(this.user?.profilePicture!);
+    let storedUser = JSON.parse(localStorage.getItem('userData')!);
+    this.idLoggedUser = storedUser.userDetails.id;
   }
   name: string | undefined;
   email = '';
@@ -43,4 +52,17 @@ export class DoctorsComponent implements OnInit {
   }
 
   openModal() {}
+  onSendMessage(arg0: any) {
+    this.messageService
+      .addMessage({
+        message: this.message!,
+        idSender: this.idLoggedUser!,
+        idReceiver: this.user?.id!,
+        date: new Date(),
+        picture: this.picture!,
+      })
+      .subscribe(() => {
+        this.myForm.reset();
+      });
+  }
 }
