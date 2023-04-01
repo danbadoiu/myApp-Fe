@@ -25,16 +25,20 @@ export class MedicineService {
   getMedicines2() {
     return this.medicines;
   }
-  getMedicines(): Observable<Medicine[]> {
+  getMedicines(): Observable<MedicineBox[]> {
     return this.http
-      .get<{ items: Medicine[] }>(`${environment.apiUrl}/core/api/v1/medicines`)
-      .pipe(
-        map((responseData) => {
-          // console.log(responseData.items)
-          return responseData.items;
-        })
-      );
+    .get<MedicineBox[]>('http://localhost:8080/medicine')
+    .pipe(
+      map((responseData) => {
+        return responseData;
+      })
+    );
   }
+  // getMessages(): Observable<Message[]> {
+  //   return this.http.get<Message[]>(
+  //     `${environment.apiUrl}/core/api/v1/messages`
+  //   );
+  // }
   public addMedicine(medicine: MedicineBox): Observable<Medicine> {
     return this.http.post<MedicineBox>(
       `${environment.apiUrl}/core/api/v1/medicinesBox`,

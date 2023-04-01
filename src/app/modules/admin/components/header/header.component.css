@@ -2,6 +2,10 @@
   flex: 1 1 auto;
 }
 .mat-toolbar.mat-primary {
-  background: rgba(5, 17, 152, 0.539);
-  color: #fff;
+  background: #6b705c
+  /* color: #fff; */
+}
+a:hover{
+  background-color: white;
+  color: #6b705c;
 }

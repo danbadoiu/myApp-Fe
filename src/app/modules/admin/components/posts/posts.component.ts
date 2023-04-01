@@ -79,9 +79,10 @@ export class PostsComponent implements OnInit {
         })
       )
       .toPromise();
-    this.posts!.forEach((arrayItem) => {
-      this.createProfileImage(arrayItem.image);
-    });
+      if(this.posts){this.posts!.forEach((arrayItem) => {
+        this.createProfileImage(arrayItem.image);
+      });}
+    
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;

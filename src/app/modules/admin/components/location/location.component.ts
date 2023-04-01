@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
+import { Marker } from 'src/app/shared/models/marker.model';
+import { MarkerService } from 'src/app/shared/services/marker.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,8 +19,14 @@ export class LocationComponent implements OnInit {
   lat = 46.770439;
   lng = 23.591423;
   zoom = 11;
-  marker: mapboxgl.Marker[] | undefined;
-  constructor() {
+  marker: mapboxgl.Marker | undefined;
+  marker2: mapboxgl.Marker | undefined;
+  markers: mapboxgl.Marker[] = [];
+  closestMarker: mapboxgl.Marker | undefined;
+  closestDistance: number | undefined;
+  markersList: Marker[] | undefined;
+
+  constructor(private markerService: MarkerService) {
     navigator.geolocation.getCurrentPosition((position) => {
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
@@ -28,6 +36,21 @@ export class LocationComponent implements OnInit {
 
   ngOnInit() {
     this.buildMap();
+    this.markerService.getUsers().subscribe((data) => {
+      this.markersList = data;
+      this.markersList?.forEach((marker) => {
+        console.log(marker)
+        this.markers.push(
+          new mapboxgl.Marker({
+            color: '#FFFFFF',
+            draggable: true,
+          })
+            .setLngLat([marker.longitude, marker.latitude])
+            .addTo(this.map!)
+        );
+      });
+    });
+    
   }
   buildMap() {
     const navControl = new mapboxgl.NavigationControl({
@@ -48,20 +71,28 @@ export class LocationComponent implements OnInit {
         showUserHeading: true,
       })
     );
-    this.marker?.push(
-      new mapboxgl.Marker({
-        color: '#FFFFFF',
-        draggable: true,
-      })
-        .setLngLat([23.6205449, 46.7633466134])
-        // .addTo(this.map!)
-    );
-    const marker2 = new mapboxgl.Marker({
-      color: '#FFFFFF',
-      draggable: true,
-    })
-      .setLngLat([23.5872364478, 46.7761506])
-      // .addTo(this.map!);
+    // this.marker?.push(
+    //   new mapboxgl.Marker({
+    //     color: '#FFFFFF',
+    //     draggable: true,
+    //   })
+    //     .setLngLat([23.6205449, 46.7633466134])
+    //     .addTo(this.map!)
+    // );
+    // this.marker = new mapboxgl.Marker({
+    //   color: '#FFFFFF',
+    //   draggable: true,
+    // })
+    //   .setLngLat([23.6205449, 46.7633466134])
+    //   .addTo(this.map!);
+    // this.markers.push(this.marker);
+    // this.marker2 = new mapboxgl.Marker({
+    //   color: '#FFFFFF',
+    //   draggable: true,
+    // })
+    //   .setLngLat([23.5872364478, 46.7761506])
+    //   .addTo(this.map!);
+    // this.markers.push(this.marker2);
   }
 
   x = document.getElementById('demo');
@@ -80,22 +111,68 @@ export class LocationComponent implements OnInit {
   }
   onFindClosestHospital() {
     const myLocation = new mapboxgl.LngLat(this.longitude, this.latitude);
-    // const markerLocation = new mapboxgl.LngLat(this.marker?.getLngLat().lng!,this.marker?.getLngLat().lat!);
-    // const locations:number[]|undefined=[];
-    // myLocation.distanceTo(markerLocation);
-    // console.log(myLocation.distanceTo(markerLocation))
+    const markerLocation = new mapboxgl.LngLat(
+      this.marker?.getLngLat().lng!,
+      this.marker?.getLngLat().lat!
+    );
+    const locations: number[] | undefined = [];
+    myLocation.distanceTo(markerLocation);
+    console.log(myLocation.distanceTo(markerLocation));
 
-    let transformedList = [];
-    console.log(this.marker)
+    const markerLocation2 = new mapboxgl.LngLat(
+      this.marker2?.getLngLat().lng!,
+      this.marker2?.getLngLat().lat!
+    );
+    const locations2: number[] | undefined = [];
+    myLocation.distanceTo(markerLocation2);
+    console.log(myLocation.distanceTo(markerLocation2));
+    myLocation.distanceTo(markerLocation) >
+    myLocation.distanceTo(markerLocation2)
+      ? console.log('marker1')
+      : console.log('marker2');
 
-    for (let i = 0; i < this.marker!.length; i++) {
-      let marker = this.marker![i];
-      const markerLocation = new mapboxgl.LngLat(
-        marker.getLngLat().lng!,
-        marker.getLngLat().lat!
-      ); // Perform a transformation on the element
-      transformedList.push(myLocation.distanceTo(markerLocation)); // Add the transformed element to the new
+    // let transformedList = [];
+    // console.log(this.marker)
+
+    // for (let i = 0; i < this.marker!.length; i++) {
+    //   let marker = this.marker![i];
+    //   const markerLocation = new mapboxgl.LngLat(
+    //     marker.getLngLat().lng!,
+    //     marker.getLngLat().lat!
+    //   ); // Perform a transformation on the element
+    //   transformedList.push(myLocation.distanceTo(markerLocation)); // Add the transformed element to the new
+    // }
+    // console.log(transformedList);
+  }
+  findClosestMarker() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const myLocation = new mapboxgl.LngLat(
+          position.coords.longitude,
+          position.coords.latitude
+        );
+
+        // Loop through all markers to find the closest one
+        for (const marker of this.markers) {
+          const markerLocation = new mapboxgl.LngLat(
+            marker.getLngLat().lng!,
+            marker.getLngLat().lat!
+          );
+          const distance = myLocation.distanceTo(markerLocation);
+          if (!this.closestDistance || distance < this.closestDistance) {
+            this.closestDistance = distance;
+            this.closestMarker = marker;
+          }
+        }
+
+        console.log(
+          `The closest marker is at (${this.closestMarker?.getLngLat().lat},${
+            this.closestMarker?.getLngLat().lng
+          }) and is ${this.closestDistance} meters away from you.`
+        );
+      });
+    } else {
+      console.log('Geolocation is not supported by this browser.');
     }
-    console.log(transformedList);
   }
 }

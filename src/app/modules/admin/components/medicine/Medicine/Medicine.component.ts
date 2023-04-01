@@ -35,21 +35,23 @@ export class MedicineComponent implements OnInit {
     private http: HttpClient
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     if (this.medicinesBox2) {
       this.medicines = this.medicinesBox2;
     } else {
-      this.medicines = await this.http
-        .get<{ items: Medicine[] }>(
-          `${environment.apiUrl}/core/api/v1/medicines`
-        )
-        .pipe(
-          map((responseData) => {
-            return responseData.items;
-          })
-        )
-        .toPromise();
+      // this.medicines = await this.http
+      // .get<Medicine[]>('http://localhost:8080/medicine')
+      //   .pipe(
+      //     map((responseData) => {
+      //       return responseData;
+      //     })
+      //   )
+      //   .toPromise();
+      this.medicineService.getMedicines().subscribe((data) => {
+        this.medicines = data;
+      });
     }
+    
   }
 
   onAddToBox(id: string) {

@@ -28,6 +28,7 @@ export class MessageSentComponent implements OnInit {
   ngOnInit() {
     this.createProfileImage(this.message?.picture!)
     this.createProfileImage2(this.loggedUser?.profilePicture!)
+    
   }
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;

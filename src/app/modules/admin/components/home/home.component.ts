@@ -14,6 +14,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class HomeComponent implements OnInit {
   onCancel() {
     this.myForm.reset();
+    
   }
   user?: User | undefined;
   selectedUser?: User | null;
@@ -94,7 +95,7 @@ export class HomeComponent implements OnInit {
         domain: this.domain!,
         date: new Date(),
       })
-      .subscribe();
+      .subscribe(this.myForm.reset());
   }
   onFileChanged(event: any) {
     this.image = '';

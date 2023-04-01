@@ -1,14 +1,44 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css'
       rel='stylesheet' />
-<!-- <button (click)="onFindClosestHospital()">Apasa</button> -->
-<div class="map-container"
-     id='map'></div>
-<script>
-  mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11'
-  });
+<!-- <button (click)="findClosestMarker()">Apasa</button> -->
+<div class="map-container col-10"
+id='map'></div>
+<div class="col-2">
+<button class="btn btn-success text-white"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal" (click)="findClosestMarker()">Gaseste</button>
 
-</script>
+<div class="modal fade"
+     id="exampleModal"
+     tabindex="-1"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+            id="exampleModalLabel"></h5>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="div" *ngIf="this.closestMarker"> {{this.closestMarker!.getLngLat().lat}} {{this.closestMarker!.getLngLat().lng}}</div>
+       
+
+
+      </div>
+    </div>
+  </div>
+</div>
+ 
+  <script>
+    mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11'
+    });
+
+  </script>

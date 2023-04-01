@@ -1,5 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { Message } from 'src/app/shared/models/message.model';
@@ -9,18 +16,25 @@ import { Message } from 'src/app/shared/models/message.model';
   templateUrl: './message-list.component.html',
   styleUrls: ['./message-list.component.css'],
 })
-export class MessageListComponent implements OnInit {
+export class MessageListComponent implements OnInit, OnChanges {
   @Input() data?: User[] | null;
   @Input() loggedUser: User | undefined;
   @Input() messages?: Message[] | undefined;
   searchTerm = '';
-  filteredUsers: User[] = [];
+  filteredUsers: User[] | null = [];
 
-  constructor() {}
-
-  ngOnInit() {
+  constructor() {
+    this.filteredUsers = this.data!;
   }
-  getLastMessage(id: string): string{
+
+  ngOnInit() {}
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['data'] && changes['data'].currentValue) {
+      this.filteredUsers = changes['data'].currentValue;
+    }
+  }
+
+  getLastMessage(id: string): string {
     const filteredList = this.messages!.filter(
       (obj) => obj.idReceiver === id || obj.idSender === id
     );
@@ -29,19 +43,23 @@ export class MessageListComponent implements OnInit {
     } else {
       return '';
     }
-    
   }
   search() {
+    this.selectedUser = undefined
+    this.selectedUserChanged.emit(this.selectedUser);
     if (this.searchTerm === '') {
       this.filteredUsers = this.data!;
     } else {
-      this.filteredUsers = this.data!.filter((user) =>
-        user.firstName.toLowerCase().includes(this.searchTerm.toLowerCase()) || user.lastName.toLowerCase().includes(this.searchTerm.toLowerCase())
+      const filtered = this.data!.filter(
+        (user) =>
+          user.firstName
+            .toLowerCase()
+            .includes(this.searchTerm.toLowerCase()) ||
+          user.lastName.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
+      this.filteredUsers = filtered.length ? filtered : null;
     }
-    this.data = this.filteredUsers
   }
-
 
   @Output() selectedUserChanged = new EventEmitter<User>();
   @Input() usersSubject = new BehaviorSubject<User[]>([]);

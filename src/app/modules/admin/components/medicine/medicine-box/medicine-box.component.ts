@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Medicine, MedicineBox } from 'src/app/models/medicine.model';
 import { environment } from 'src/environments/environment';
 import { MedicineService } from '../Medicine.service';
@@ -33,21 +33,31 @@ export class MedicineBoxComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadMedicines();
+    // this.loadMedicines();
+    this.medicineService.getMedicines().subscribe((data) => {
+      this.medicines = data;
+    });
 
   }
-  async loadMedicines() {
-    this.medicines = await this.http
-      .get<{ items: MedicineBox[] }>(
-        `${environment.apiUrl}/core/api/v1/medicinesBox`
-      )
+  // loadMedicines():Observable<MedicineBox[]> {
+  //   return this.http
+  //   .get<MedicineBox[]|undefined>('http://localhost:8080/medicine')
+  //   .pipe(
+  //     map((responseData) => {
+  //       return responseData;
+  //     })
+  //   );
+    loadMedicines(): Observable<Medicine[]> {
+      return this.http
+      .get<Medicine[]>('http://localhost:8080/medicine')
       .pipe(
         map((responseData) => {
-          console.log(responseData)
-          return responseData.items;
+          return responseData;
         })
-      )
-      .toPromise();
+      );
+    
+      
+   
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.loggedUserId = storedUser.userDetails.userId;
   }

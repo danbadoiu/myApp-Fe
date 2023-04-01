@@ -17,7 +17,7 @@
       <div data-mdb-perfect-scrollbar="true"
            style="position: relative; height: 400px">
         <ul class="list-unstyled mb-0"
-            *ngFor="let user of data"
+            *ngFor="let user of filteredUsers"
             (click)="selectUser(user)">
           <li class="p-2 border-bottom"
               *ngIf="user.id!==loggedUser?.id">
