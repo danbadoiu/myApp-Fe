@@ -11,4 +11,5 @@ export interface User {
   role: Role;
   password: string;
   profilePicture: Blob;
+  domain?: string;
 }

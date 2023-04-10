@@ -3,12 +3,12 @@
   <div [style.visibility]="'hidden'"></div>
   <div class="spacer"></div>
   
-  <a mat-button routerLink="./home" *ngIf="loggedUserRole!=='DOCTOR'" [ngClass]="{'hover': isRouteActive('./home')}">Home</a>
+  <a mat-button routerLink="./home" *ngIf="loggedUserRole!=='DOCTOR'" [ngClass]="{'hover': isRouteActive('./home')}">Acasa</a>
   <a mat-button routerLink="./appointments" [ngClass]="{'hover': isRouteActive('./appointments')}">Programari</a>
 
-  <a mat-button routerLink="./messages" [ngClass]="{'hover': isRouteActive('./messages')}">Messages</a>
-  <a mat-button routerLink="./posts" [ngClass]="{'hover': isRouteActive('./posts')}">Posts</a>
-  <a mat-button routerLink="location" [ngClass]="{'hover': isRouteActive('location')}">Location</a>
+  <a mat-button routerLink="./messages" [ngClass]="{'hover': isRouteActive('./messages')}">Mesaje</a>
+  <a mat-button routerLink="./posts" [ngClass]="{'hover': isRouteActive('./posts')}">Postari</a>
+  <a mat-button routerLink="location" [ngClass]="{'hover': isRouteActive('location')}">Localizare</a>
   
   <div class="dropdown">
     <a mat-raised-button type="button" data-bs-toggle="dropdown" aria-expanded="false">

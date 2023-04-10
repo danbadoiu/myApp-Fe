@@ -70,26 +70,34 @@ export class PostsComponent implements OnInit {
       });
   }
   getData() {
+    let storedUser = JSON.parse(localStorage.getItem('userData')!);
+    this.idLoggedUser = storedUser.userDetails.id;
+    this.loggedUserRole = storedUser.userDetails.role;
+
     this.http
       .get<Post[]>('http://localhost:8080/post')
       .pipe(
         map((responseData) => {
-          console.log(responseData);
           this.posts = responseData;
+          this.filteredPosts = this.posts?.filter((obj) => {
+            return (
+              obj.idUser === this.idLoggedUser ||
+              obj.domain === this.loggedUser?.domain
+            );
+          });
+
+          this.posts = this.filteredPosts;
+
         })
       )
       .toPromise();
-      if(this.posts){this.posts!.forEach((arrayItem) => {
+    if (this.posts) {
+      this.posts!.forEach((arrayItem) => {
         this.createProfileImage(arrayItem.image);
-      });}
-    
+      });
+    }
 
-    let storedUser = JSON.parse(localStorage.getItem('userData')!);
-    this.idLoggedUser = storedUser.userDetails.id;
-    this.loggedUserRole = storedUser.userDetails.role;
-    // this.users = await
     this.http
-      // .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
       .get<User[]>('http://localhost:8080/user')
       .pipe(
         map((responseData) => {
@@ -100,9 +108,11 @@ export class PostsComponent implements OnInit {
     this.loggedUser = this.users?.find(
       (employee) => employee.id === this.idLoggedUser
     );
-
     this.filteredPosts = this.posts?.filter((obj) => {
-      return obj.idUser === this.idLoggedUser;
+      return (
+        obj.idUser === this.idLoggedUser ||
+        obj.domain === this.loggedUser?.domain
+      );
     });
     if (this.loggedUserRole !== 'DOCTOR') {
       this.posts = this.filteredPosts;

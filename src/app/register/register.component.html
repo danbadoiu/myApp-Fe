@@ -57,15 +57,27 @@
       </div>
       <div class="form-group">
         <label for="role">Role</label>
-        <input type="text"
-               class="form-control"
-               name="role"
-               [(ngModel)]="form.role"
-               required
-               minlength="3"
-               maxlength="20"
-               #role="ngModel" />
+
+        <select name="role"
+                class="form-select form-control form-select-lg form-element"
+                [(ngModel)]="form.role"
+                required>
+          <option *ngFor="let option of roles"
+                  [value]="option">{{ option }}</option>
+        </select>
       </div>
+      <div class="form-group"
+           *ngIf="form.role==='DOCTOR'">
+        <label for="domain">Domain</label>
+        <select name="domain"
+                class="form-select form-control form-select-lg form-element"
+                [(ngModel)]="form.domain"
+                required>
+          <option *ngFor="let option of domains"
+                  [value]="option">{{ option }}</option>
+        </select>
+      </div>
+
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email"
@@ -107,7 +119,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
+        <button class="btn btn-success btn-block">Sign Up</button>
       </div>
 
       <div class="alert alert-warning"

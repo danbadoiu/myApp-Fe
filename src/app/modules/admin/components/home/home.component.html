@@ -16,7 +16,7 @@
     <div class="col-lg-6 col-md-6 d-flex justify-content-end card-container align-items-center">
         <div class="row">
             <div class="two">
-                <h1>Create a post
+                <h1>Creeaza o postare
                     <span>So every doctor can solve your case</span>
                 </h1>
             </div>
@@ -41,14 +41,15 @@
 
                         <input type="text"
                                class="form-control form-control-lg form-element mb-3"
-                               placeholder="Type description"
+                               placeholder="Descrie problema..."
                                type="text"
                                id="message"
                                [(ngModel)]="message"
                                name="message">
 
                         <select name="domain"
-                                class="form-select form-select-lg form-element" [(ngModel)]="domain">
+                                class="form-select form-select-lg form-element"
+                                [(ngModel)]="domain">
                             <option *ngFor="let option of domains"
                                     [value]="option">{{ option }}</option>
                         </select>

@@ -77,7 +77,6 @@ export class AppointmentsComponent implements OnInit {
       .get<Appointment[]>('http://localhost:8080/appointment')
       .pipe(
         map((responseData) => {
-          console.log(responseData);
           this.appointments = responseData;
         })
       )

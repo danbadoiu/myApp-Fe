@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   loggedUserId: string | undefined;
   @ViewChild('formRef') myForm: any;
   domain: string | undefined = '';
-  domains: string[] | undefined = ['Dermatologie', 'Ortopedie'];
+  domains: string[] | undefined = ['DERMATOLOGIE', 'GINECOLOGIE','PEDIATRIE','GERIATRIE','UROLOGIE','CHIRURGIE','FIZIOLOGIE','CARDIOLOGIE','BOLI INFECTIOASE','ALERGOLOGIE'];
 
   search() {
     if (this.searchTerm === '') {

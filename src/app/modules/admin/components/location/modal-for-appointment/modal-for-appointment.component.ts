@@ -15,7 +15,7 @@ export class ModalForAppointmentComponent implements OnInit {
   doctors: string[] | undefined = [];
   message: string | undefined;
   users: User[] | undefined;
-  date: Date|undefined
+  date: Date | undefined;
   loggedUser: string | undefined;
   @Input() idMarker: Marker | undefined;
 
@@ -44,10 +44,11 @@ export class ModalForAppointmentComponent implements OnInit {
     });
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.loggedUser = storedUser.userDetails.id;
+    if (this.idMarker?.doctors) {
+      let doctorsArray = this.idMarker?.doctors.split(',').map(String);
 
-    let doctorsArray = this.idMarker?.doctors.split(',').map(String);
-
-    this.doctors = doctorsArray;
+      this.doctors = doctorsArray;
+    }
   }
   createPost() {
     // const user = this.users?.find((user) => user.firstName === this.doctor);
@@ -59,7 +60,7 @@ export class ModalForAppointmentComponent implements OnInit {
         date: new Date(),
       })
       .subscribe(() => {
-        console.log('dasdsdasd');
+   
       });
   }
 }

@@ -51,6 +51,7 @@ export class UserService {
     formData.append('email', user.email);
     formData.append('role', user.role);
     formData.append('password', user.password);
+    formData.append('domain',user.domain!)
 
     return this.http.post<User>(
       'http://localhost:8080/auth/signup',

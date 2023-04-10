@@ -29,9 +29,9 @@
       <div class="d-flex justify-content-end">
         <button type="button"
                 *ngIf="loggedUserRole!=='DOCTOR'"
-                class="btn btn-primary"
+                class="btn btn-danger"
                 (click)="onDelete(appointment?.id!)">
-          Remove
+          Sterge
         </button>
         <form (ngSubmit)="onSendMessage(selectedPostUserId!)"
               #formRef="ngForm"

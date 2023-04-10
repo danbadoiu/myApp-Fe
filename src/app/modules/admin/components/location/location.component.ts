@@ -44,7 +44,7 @@ export class LocationComponent implements OnInit {
     this.markerService.getUsers().subscribe((data) => {
       this.markersList = data;
       this.markersList?.forEach((marker) => {
-        console.log(marker);
+   
         this.markers.push(
           new mapboxgl.Marker({
             color: '#FFFFFF',
@@ -111,7 +111,7 @@ export class LocationComponent implements OnInit {
   showPosition(position: any) {
     //  "Latitude: " + position.coords.latitude +
     // "<br>Longitude: " + position.coords.longitude;
-    console.log(position.coords.latitude);
+
   }
   onFindClosestHospital() {
     const myLocation = new mapboxgl.LngLat(this.longitude, this.latitude);
@@ -121,7 +121,7 @@ export class LocationComponent implements OnInit {
     );
     const locations: number[] | undefined = [];
     myLocation.distanceTo(markerLocation);
-    console.log(myLocation.distanceTo(markerLocation));
+  
 
     const markerLocation2 = new mapboxgl.LngLat(
       this.marker2?.getLngLat().lng!,
@@ -129,7 +129,7 @@ export class LocationComponent implements OnInit {
     );
     const locations2: number[] | undefined = [];
     myLocation.distanceTo(markerLocation2);
-    console.log(myLocation.distanceTo(markerLocation2));
+
     myLocation.distanceTo(markerLocation) >
     myLocation.distanceTo(markerLocation2)
       ? console.log('marker1')
@@ -162,14 +162,10 @@ export class LocationComponent implements OnInit {
             marker.longitude == this.closestMarker?.getLngLat().lng
         );
 
-        console.log(
-          `The closest marker is at (${this.closestMarker?.getLngLat().lat},${
-            this.closestMarker?.getLngLat().lng
-          }) and is ${this.closestDistance} meters away from you.`
-        );
+        
       });
     } else {
-      console.log('Geolocation is not supported by this browser.');
+
     }
   }
   onCloseModal() {}

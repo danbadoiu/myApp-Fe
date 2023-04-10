@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
     lastName: null,
     role: null,
     profilePicture: null,
+    domain:null
   };
   isSuccessful = false;
   isSignUpFailed = false;
@@ -25,6 +26,8 @@ export class RegisterComponent implements OnInit {
   profilePic: any;
   profilePicture: File | undefined;
   profileImage: SafeUrl | undefined;
+  roles: string[] | undefined = ['DOCTOR', 'PATIENT'];
+  domains: string[] | undefined = ['DERMATOLOGIE', 'GINECOLOGIE','PEDIATRIE','GERIATRIE','UROLOGIE','CHIRURGIE','FIZIOLOGIE','CARDIOLOGIE','BOLI INFECTIOASE','ALERGOLOGIE'];
 
   constructor(
     private userService: UserService,
@@ -51,6 +54,7 @@ export class RegisterComponent implements OnInit {
         email: this.form.email,
         role: this.form.role,
         profilePicture: this.profilePicture!,
+        domain:this.form.domain
       })
       .subscribe(() => {
         this.router.navigate(['/login']);

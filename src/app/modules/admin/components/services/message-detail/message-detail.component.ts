@@ -66,8 +66,7 @@ export class MessageDetailComponent implements OnInit {
         picture: this.picture!,
       })
       .subscribe(() => {
-        // formRef.reset();
-        console.log(this.message + 'message sent');
+      
         this.savedChanges.emit(true);
         this.myForm.reset();
       });

@@ -38,7 +38,6 @@ export class ProfileComponent implements OnInit {
     this.setUser();
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.username = storedUser.userDetails.username;
-    console.log(this.username)
 
     this.loggedUser = this.users?.find(
       (employee) => employee.username === this.username
@@ -46,8 +45,7 @@ export class ProfileComponent implements OnInit {
     this.name = this.users?.find(
       (employee) => employee.username === this.username
     )?.firstName;
-    console.log(this.loggedUser);
-    console.log(this.loggedUser?.profilePicture);
+
     this.profilePicture = this.loggedUser?.profilePicture;
     // let reader = new FileReader();
     // reader.readAsDataURL(this.profilePicture);

@@ -67,7 +67,6 @@ export class AppointmentDetailComponent implements OnInit {
       this.doctor = this.users?.find(
         (user) => user.id === this.appointment?.idDoctor
       );
-      console.log(this.doctor)
   
       // this.createProfileImage(this.post?.image!);
       let storedUser = JSON.parse(localStorage.getItem('userData')!);
@@ -80,7 +79,7 @@ export class AppointmentDetailComponent implements OnInit {
 
   onSendMessage(id: string) {
     this.selectedPostUserId = id;
-    console.log(this.selectedPostUserId);
+
     this.messageService
       .addMessage({
         message: this.message!,

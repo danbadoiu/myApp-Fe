@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.loggedUserRole = storedUser.userDetails.role;
-    console.log(this.loggedUserRole)
   }
   onLogout() {
     this.loginService.logout();
