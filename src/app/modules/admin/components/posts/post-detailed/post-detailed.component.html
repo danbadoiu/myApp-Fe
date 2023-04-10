@@ -33,58 +33,34 @@
       <div class="d-flex justify-content-end">
         <button type="button"
                 *ngIf="loggedUserRole!=='DOCTOR'"
-                class="btn btn-primary" (click)="onDelete(post?.id!)">
+                class="btn btn-primary"
+                (click)="onDelete(post?.id!)">
           Remove
         </button>
+        <form (ngSubmit)="onSendMessage(selectedPostUserId!)"
+              #formRef="ngForm"  *ngIf="loggedUserRole==='DOCTOR'">
+          <input type="text"
+                 class="form-control form-control-lg"
+                 placeholder="Type message"
+                 type="text"
+                 id="message"
+                 [(ngModel)]="message"
+                 name="message">
+          <a class="ms-1 text-muted"
+             href="#!"><i class="fas fa-paperclip"></i></a>
+          <a class="ms-3 text-muted"
+             href="#!"><i class="fas fa-smile"></i></a>
+          <a class="ms-3"
+             href="#!"><i class="fas fa-paper-plane"></i></a>
+        </form>
+
         <button class="btn btn-success text-white"
                 *ngIf="loggedUserRole==='DOCTOR'"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                (click)="onSendMessage(post!.idUser!)">Send message</button>
+                (click)="onSendMessage(post!.idUser)">Send message</button>
 
-        <div class="modal fade"
-             id="exampleModal"
-             tabindex="-1"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title"
-                    id="exampleModalLabel"></h5>
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form (ngSubmit)="sendMessage(post!.idUser!)"
-                      #formRef="ngForm">
-                  <input type="text"
-                         class="form-control form-control-lg"
-                         placeholder="Type message"
-                         type="text"
-                         id="message"
-                         [(ngModel)]="message"
-                         name="message">
-                  <a class="ms-1 text-muted"
-                     href="#!"><i class="fas fa-paperclip"></i></a>
-                  <a class="ms-3 text-muted"
-                     href="#!"><i class="fas fa-smile"></i></a>
-                  <a class="ms-3"
-                     href="#!"><i class="fas fa-paper-plane"></i></a>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">Close</button>
-                <a mat-button
-                   (click)="sendMessage(post!.idUser)">Send</a>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
 
       </div>

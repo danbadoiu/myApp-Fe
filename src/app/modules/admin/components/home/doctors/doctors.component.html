@@ -5,7 +5,7 @@
     <img [src]="profileImage"
          alt="avatar 1">
     <h4>Doctor</h4>
-   
+
     <i class="far fa-edit mb-5"></i>
   </div>
   <div class="col-md-8">
@@ -21,7 +21,7 @@
           <p class="text-muted">{{user?.username}}</p>
         </div>
       </div>
-     
+
       <div class="row pt-1">
         <div class="col-6">
           <h6>Nume</h6>
@@ -37,52 +37,13 @@
         <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
         <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
       </div>
-      <!-- Button trigger modal -->
-      <!-- <div class="d-flex justify-content-end">
-        <button type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-          Send message
-        </button>
 
+      <button class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              (click)="onSendMessage()">Send message</button>
 
-        <div class="modal fade"
-             id="exampleModal"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title"
-                    id="exampleModalLabel">Modal title</h5>
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">Close</button>
-                <button type="button"
-                        class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-     
-        <button class="btn btn-primary"
-               
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-               >Send message</button>
-
-        <div class="modal fade"
+      <!-- <div class="modal fade"
              id="exampleModal"
              tabindex="-1"
              aria-labelledby="exampleModalLabel"
@@ -98,7 +59,7 @@
                         aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form (ngSubmit)="onSendMessage(user?.id)"
+                <form (ngSubmit)="onSendMessage()"
                       #formRef="ngForm">
                   <input type="text"
                          class="form-control form-control-lg"
@@ -120,11 +81,11 @@
                         class="btn btn-secondary"
                         data-bs-dismiss="modal">Close</button>
                 <a mat-button
-                   (click)="onSendMessage(user?.id)">Send</a>
+                   (click)="onSendMessage()">Send</a>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
 
 

@@ -1,84 +1,9 @@
-<!-- <div class="medicine-card-list">
-  <div class="d-flex justify-content-center">
-    <div class="col-md-8 my-5"
-         style="height: 500px; overflow-y: auto;">
 
-        <div *ngFor="let post of posts">
-          <div class="col mb-4">
-            <div class="card"
-                 style="width: 15rem;">
-              <div class="d-flex align-items-center justify-content-center"
-                   style="height: 10rem;">
-                <img [src]="post.image"
-                     class="card-img-top"
-                     alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-center">{{post.id}}</h5>
-                <p class="card-text text-center">{{post.message}}</p>
-                <div class="d-flex justify-content-center">
-                  <button class="btn btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
-                          (click)="onSendMessage(post.idUser!)" *ngIf="loggedUser?.role==='DOCTOR'">Send message</button>
-           
-                  <div class="modal fade"
-                       id="exampleModal"
-                       tabindex="-1"
-                       aria-labelledby="exampleModalLabel"
-                       aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title"
-                              id="exampleModalLabel"></h5>
-                          <button type="button"
-                                  class="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <form (ngSubmit)="sendMessage(post.idUser!)"
-                                #formRef="ngForm">
-                            <input type="text"
-                                   class="form-control form-control-lg"
-                                   placeholder="Type message"
-                                   type="text"
-                                   id="message"
-                                   [(ngModel)]="message"
-                                   name="message">
-                            <a class="ms-1 text-muted"
-                               href="#!"><i class="fas fa-paperclip"></i></a>
-                            <a class="ms-3 text-muted"
-                               href="#!"><i class="fas fa-smile"></i></a>
-                            <a class="ms-3"
-                               href="#!"><i class="fas fa-paper-plane"></i></a>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button"
-                                  class="btn btn-secondary"
-                                  data-bs-dismiss="modal">Close</button>
-                          <a mat-button
-                             (click)="sendMessage(post.idUser)">Send</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="card d-flex justify-content-start card-news">
       <div class="card-body card-news-body">
         <ul class="list-group"
             *ngFor="let post of posts">
-          <li class="list-group-item">
-            <!-- <app-shopping-cart-medicine [medicine]="medicine"></app-shopping-cart-medicine> -->
+          <li class="list-group-item" *ngIf=" loggedUserRole === 'DOCTOR'||post.idUser === idLoggedUser">
             <app-post-detailed [post]="post" (savedChanges)="onPostAction($event)"></app-post-detailed>
           </li>
           <li class="list-group-item" *ngIf="!posts">

@@ -1,0 +1,7 @@
+.list-group-item {
+  margin-bottom: 20px;
+  -webkit-box-shadow: -10px 0px 13px -7px #ffe8d6, 10px 0px 13px -7px #776649,
+    -1px 1px 17px 6px rgba(247, 237, 200, 0.28);
+  box-shadow: -10px 0px 13px -7px #ffe8d6, 10px 0px 13px -7px #776649,
+    -1px 1px 17px 6px rgba(247, 237, 200, 0.28);
+}

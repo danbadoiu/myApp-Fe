@@ -32,6 +32,7 @@ export class PostDetailedComponent implements OnInit {
   selectedPostUserId: string | undefined;
   users: User[] | undefined = [];
   picture: File | undefined;
+  idUser: string | undefined;
   loggedUserRole: string | undefined;
   @Output() savedChanges = new EventEmitter<boolean>();
 
@@ -46,25 +47,40 @@ export class PostDetailedComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.idUser = this.post?.idUser;
+ 
     this.createProfileImage(this.post?.image!);
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
     this.loggedUserRole = storedUser.userDetails.role;
   }
-  onSendMessage(idUser: string) {
-    this.selectedPostUserId = idUser;
-  }
-  sendMessage(id: string) {
-  
+
+  onSendMessage(id:string){
+    this.selectedPostUserId = id;
+    console.log(this.selectedPostUserId)
     this.messageService
     .addMessage({
       message: this.message!,
-      idSender: this.post?.idUser!,
+      idSender: this.selectedPostUserId!,
       idReceiver: this.idLoggedUser!,
       date: new Date(),
-      picture: this.picture!,})
+      picture: this.picture!,
+    })
+    .subscribe(() => {
+      this.myForm.reset();
+    });
+  }
+  sendMessage(idUser:string) {
+    console.log(this.idUser);
+    this.messageService
+      .addMessage({
+        message: this.message!,
+        idSender: this.selectedPostUserId!,
+        idReceiver: this.idLoggedUser!,
+        date: new Date(),
+        picture: this.picture!,
+      })
       .subscribe(() => {
-        
         this.myForm.reset();
       });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { Marker } from 'src/app/shared/models/marker.model';
 import { MarkerService } from 'src/app/shared/services/marker.service';
@@ -16,15 +16,20 @@ export class LocationComponent implements OnInit {
   longitude: number = 0;
   map: mapboxgl.Map | undefined;
   style = 'mapbox://stylee/mapbox/streets-v11';
-  lat = 46.770439;
-  lng = 23.591423;
-  zoom = 11;
+  lat = 46.7633466134;
+  lng = 23.6205449;
+  zoom = 12;
   marker: mapboxgl.Marker | undefined;
   marker2: mapboxgl.Marker | undefined;
   markers: mapboxgl.Marker[] = [];
   closestMarker: mapboxgl.Marker | undefined;
   closestDistance: number | undefined;
+  closestMarkerName: Marker | undefined;
   markersList: Marker[] | undefined;
+  @ViewChild('exampleModal') exampleModal: any;
+  closeModal() {
+    this.exampleModal.nativeElement.click();
+  }
 
   constructor(private markerService: MarkerService) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -39,7 +44,7 @@ export class LocationComponent implements OnInit {
     this.markerService.getUsers().subscribe((data) => {
       this.markersList = data;
       this.markersList?.forEach((marker) => {
-        console.log(marker)
+        console.log(marker);
         this.markers.push(
           new mapboxgl.Marker({
             color: '#FFFFFF',
@@ -50,7 +55,6 @@ export class LocationComponent implements OnInit {
         );
       });
     });
-    
   }
   buildMap() {
     const navControl = new mapboxgl.NavigationControl({
@@ -131,18 +135,6 @@ export class LocationComponent implements OnInit {
       ? console.log('marker1')
       : console.log('marker2');
 
-    // let transformedList = [];
-    // console.log(this.marker)
-
-    // for (let i = 0; i < this.marker!.length; i++) {
-    //   let marker = this.marker![i];
-    //   const markerLocation = new mapboxgl.LngLat(
-    //     marker.getLngLat().lng!,
-    //     marker.getLngLat().lat!
-    //   ); // Perform a transformation on the element
-    //   transformedList.push(myLocation.distanceTo(markerLocation)); // Add the transformed element to the new
-    // }
-    // console.log(transformedList);
   }
   findClosestMarker() {
     if (navigator.geolocation) {
@@ -164,6 +156,11 @@ export class LocationComponent implements OnInit {
             this.closestMarker = marker;
           }
         }
+        this.closestMarkerName = this.markersList!.find(
+          (marker) =>
+            marker.latitude == this.closestMarker?.getLngLat().lat &&
+            marker.longitude == this.closestMarker?.getLngLat().lng
+        );
 
         console.log(
           `The closest marker is at (${this.closestMarker?.getLngLat().lat},${
@@ -174,5 +171,10 @@ export class LocationComponent implements OnInit {
     } else {
       console.log('Geolocation is not supported by this browser.');
     }
+  }
+  onCloseModal() {}
+
+  onSolicitaProgramare() {
+    this.closeModal()
   }
 }

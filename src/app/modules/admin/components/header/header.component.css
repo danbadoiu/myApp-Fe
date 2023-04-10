@@ -9,3 +9,7 @@ a:hover{
   background-color: white;
   color: #6b705c;
 }
+a.active {
+  background-color: white;
+  color: #6b705c;
+}

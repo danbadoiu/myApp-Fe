@@ -46,7 +46,8 @@ onRegister() {
         // // localStorage.setItem("user", JSON.stringify(this.user));
 
 
-        this.router.navigate(['admin']);
+        
+          this.router.navigate(['admin']);
 
       });
   }

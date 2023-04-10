@@ -19,18 +19,20 @@ import { LocationComponent } from './components/location/location.component';
 import { AuthGuard } from './authguard.guard';
 import { DoctorsDetailComponent } from './components/home/doctors-detail/doctors-detail.component';
 import { DoctorsListComponent } from './components/home/doctors-list/doctors-list.component';
-import { MedicineComponent } from './components/medicine/Medicine/Medicine.component';
-import { MedicineBoxComponent } from './components/medicine/medicine-box/medicine-box.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { MatSelectModule } from '@angular/material/select';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { DoctorsComponent } from './components/home/doctors/doctors.component';
-import { ShoppingCartMedicineComponent } from './components/medicine/medicine-box/shopping-cart-medicine/shopping-cart-medicine.component';
 import { PostDetailedComponent } from './components/posts/post-detailed/post-detailed.component';
 import { MessageSentComponent } from './components/services/message-detail/message-sent/message-sent.component';
 import { MessageReceivedComponent } from './components/services/message-detail/message-received/message-received.component';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { AppointmentDetailComponent } from './components/appointments/appointment-detail/appointment-detail.component';
+import { ModalForAppointmentComponent } from './components/location/modal-for-appointment/modal-for-appointment.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 
@@ -48,7 +50,9 @@ import { MessageReceivedComponent } from './components/services/message-detail/m
     MatTableModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
 
   ],
@@ -64,14 +68,14 @@ import { MessageReceivedComponent } from './components/services/message-detail/m
     LocationComponent,
     DoctorsDetailComponent,
     DoctorsListComponent,
-    MedicineComponent,
-    MedicineBoxComponent,
     PostsComponent,
     DoctorsComponent,
-    ShoppingCartMedicineComponent,
     PostDetailedComponent,
     MessageSentComponent,
-    MessageReceivedComponent
+    MessageReceivedComponent,
+    AppointmentsComponent,
+    AppointmentDetailComponent,
+    ModalForAppointmentComponent
     
   ],
 

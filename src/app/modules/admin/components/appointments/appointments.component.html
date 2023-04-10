@@ -1,0 +1,24 @@
+<div class="card d-flex justify-content-start card-news">
+  <div class="card-body card-news-body">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6"
+           *ngFor="let appointment of appointments">
+        <ul class="list-group">
+          <li class="list-group-item"
+              *ngIf=" loggedUserRole === 'DOCTOR' || appointment.idUser === idLoggedUser">
+            <app-appointment-detail [appointment]="appointment"
+                                    (savedChanges)="onPostAction($event)"></app-appointment-detail>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <ul class="list-group">
+          <li class="list-group-item"
+              *ngIf="!appointments">
+            You have no posts.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

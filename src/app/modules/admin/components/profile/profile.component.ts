@@ -28,16 +28,17 @@ export class ProfileComponent implements OnInit {
 
   async ngOnInit() {
     this.users = await this.http
-      .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
+      .get<User[]>('http://localhost:8080/user')
       .pipe(
         map((responseData) => {
-          return responseData.items;
+          return responseData;
         })
       )
       .toPromise();
     this.setUser();
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.username = storedUser.userDetails.username;
+    console.log(this.username)
 
     this.loggedUser = this.users?.find(
       (employee) => employee.username === this.username

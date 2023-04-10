@@ -9,7 +9,7 @@ id='map'></div>
         data-bs-toggle="modal"
         data-bs-target="#exampleModal" (click)="findClosestMarker()">Gaseste</button>
 
-<div class="modal fade"
+<div class="modal fade" #exampleModal
      id="exampleModal"
      tabindex="-1"
      aria-labelledby="exampleModalLabel"
@@ -22,10 +22,13 @@ id='map'></div>
         <button type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"></button>
+                aria-label="Close" (click)="onCloseModal()"></button>
       </div>
       <div class="modal-body">
-        <div class="div" *ngIf="this.closestMarker"> {{this.closestMarker!.getLngLat().lat}} {{this.closestMarker!.getLngLat().lng}}</div>
+        <div class="div" *ngIf="this.closestMarker">{{this.closestMarkerName?.name}}
+
+          <app-modal-for-appointment [idMarker]="closestMarkerName"></app-modal-for-appointment>
+        </div>
        
 
 
