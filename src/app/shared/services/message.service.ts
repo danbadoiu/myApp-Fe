@@ -42,4 +42,7 @@ export class MessageService {
       formData
     );
   }
+  public deleteMessage(id: string): Observable<unknown> {
+    return this.http.delete(`http://localhost:8080/message/${id}`);
+  }
 }

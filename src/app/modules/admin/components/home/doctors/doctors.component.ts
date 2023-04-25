@@ -31,7 +31,6 @@ export class DoctorsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.user?.id)
     this.userId = this.user?.id
     this.createProfileImage(this.user?.profilePicture!);
     let storedUser = JSON.parse(localStorage.getItem('userData')!);

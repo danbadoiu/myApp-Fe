@@ -31,7 +31,8 @@ import { AppointmentsComponent } from './components/appointments/appointments.co
 import { AppointmentDetailComponent } from './components/appointments/appointment-detail/appointment-detail.component';
 import { ModalForAppointmentComponent } from './components/location/modal-for-appointment/modal-for-appointment.component';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
@@ -52,7 +53,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ReactiveFormsModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatFormFieldModule,
+        MatInputModule
     
 
   ],

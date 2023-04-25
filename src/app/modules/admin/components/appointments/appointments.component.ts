@@ -78,6 +78,8 @@ export class AppointmentsComponent implements OnInit {
       .pipe(
         map((responseData) => {
           this.appointments = responseData;
+          this.appointments = this.appointments.filter((appointment)=> {return (this.loggedUserRole === 'DOCTOR' && this.idLoggedUser === appointment.idDoctor)|| appointment.idUser === this.idLoggedUser})
+          
         })
       )
       .toPromise();

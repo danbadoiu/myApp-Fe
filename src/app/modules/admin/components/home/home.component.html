@@ -49,7 +49,9 @@
 
                         <select name="domain"
                                 class="form-select form-select-lg form-element"
-                                [(ngModel)]="domain">
+                                [(ngModel)]="domain"
+                                >
+                                <option disabled selected value>Selecteaza domeniul</option>
                             <option *ngFor="let option of domains"
                                     [value]="option">{{ option }}</option>
                         </select>

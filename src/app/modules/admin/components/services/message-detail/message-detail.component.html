@@ -5,7 +5,10 @@
     <div *ngFor="let message of messages">
       <app-message-sent *ngIf="selectedUser?.id === message.idReceiver"
                         [message]="message"
-                        [loggedUser]="loggedUser"></app-message-sent>
+                        [loggedUser]="loggedUser"
+                        (savedChanges)="onDeleteAction(message.id!)"
+                        
+                        ></app-message-sent>
       <app-message-received *ngIf="selectedUser?.id === message.idSender"
                             [message]="message"
                             [selectedUser]="selectedUser"></app-message-received>
@@ -25,7 +28,7 @@
         #formRef="ngForm">
     <input type="text"
            class="form-control form-control-lg"
-           placeholder="Type message"
+           placeholder="Scrieti mesaj"
            type="text"
            id="message"
            [(ngModel)]="message"
@@ -37,16 +40,14 @@
     <a class="ms-3"
        href="#!"><i class="fas fa-paper-plane"></i></a>
   </form>
-  <a mat-button
-     (click)="sendMessage()">Send</a>
+  <button class="btn btn-success"
+          (click)="sendMessage()">Trimite</button>
   <button class="btn btn-primary"
           (click)="toggleExpand()">
     <mat-icon>camera_enhance</mat-icon>
   </button>
   <div *ngIf="expanded">
     <div>
-      <label>Profile Picture:</label>
-      <img [src]="profilePic">
       <input type="file"
              (change)="onFileChanged($event)">
     </div>

@@ -31,6 +31,7 @@ export class MessageDetailComponent implements OnInit {
   profileImage: SafeUrl | undefined;
   profileImageLoggedUser: SafeUrl | undefined;
   pictureMessage: SafeUrl | undefined;
+  selected: string | undefined = 'false';
   constructor(
     private messageService: MessageService,
     private sanitizer: DomSanitizer
@@ -57,23 +58,25 @@ export class MessageDetailComponent implements OnInit {
       this.sanitizer.bypassSecurityTrustUrl(objectURL);
   }
   sendMessage() {
+    let mesaj = this.message;
+    if (!this.message) {
+      mesaj = '';
+    }
     this.messageService
       .addMessage({
-        message: this.message!,
+        message: mesaj!,
         idSender: this.selectedUser?.id!,
         idReceiver: this.loggedUser?.id!,
         date: new Date(),
         picture: this.picture!,
       })
       .subscribe(() => {
-      
         this.savedChanges.emit(true);
         this.myForm.reset();
       });
   }
   onFileChanged(event: any) {
     const file = event.target.files[0];
-    //  this.profilePicture = file.name
     this.picture = file;
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -87,5 +90,11 @@ export class MessageDetailComponent implements OnInit {
 
   toggleExpand() {
     this.expanded = !this.expanded;
+    this.picture = undefined;
+  }
+  onDeleteAction(id: string) {
+    this.messageService
+      .deleteMessage(id)
+      .subscribe(() => this.savedChanges.emit(true));
   }
 }

@@ -26,3 +26,10 @@
 /* p{
   width: 200px;
 } */
+#message{
+  min-width: 150px
+}
+.btn{
+  margin-left: 20px;
+  margin-bottom: 20px;
+}

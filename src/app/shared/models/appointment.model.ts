@@ -4,4 +4,5 @@ export interface Appointment{
     idDoctor: string;
     idMarker: string;
     date: Date;
+    status: string;
   }

@@ -112,4 +112,26 @@ export class AppointmentDetailComponent implements OnInit {
       .deleteAppointment(id)
       .subscribe(() => this.savedChanges.emit(true));
   }
+  onAccept(id: string) {
+    this.appointmentService
+      .updateAppointment(id,{
+        idUser: this.appointment?.idUser!,
+        idDoctor: this.appointment?.idDoctor!,
+        idMarker: this.appointment?.idMarker!,
+        date: this.appointment?.date!,
+        status:'ACCEPTED'
+      })
+      .subscribe(() => this.savedChanges.emit(true));
+  }
+  onRefuse(id: string) {
+    this.appointmentService
+      .updateAppointment(id,{
+        idUser: this.appointment?.idUser!,
+        idDoctor: this.appointment?.idDoctor!,
+        idMarker: this.appointment?.idMarker!,
+        date: this.appointment?.date!,
+        status:'REJECTED'
+      })
+      .subscribe(() => this.savedChanges.emit(true));
+  }
 }

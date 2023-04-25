@@ -5,7 +5,7 @@
            *ngFor="let appointment of appointments">
         <ul class="list-group">
           <li class="list-group-item"
-              *ngIf=" loggedUserRole === 'DOCTOR' || appointment.idUser === idLoggedUser">
+              >
             <app-appointment-detail [appointment]="appointment"
                                     (savedChanges)="onPostAction($event)"></app-appointment-detail>
           </li>

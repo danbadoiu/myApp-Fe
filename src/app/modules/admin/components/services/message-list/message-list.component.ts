@@ -20,11 +20,12 @@ export class MessageListComponent implements OnInit, OnChanges {
   @Input() data?: User[] | null;
   @Input() loggedUser: User | undefined;
   @Input() messages?: Message[] | undefined;
+  users: User[] | undefined;
   searchTerm = '';
   filteredUsers: User[] | null = [];
 
   constructor() {
-    this.filteredUsers = this.data!;
+    // this.filteredUsers = this.data!;
   }
 
   ngOnInit() {}
@@ -44,8 +45,13 @@ export class MessageListComponent implements OnInit, OnChanges {
       return '';
     }
   }
+  getMessage(idUser: string | undefined): Message[] {
+    return this.messages!.filter(
+      (obj) => obj.idReceiver === idUser || obj.idSender === idUser
+    );
+  }
   search() {
-    this.selectedUser = undefined
+    this.selectedUser = undefined;
     this.selectedUserChanged.emit(this.selectedUser);
     if (this.searchTerm === '') {
       this.filteredUsers = this.data!;

@@ -1,0 +1,8 @@
+.my-datepicker-popup {
+  position: absolute;
+  z-index: 1000;
+}
+
+label {
+  margin-left: 20px;
+}

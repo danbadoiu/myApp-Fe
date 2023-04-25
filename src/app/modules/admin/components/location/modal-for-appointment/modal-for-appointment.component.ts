@@ -17,7 +17,9 @@ export class ModalForAppointmentComponent implements OnInit {
   users: User[] | undefined;
   date: Date | undefined;
   loggedUser: string | undefined;
+  options: string[] = [];
   @Input() idMarker: Marker | undefined;
+  addedAppointment = 'false';
 
   onCancel() {
     throw new Error('Method not implemented.');
@@ -28,39 +30,49 @@ export class ModalForAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService
   ) {}
 
+  getDoctor(id: string): User | undefined {
+    return this.users?.find((user) => {
+      return user.id?.toString() === id;
+    });
+  }
   ngOnInit() {
     this.userService.getUsers().subscribe((data) => {
       this.users = data;
-      // this.users?.forEach((user)=>user.role==='DOCTOR'?this.doctors?.push(user.firstName!):null)
+      let storedUser = JSON.parse(localStorage.getItem('userData')!);
+      this.loggedUser = storedUser.userDetails.id;
+      if (this.idMarker?.doctors) {
+        let doctorsArray = this.idMarker?.doctors.split(',').map(String);
 
-      // doctorsArray?.forEach((id) => {
-      //   const user = this.users?.find((user) => user.id === id);
-      //   console.log(user)
-      //   console.log(id)
-      //   if (user) {
-      //     this.doctors?.push(user.firstName);
-      //   }
-      // });
+        this.doctors = doctorsArray;
+      }
+      this.doctors?.forEach((doctor) => {
+        this.options?.push(
+          this.getDoctor(doctor)?.firstName! +
+            ' ' +
+            this.getDoctor(doctor)?.lastName!
+        );
+      });
     });
-    let storedUser = JSON.parse(localStorage.getItem('userData')!);
-    this.loggedUser = storedUser.userDetails.id;
-    if (this.idMarker?.doctors) {
-      let doctorsArray = this.idMarker?.doctors.split(',').map(String);
-
-      this.doctors = doctorsArray;
-    }
   }
+
   createPost() {
-    // const user = this.users?.find((user) => user.firstName === this.doctor);
+    let doctorsArray = this.doctor!.split(' ').map(String);
+    const doctorId = this.users?.find((user) => {
+      return (
+        user.firstName === doctorsArray[0] && user.lastName === doctorsArray[1]
+      );
+    })?.id;
+
     this.appointmentService
       .addAppointment({
         idUser: this.loggedUser!,
-        idDoctor: this.doctor!,
+        idDoctor: doctorId!,
         idMarker: this.idMarker?.id!,
         date: new Date(),
+        status: 'PENDING',
       })
       .subscribe(() => {
-   
+        this.addedAppointment = 'true';
       });
   }
 }

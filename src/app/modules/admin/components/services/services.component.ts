@@ -35,6 +35,7 @@ export class ServicesComponent implements OnInit, OnChanges {
       .toPromise();
     this.getData2().subscribe((responseData) => {
       this.messages = responseData;
+      
       this.filteredMessages = this.messages?.filter((obj) => {
         return (
           obj.idReceiver === this.loggedUser?.id ||
@@ -42,6 +43,7 @@ export class ServicesComponent implements OnInit, OnChanges {
         );
       });
     });
+    
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.username = storedUser.userDetails.username;
@@ -51,6 +53,11 @@ export class ServicesComponent implements OnInit, OnChanges {
     );
   }
 
+  getMessage(idUser: string | undefined): Message[] {
+    return this.messages!.filter(
+      (obj) => obj.idReceiver === idUser || obj.idSender === idUser
+    );
+  }
   getData2(): Observable<Message[] | undefined> {
     return this.http
       .get<Message[] | undefined>('http://localhost:8080/message')

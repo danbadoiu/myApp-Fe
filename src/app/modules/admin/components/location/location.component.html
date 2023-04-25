@@ -8,6 +8,7 @@ id='map'></div>
 <button class="btn btn-success text-white"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal" (click)="findClosestMarker()">Gaseste</button>
+        
 
 <div class="modal fade" #exampleModal
      id="exampleModal"
@@ -29,6 +30,7 @@ id='map'></div>
 
           <app-modal-for-appointment [idMarker]="closestMarkerName"></app-modal-for-appointment>
         </div>
+        
        
 
 
@@ -36,7 +38,6 @@ id='map'></div>
     </div>
   </div>
 </div>
- 
   <script>
     mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
     var map = new mapboxgl.Map({

@@ -65,7 +65,6 @@ export class HomeComponent implements OnInit {
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.loggedUserId = storedUser.userDetails.id;
-    console.log(this.loggedUserId)
   }
   onSelectedUser(user: User): void {
     this.selectedUser = user;

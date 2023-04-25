@@ -5,16 +5,14 @@
     <form (ngSubmit)="createPost()"
           #formRef="ngForm">
 
-
       <select name="doctor"
               class="form-select form-select-lg form-element"
-              [(ngModel)]="doctor"
-              
-              >
-              <option value="" disabled selected>Select a doctor</option>
-        <option *ngFor="let option of doctors"
-                [value]="option"
-                >{{ option }}</option>
+              [(ngModel)]="doctor">
+        <option value=""
+                disabled
+                selected>Select a doctor</option>
+        <option *ngFor="let option of options"
+                [value]="option">{{ option }}</option>
       </select>
       <!-- <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Choose a date</mat-label>
@@ -30,9 +28,23 @@
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field> -->
-      
+
     </form>
   </div>
+  <mat-form-field class="example-full-width"
+                  appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput
+           [matDatepicker]="picker"
+           [(ngModel)]="date">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix
+                           [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker
+                    panelClass="my-datepicker-popup"></mat-datepicker>
+  </mat-form-field>
 
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-12 mb-3 d-flex justify-content-center">
@@ -42,6 +54,8 @@
       <button class="btn btn-success text-white"
               type="submit"
               (click)="createPost()">Adaugare</button>
+
     </div>
+    <label *ngIf="addedAppointment==='true'">Programarea a fost adaugata cu succes!</label>
   </div>
 </div>
