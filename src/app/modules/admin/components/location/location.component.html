@@ -3,41 +3,45 @@
       rel='stylesheet' />
 <!-- <button (click)="findClosestMarker()">Apasa</button> -->
 <div class="map-container col-10"
-id='map'></div>
+     id='map'></div>
 <div class="col-2">
-<button class="btn btn-success text-white"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal" (click)="findClosestMarker()">Gaseste</button>
-        
+  <button class="btn btn-success text-white"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="findClosestMarker()">Gaseste</button>
 
-<div class="modal fade" #exampleModal
-     id="exampleModal"
-     tabindex="-1"
-     aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"
-            id="exampleModalLabel"></h5>
-        <button type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close" (click)="onCloseModal()"></button>
-      </div>
-      <div class="modal-body">
-        <div class="div" *ngIf="this.closestMarker">{{this.closestMarkerName?.name}}
 
-          <app-modal-for-appointment [idMarker]="closestMarkerName"></app-modal-for-appointment>
+  <div class="modal fade"
+       #exampleModal
+       id="exampleModal"
+       tabindex="-1"
+       aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"
+              id="exampleModalLabel"></h5>
+          <button type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  (click)="onCloseModal()"></button>
         </div>
-        
-       
+        <div class="modal-body">
+          <div class="div"
+               *ngIf="this.closestMarker">{{this.closestMarkerName?.name}}
+
+            <app-modal-for-appointment [idMarker]="closestMarkerName"></app-modal-for-appointment>
+          </div>
 
 
+
+
+        </div>
       </div>
     </div>
   </div>
-</div>
   <script>
     mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
     var map = new mapboxgl.Map({

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/login.model';
-import { Marker } from 'src/app/shared/models/marker.model';
-import { AppointmentService } from 'src/app/shared/services/appointment.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { Marker } from 'src/app/modules/admin/shared/models/marker.model';
+import { AppointmentService } from 'src/app/modules/admin/shared/services/appointment.service';
+import { UserService } from 'src/app/modules/admin/shared/services/user.service';
 
 @Component({
   selector: 'app-modal-for-appointment',
@@ -36,6 +36,7 @@ export class ModalForAppointmentComponent implements OnInit {
     });
   }
   ngOnInit() {
+    
     this.userService.getUsers().subscribe((data) => {
       this.users = data;
       let storedUser = JSON.parse(localStorage.getItem('userData')!);
@@ -62,13 +63,14 @@ export class ModalForAppointmentComponent implements OnInit {
         user.firstName === doctorsArray[0] && user.lastName === doctorsArray[1]
       );
     })?.id;
+    console.log(this.date)
 
     this.appointmentService
       .addAppointment({
         idUser: this.loggedUser!,
         idDoctor: doctorId!,
         idMarker: this.idMarker?.id!,
-        date: new Date(),
+        date: this.date!,
         status: 'PENDING',
       })
       .subscribe(() => {

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { User } from 'src/app/models/login.model';
-import { Message } from 'src/app/shared/models/message.model';
+import { Message } from 'src/app/modules/admin/shared/models/message.model';
 
 @Component({
   selector: 'app-message-sent',

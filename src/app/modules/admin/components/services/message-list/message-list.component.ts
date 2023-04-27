@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/login.model';
-import { Message } from 'src/app/shared/models/message.model';
+import { Message } from 'src/app/modules/admin/shared/models/message.model';
 
 @Component({
   selector: 'app-message-list',
@@ -24,9 +24,7 @@ export class MessageListComponent implements OnInit, OnChanges {
   searchTerm = '';
   filteredUsers: User[] | null = [];
 
-  constructor() {
-    // this.filteredUsers = this.data!;
-  }
+  constructor() {}
 
   ngOnInit() {}
   ngOnChanges(changes: SimpleChanges) {
@@ -35,6 +33,18 @@ export class MessageListComponent implements OnInit, OnChanges {
     }
   }
 
+  messageBetweenUsers(idSender: string, idReceiver: string): boolean {
+    const filteredList = this.messages!.filter(
+      (obj) =>
+        (obj.idReceiver === idReceiver && obj.idSender === idSender) ||
+        (obj.idReceiver === idSender && obj.idSender === idReceiver)
+    );
+    if (filteredList && filteredList.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   getLastMessage(id: string): string {
     const filteredList = this.messages!.filter(
       (obj) => obj.idReceiver === id || obj.idSender === id

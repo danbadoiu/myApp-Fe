@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 import { map, Observable } from 'rxjs';
 import { Appointment } from '../models/appointment.model';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -20,13 +20,16 @@ export class AppointmentService {
   }
   addAppointment(appointment: Appointment): Observable<Appointment> {
     const formData = new FormData();
-    const date = new Date();
-    const dateString = date.toISOString().replace('T', ' ').slice(0, 19);
+    const selectedDate = appointment.date;
+    const dateString = selectedDate
+      ? moment(selectedDate).format('YYYY-MM-DD HH:mm:ss')
+      : '';
+    // const dateString = moment(date).toISOString().replace('T', ' ').slice(0, 19);
     formData.append('idUser', appointment.idUser);
     formData.append('idDoctor', appointment.idDoctor);
     formData.append('date', dateString);
     formData.append('idMarker', appointment.idMarker);
-    formData.append('status',appointment.status)
+    formData.append('status', appointment.status);
     return this.http.post<Appointment>(
       // `${environment.apiUrl}/core/api/v1/users`,
       'http://localhost:8080/appointment',
@@ -39,15 +42,18 @@ export class AppointmentService {
       `http://localhost:8080/appointment/${appointmentId}`
     );
   }
-  public updateAppointment(appointmentId:string, appointment:Appointment):Observable<unknown>{
+  public updateAppointment(
+    appointmentId: string,
+    appointment: Appointment
+  ): Observable<unknown> {
     const formData = new FormData();
-    const date = new Date();
+    const date = appointment.date;
     const dateString = date.toISOString().replace('T', ' ').slice(0, 19);
     formData.append('idUser', appointment.idUser);
     formData.append('idDoctor', appointment.idDoctor);
     formData.append('date', dateString);
     formData.append('idMarker', appointment.idMarker);
-    formData.append('status',appointment.status)
+    formData.append('status', appointment.status);
     return this.http.put<Appointment>(
       // `${environment.apiUrl}/core/api/v1/users`,
       `http://localhost:8080/appointment/${appointmentId}`,

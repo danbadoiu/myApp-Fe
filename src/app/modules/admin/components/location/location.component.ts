@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { Marker } from 'src/app/shared/models/marker.model';
-import { MarkerService } from 'src/app/shared/services/marker.service';
+import { Marker } from 'src/app/modules/admin/shared/models/marker.model';
+import { MarkerService } from 'src/app/modules/admin/shared/services/marker.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -40,6 +40,7 @@ export class LocationComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.buildMap();
     this.markerService.getUsers().subscribe((data) => {
       this.markersList = data;

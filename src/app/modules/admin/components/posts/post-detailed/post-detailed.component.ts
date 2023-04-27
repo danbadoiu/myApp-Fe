@@ -9,8 +9,8 @@ import {
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { User } from 'src/app/models/login.model';
 import { Post } from 'src/app/models/posts.model';
-import { MessageService } from 'src/app/shared/services/message.service';
-import { PostService } from 'src/app/shared/services/post.service';
+import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
+import { PostService } from 'src/app/modules/admin/shared/services/post.service';
 
 @Component({
   selector: 'app-post-detailed',

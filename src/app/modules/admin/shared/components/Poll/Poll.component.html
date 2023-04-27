@@ -1,0 +1,35 @@
+<form [formGroup]="pollForm!"
+      >
+  <mat-form-field>
+    <mat-label>Question</mat-label>
+    <input matInput
+           formControlName="question">
+    <mat-error>Please enter a question</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Option</mat-label>
+    <input matInput
+           formControlName="option">
+    <mat-hint>Add new option</mat-hint>
+    <button mat-icon-button
+            matSuffix
+            color="accent"
+            (click)="addOption()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-chip-list>
+    <mat-chip *ngFor="let option of options"
+              (removed)="removeOption(option)"
+              (click)="onClick(option)">
+      {{option}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+
+  <button mat-raised-button
+          type="submit"
+          color="primary" (click)="submit()">Submit</button>
+</form>

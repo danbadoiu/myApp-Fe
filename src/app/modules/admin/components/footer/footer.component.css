@@ -1,4 +1,8 @@
 .mat-toolbar.mat-primary {
-    background: #6b705c;
-    color: #fff;
+  background: #6b705c;
+  color: #fff;
+}
+.center-text {
+  margin: 0 auto;
+  text-align: center;
 }

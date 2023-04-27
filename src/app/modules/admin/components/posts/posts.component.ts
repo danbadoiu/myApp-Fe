@@ -4,8 +4,9 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { Post } from 'src/app/models/posts.model';
-import { MessageService } from 'src/app/shared/services/message.service';
-import { PostService } from 'src/app/shared/services/post.service';
+import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
+import { PostService } from 'src/app/modules/admin/shared/services/post.service';
+import { PollService } from '../../shared/services/poll.service';
 
 @Component({
   selector: 'app-posts',
@@ -27,6 +28,8 @@ export class PostsComponent implements OnInit {
   picture: File | undefined;
   profileImage: SafeUrl | undefined;
   loggedUserRole: string | undefined;
+  keys: string[] | undefined = [];
+  values: string[] = [];
 
   search() {
     // if (this.searchTerm === '') {
@@ -42,7 +45,8 @@ export class PostsComponent implements OnInit {
     private http: HttpClient,
     private messageService: MessageService,
     private sanitizer: DomSanitizer,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private pollService: PollService
   ) {}
 
   ngOnInit() {
@@ -111,4 +115,15 @@ export class PostsComponent implements OnInit {
   onPostAction(refreshData: boolean) {
     this.getData();
   }
+  onPollAction(refreshData: { [key: string]: number }) {
+    Object.values(refreshData).forEach((value) => {
+      this.values?.push(value.toString());
+    });
+    this.pollService.updatePoll('1', {
+      question: 'sd',
+      keys: 'sdd',
+      options: this.values.toString(),
+    }).subscribe();
+  }
+
 }

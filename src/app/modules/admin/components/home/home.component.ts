@@ -3,8 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/login.model';
-import { PostService } from 'src/app/shared/services/post.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { PostService } from 'src/app/modules/admin/shared/services/post.service';
+import { UserService } from 'src/app/modules/admin/shared/services/user.service';
 
 @Component({
   selector: 'app-home',

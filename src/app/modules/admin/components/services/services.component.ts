@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/models/login.model';
-import { Message } from 'src/app/shared/models/message.model';
-import { MessageService } from 'src/app/shared/services/message.service';
+import { Message } from 'src/app/modules/admin/shared/models/message.model';
+import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
 
 @Component({
   selector: 'app-services',

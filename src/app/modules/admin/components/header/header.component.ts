@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/login.model';
-import { LoginService } from 'src/app/shared/services/login.service';
+import { LoginService } from 'src/app/modules/admin/shared/services/login.service';
 
 @Component({
   selector: 'app-header',

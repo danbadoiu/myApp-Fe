@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { UserService } from '../shared/services/user.service';
+import { UserService } from '../modules/admin/shared/services/user.service';
 
 @Component({
   selector: 'app-register',

@@ -20,7 +20,7 @@
             *ngFor="let user of filteredUsers"
             (click)="selectUser(user)">
           <li class="p-2 border-bottom"
-              *ngIf="user.id!==loggedUser?.id">
+              *ngIf="user.id!==loggedUser?.id && (getLastMessage(user.id!)!==''||searchTerm!=='')">
             <div class="d-flex justify-content-between">
               <div class="d-flex flex-row">
                 <div>

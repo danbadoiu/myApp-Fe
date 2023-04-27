@@ -4,10 +4,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { Post } from 'src/app/models/posts.model';
-import { Appointment } from 'src/app/shared/models/appointment.model';
-import { AppointmentService } from 'src/app/shared/services/appointment.service';
-import { MessageService } from 'src/app/shared/services/message.service';
-import { PostService } from 'src/app/shared/services/post.service';
+import { Appointment } from 'src/app/modules/admin/shared/models/appointment.model';
+import { AppointmentService } from 'src/app/modules/admin/shared/services/appointment.service';
+import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
+import { PostService } from 'src/app/modules/admin/shared/services/post.service';
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',

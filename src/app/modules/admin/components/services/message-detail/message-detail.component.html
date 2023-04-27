@@ -1,14 +1,16 @@
-<div style="overflow-y: scroll; height: 400px; width: 100%;">
+<div style="overflow-y: scroll; height: 400px; width: 100%;"
+     #scrollMe
+     [scrollTop]="scrollMe.scrollHeight">
   <table class="pt-3 pe-3"
          data-mdb-perfect-scrollbar="true"
-         style="position: relative; height: 200px; width: 90%;">
-    <div *ngFor="let message of messages">
+         style="position: relative; height: 200px; width: 90%;"
+         #content>
+    <div #messages
+         *ngFor="let message of messages">
       <app-message-sent *ngIf="selectedUser?.id === message.idReceiver"
                         [message]="message"
                         [loggedUser]="loggedUser"
-                        (savedChanges)="onDeleteAction(message.id!)"
-                        
-                        ></app-message-sent>
+                        (savedChanges)="onDeleteAction(message.id!)"></app-message-sent>
       <app-message-received *ngIf="selectedUser?.id === message.idSender"
                             [message]="message"
                             [selectedUser]="selectedUser"></app-message-received>

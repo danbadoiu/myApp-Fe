@@ -1,15 +1,18 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
+  QueryList,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { User } from 'src/app/models/login.model';
-import { Message } from 'src/app/shared/models/message.model';
-import { MessageService } from 'src/app/shared/services/message.service';
+import { Message } from 'src/app/modules/admin/shared/models/message.model';
+import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
 
 @Component({
   selector: 'app-message-detail',
@@ -22,6 +25,8 @@ export class MessageDetailComponent implements OnInit {
   @Input() loggedUser: User | undefined;
   @Output() savedChanges = new EventEmitter<boolean>();
   @ViewChild('formRef') myForm: any;
+  @ViewChildren('messages') messages2: QueryList<any> | undefined;
+  @ViewChild('content') content: ElementRef | undefined;
   profilePic: any;
   messageDate: string | null = '';
   message: string | undefined;
@@ -43,7 +48,9 @@ export class MessageDetailComponent implements OnInit {
     this.messages!.forEach((arrayItem) => {
       this.createProfileImageMessage(arrayItem.picture);
     });
+    this.scrollToBottom();
   }
+
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
     this.profileImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
@@ -97,4 +104,17 @@ export class MessageDetailComponent implements OnInit {
       .deleteMessage(id)
       .subscribe(() => this.savedChanges.emit(true));
   }
+
+
+  ngAfterViewInit() {
+    this.scrollToBottom();
+    this.messages2?.changes.subscribe(this.scrollToBottom);
+  }
+
+  scrollToBottom = () => {
+    try {
+      this.content!.nativeElement.scrollTop =
+        this.content!.nativeElement.scrollHeight;
+    } catch (err) {}
+  };
 }

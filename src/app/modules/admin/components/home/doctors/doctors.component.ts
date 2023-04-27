@@ -2,8 +2,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/login.model';
-import { MessageService } from 'src/app/shared/services/message.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
+import { UserService } from 'src/app/modules/admin/shared/services/user.service';
 
 @Component({
   selector: 'app-doctors',
