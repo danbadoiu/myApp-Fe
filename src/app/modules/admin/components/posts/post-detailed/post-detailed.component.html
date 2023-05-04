@@ -38,7 +38,8 @@
           Remove
         </button>
         <form (ngSubmit)="onSendMessage(selectedPostUserId!)"
-              #formRef="ngForm"  *ngIf="loggedUserRole==='DOCTOR'">
+              #formRef="ngForm"
+              *ngIf="loggedUserRole==='DOCTOR'">
           <input type="text"
                  class="form-control form-control-lg"
                  placeholder="Type message"
@@ -59,8 +60,60 @@
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 (click)="onSendMessage(post!.idUser)">Send message</button>
+        
+        <button class="btn btn-success text-white"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Add</button>
 
 
+        <div class="modal fade"
+             #exampleModal
+             id="exampleModal"
+             tabindex="-1"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"
+                    id="exampleModalLabel"></h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        (click)="onCloseModal()"></button>
+              </div>
+              <div class="modal-body">
+                <div class="div">
+                  <mat-form-field class="example-full-width"
+                                  appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput
+                           [matDatepicker]="picker"
+                           [(ngModel)]="date">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix
+                                           [for]="picker">
+                      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker
+                                    panelClass="my-datepicker-popup"></mat-datepicker>
+                  </mat-form-field>
+                  <button class="btn btn-success text-white"
+                *ngIf="loggedUserRole==='DOCTOR'"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                (click)="onSolicitaProgramare(post!.idUser)">Add Appointment</button>
+
+                </div>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
 
 
       </div>

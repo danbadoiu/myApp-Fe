@@ -1,16 +1,18 @@
+<div class="card d-flex justify-content-start card-news">
+  <div class="card-body card-news-body">
+    <ul class="list-group"
+        *ngFor="let post of posts">
+      <li class="list-group-item"
+          *ngIf="(loggedUserRole === 'DOCTOR' &&loggedUser?.domain ===post.domain)||post.idUser === idLoggedUser">
+        <app-post-detailed [post]="post"
+                           (savedChanges)="onPostAction($event)"></app-post-detailed>
+      </li>
+      <li class="list-group-item"
+          *ngIf="!posts">
+        You have no posts.
+      </li>
 
-    <div class="card d-flex justify-content-start card-news">
-      <div class="card-body card-news-body">
-        <ul class="list-group"
-            *ngFor="let post of posts">
-          <li class="list-group-item" *ngIf="(loggedUserRole === 'DOCTOR' &&loggedUser?.domain ===post.domain)||post.idUser === idLoggedUser">
-            <app-post-detailed [post]="post" (savedChanges)="onPostAction($event)"></app-post-detailed>
-          </li>
-          <li class="list-group-item" *ngIf="!posts">
-            You have no posts.
-          </li>
-    
-        </ul>
-      </div>
-    </div>
-    <app-poll (savedChanges)="onPollAction($event)"></app-poll>
+    </ul>
+  </div>
+</div>
+<!-- <app-poll (savedChanges)="onPollAction($event)"></app-poll> -->

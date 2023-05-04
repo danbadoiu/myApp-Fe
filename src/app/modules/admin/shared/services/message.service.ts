@@ -9,11 +9,11 @@ import { Message } from '../models/message.model';
 export class MessageService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  getMessages(): Observable<Message[]> {
-    return this.http.get<Message[]>(
-      `${environment.apiUrl}/core/api/v1/messages`
-    );
-  }
+  // getMessages(): Observable<Message[]> {
+  //   return this.http.get<Message[]>(
+  //     `${environment.apiUrl}/core/api/v1/messages`
+  //   );
+  // }
 
   // public addMessage(message: Message): Observable<Message> {
   //   return this.http.post<Message>(

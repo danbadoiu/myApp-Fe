@@ -45,8 +45,6 @@ export class PollComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.pollForm?.value.question);
-    console.log(this.options);
     this.pollService.addPoll({
       question:this.pollForm?.value.question,
       keys: this.options.toString(),
@@ -57,6 +55,7 @@ export class PollComponent implements OnInit {
     console.log('Clicked', option);
     this.submitPoll(option);
     this.savedChanges.emit(this.optionCounts);
+    console.log(this.optionCounts)
   }
 
   submitPoll(selectedOption: string): void {

@@ -119,11 +119,13 @@ export class PostsComponent implements OnInit {
     Object.values(refreshData).forEach((value) => {
       this.values?.push(value.toString());
     });
+    console.log(this.values)
     this.pollService.updatePoll('1', {
       question: 'sd',
       keys: 'sdd',
       options: this.values.toString(),
     }).subscribe();
   }
+  
 
 }

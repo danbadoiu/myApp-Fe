@@ -4,5 +4,6 @@ export interface Marker {
     latitude: number;
     name: string;
     image: Blob;
-    doctors: string
+    doctors: string;
+    domains: string;
   }

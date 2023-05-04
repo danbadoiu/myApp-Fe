@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../modules/admin/shared/services/login.service';
 import { UserService } from '../modules/admin/shared/services/user.service';
@@ -29,7 +30,7 @@ onRegister() {
   // const storedUser = JSON.parse(localStorage.getItem("user"));
 
   constructor(private loginService: LoginService, private router: Router,
-    private user: UserService) {}
+    private user: UserService,private toastr: ToastrService) {}
 
   ngOnInit(): void {
   }

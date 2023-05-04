@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }

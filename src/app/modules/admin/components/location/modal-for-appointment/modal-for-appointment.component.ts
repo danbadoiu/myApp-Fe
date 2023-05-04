@@ -22,7 +22,8 @@ export class ModalForAppointmentComponent implements OnInit {
   addedAppointment = 'false';
 
   onCancel() {
-    throw new Error('Method not implemented.');
+    this.date = undefined
+    this.myForm.reset()
   }
 
   constructor(

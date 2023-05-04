@@ -11,6 +11,7 @@ import { User } from 'src/app/models/login.model';
 import { Post } from 'src/app/models/posts.model';
 import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
 import { PostService } from 'src/app/modules/admin/shared/services/post.service';
+import { AppointmentService } from '../../../shared/services/appointment.service';
 
 @Component({
   selector: 'app-post-detailed',
@@ -34,12 +35,14 @@ export class PostDetailedComponent implements OnInit {
   picture: File | undefined;
   idUser: string | undefined;
   loggedUserRole: string | undefined;
+  date: Date | undefined;
   @Output() savedChanges = new EventEmitter<boolean>();
 
   constructor(
     private sanitizer: DomSanitizer,
     private messageService: MessageService,
-    private postService: PostService
+    private postService: PostService,
+    private appointmentService: AppointmentService
   ) {}
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
@@ -48,29 +51,29 @@ export class PostDetailedComponent implements OnInit {
 
   ngOnInit() {
     this.idUser = this.post?.idUser;
- 
+
     this.createProfileImage(this.post?.image!);
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
     this.loggedUserRole = storedUser.userDetails.role;
   }
 
-  onSendMessage(id:string){
+  onSendMessage(id: string) {
     this.selectedPostUserId = id;
-    console.log(this.selectedPostUserId)
+    console.log(this.selectedPostUserId);
     this.messageService
-    .addMessage({
-      message: this.message!,
-      idSender: this.selectedPostUserId!,
-      idReceiver: this.idLoggedUser!,
-      date: new Date(),
-      picture: this.picture!,
-    })
-    .subscribe(() => {
-      this.myForm.reset();
-    });
+      .addMessage({
+        message: this.message!,
+        idSender: this.selectedPostUserId!,
+        idReceiver: this.idLoggedUser!,
+        date: new Date(),
+        picture: this.picture!,
+      })
+      .subscribe(() => {
+        this.myForm.reset();
+      });
   }
-  sendMessage(idUser:string) {
+  sendMessage(idUser: string) {
     console.log(this.idUser);
     this.messageService
       .addMessage({
@@ -89,5 +92,18 @@ export class PostDetailedComponent implements OnInit {
     this.postService
       .deletePost(id)
       .subscribe(() => this.savedChanges.emit(true));
+  }
+  onCloseModal() {}
+
+  onSolicitaProgramare(idUser: string) {
+    this.appointmentService
+      .addAppointment({
+        idUser: idUser,
+        idDoctor: this.idLoggedUser!,
+        idMarker: '',
+        date: this.date!,
+        status: 'PENDING',
+      })
+      .subscribe();
   }
 }

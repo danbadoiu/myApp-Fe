@@ -49,24 +49,24 @@ export class LoginService {
     );
   }
 
-  refresh(): Observable<User> {
-    return this.http
-      .post<User>(`${environment.apiUrl}/core/api/v1/refresh`, {
-        refreshToken: this.userLogged.value ? this.userLogged : null,
-      })
-      .pipe(
-        map((responseData) => {
-          const expirationDate = new Date(
-            new Date().getTime() + +responseData * 1000
-          );
-          return { ...responseData, expirationDate };
-        }),
-        tap((user) => {
-          this.userLogged.next(user);
-          localStorage.setItem('userData', JSON.stringify(user));
-        })
-      );
-  }
+  // refresh(): Observable<User> {
+  //   return this.http
+  //     .post<User>(`${environment.apiUrl}/core/api/v1/refresh`, {
+  //       refreshToken: this.userLogged.value ? this.userLogged : null,
+  //     })
+  //     .pipe(
+  //       map((responseData) => {
+  //         const expirationDate = new Date(
+  //           new Date().getTime() + +responseData * 1000
+  //         );
+  //         return { ...responseData, expirationDate };
+  //       }),
+  //       tap((user) => {
+  //         this.userLogged.next(user);
+  //         localStorage.setItem('userData', JSON.stringify(user));
+  //       })
+  //     );
+  // }
 
   autoLogin(): void {
     const localStorageData = localStorage.getItem('userData');

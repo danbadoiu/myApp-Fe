@@ -17,7 +17,7 @@ import { AuthGuard } from './modules/admin/authguard.guard';
 import { UserService } from './modules/admin/shared/services/user.service';
 import { AuthInterceptorService } from './modules/admin/auth-interceptor.service';
 import { PollComponent } from './modules/admin/shared/components/Poll/Poll.component';
-
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +47,7 @@ import { PollComponent } from './modules/admin/shared/components/Poll/Poll.compo
     MatIconModule,
     MatTableModule,
     MatIconModule,
+    ToastrModule.forRoot()
   ],
   
 })
