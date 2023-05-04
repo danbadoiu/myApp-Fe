@@ -8,13 +8,13 @@ import { Appointment } from 'src/app/modules/admin/shared/models/appointment.mod
 import { AppointmentService } from 'src/app/modules/admin/shared/services/appointment.service';
 import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
 import { PostService } from 'src/app/modules/admin/shared/services/post.service';
+import { NotificationService } from '../../shared/services/notification.service';
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
-  styleUrls: ['./appointments.component.css']
+  styleUrls: ['./appointments.component.css'],
 })
 export class AppointmentsComponent implements OnInit {
-
   loggedUser: User | undefined;
   @ViewChild('formRef') myForm: any;
 
@@ -45,7 +45,8 @@ export class AppointmentsComponent implements OnInit {
     private messageService: MessageService,
     private sanitizer: DomSanitizer,
     private cdRef: ChangeDetectorRef,
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,
+    private notification: NotificationService
   ) {}
 
   ngOnInit() {
@@ -78,15 +79,28 @@ export class AppointmentsComponent implements OnInit {
       .pipe(
         map((responseData) => {
           this.appointments = responseData;
-          this.appointments = this.appointments.filter((appointment)=> {return (this.loggedUserRole === 'DOCTOR' && this.idLoggedUser === appointment.idDoctor)|| appointment.idUser === this.idLoggedUser})
-          
+          this.appointments = this.appointments.filter((appointment) => {
+            return (
+              (this.loggedUserRole === 'DOCTOR' &&
+                this.idLoggedUser === appointment.idDoctor) ||
+              appointment.idUser === this.idLoggedUser
+            );
+          });
+          this.appointments.forEach((appointment) => {
+            if (appointment.date < new Date()) {
+              this.appointmentService.deleteAppointment(appointment.id!);
+            }
+            if (appointment.idMarker === null)
+              this.notification.show(
+                'You received an appointment from ' + appointment.idDoctor
+              );
+          });
         })
       )
       .toPromise();
-      // if(this.appointments){this.posts!.forEach((arrayItem) => {
-      //   this.createProfileImage(arrayItem.image);
-      // });}
-    
+    // if(this.appointments){this.posts!.forEach((arrayItem) => {
+    //   this.createProfileImage(arrayItem.image);
+    // });}
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
@@ -115,5 +129,4 @@ export class AppointmentsComponent implements OnInit {
   onPostAction(refreshData: boolean) {
     this.getData();
   }
-
 }

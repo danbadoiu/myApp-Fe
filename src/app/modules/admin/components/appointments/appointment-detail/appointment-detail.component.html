@@ -33,7 +33,16 @@
         </div>
 
       </div>
-
+      <select name="marker"
+              class="form-select form-select-lg form-element"
+              [(ngModel)]="marker" *ngIf="appointment?.idMarker === null">
+        <option value=""
+                disabled
+                selected>Select a hospital</option>
+        <option *ngFor="let option of options"
+                [value]="option">{{ option }}</option>
+      </select>
+     
       <div class="d-flex justify-content-end">
         <button type="button"
                 *ngIf="loggedUserRole!=='DOCTOR' && appointment?.status==='PENDING'"
@@ -42,7 +51,7 @@
           Sterge
         </button>
         <button type="button"
-                *ngIf="loggedUserRole==='DOCTOR' && appointment?.status==='PENDING'"
+                *ngIf="(loggedUserRole==='DOCTOR' && appointment?.status==='PENDING')||(appointment?.idMarker === null)"
                 class="btn btn-success"
                 (click)="onAccept(appointment?.id!)">
           Accepta
@@ -53,7 +62,7 @@
                 (click)="onRefuse(appointment?.id!)">
           Refuza
         </button>
-        
+
 
       </div>
     </div>

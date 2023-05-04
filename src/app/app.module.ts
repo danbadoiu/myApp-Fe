@@ -17,7 +17,7 @@ import { AuthGuard } from './modules/admin/authguard.guard';
 import { UserService } from './modules/admin/shared/services/user.service';
 import { AuthInterceptorService } from './modules/admin/auth-interceptor.service';
 import { PollComponent } from './modules/admin/shared/components/Poll/Poll.component';
-import { ToastrModule } from 'ngx-toastr';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatIconModule,
     MatTableModule,
     MatIconModule,
-    ToastrModule.forRoot()
+    MatSnackBarModule
+  
   ],
   
 })
