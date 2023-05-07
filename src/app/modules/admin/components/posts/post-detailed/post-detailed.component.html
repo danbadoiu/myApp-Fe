@@ -3,7 +3,10 @@
        style=" border-radius: .5rem;">
 
     <img [src]="profileImage"
-         alt="avatar 1">
+         alt="avatar 1"
+         [ngClass]="{'enlarge': isHovered}"
+         (mouseover)="isHovered = true"
+         (mouseleave)="isHovered = false">
     <i class="far fa-edit mb-5"></i>
   </div>
   <div class="col-md-8">
@@ -24,98 +27,115 @@
         </div>
 
       </div>
-      <div class="d-flex justify-content-start">
-        <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-        <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-        <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
-      </div>
-      <!-- Button trigger modal -->
-      <div class="d-flex justify-content-end">
-        <button type="button"
-                *ngIf="loggedUserRole!=='DOCTOR'"
-                class="btn btn-primary"
-                (click)="onDelete(post?.id!)">
-          Remove
-        </button>
-        <form (ngSubmit)="onSendMessage(selectedPostUserId!)"
-              #formRef="ngForm"
-              *ngIf="loggedUserRole==='DOCTOR'">
-          <input type="text"
-                 class="form-control form-control-lg"
-                 placeholder="Type message"
-                 type="text"
-                 id="message"
-                 [(ngModel)]="message"
-                 name="message">
-          <a class="ms-1 text-muted"
-             href="#!"><i class="fas fa-paperclip"></i></a>
-          <a class="ms-3 text-muted"
-             href="#!"><i class="fas fa-smile"></i></a>
-          <a class="ms-3"
-             href="#!"><i class="fas fa-paper-plane"></i></a>
-        </form>
-
-        <button class="btn btn-success text-white"
-                *ngIf="loggedUserRole==='DOCTOR'"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                (click)="onSendMessage(post!.idUser)">Send message</button>
-        
-        <button class="btn btn-success text-white"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal">Add</button>
-
-
-        <div class="modal fade"
-             #exampleModal
-             id="exampleModal"
-             tabindex="-1"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title"
-                    id="exampleModalLabel"></h5>
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                        (click)="onCloseModal()"></button>
-              </div>
-              <div class="modal-body">
-                <div class="div">
-                  <mat-form-field class="example-full-width"
-                                  appearance="fill">
-                    <mat-label>Choose a date</mat-label>
-                    <input matInput
-                           [matDatepicker]="picker"
-                           [(ngModel)]="date">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix
-                                           [for]="picker">
-                      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #picker
-                                    panelClass="my-datepicker-popup"></mat-datepicker>
-                  </mat-form-field>
-                  <button class="btn btn-success text-white"
-                *ngIf="loggedUserRole==='DOCTOR'"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                (click)="onSolicitaProgramare(post!.idUser)">Add Appointment</button>
-
-                </div>
-
-
-
-
-              </div>
+      <div class="d-flex justify-content-between">
+        <div *ngIf="loggedUserRole!=='DOCTOR'">
+          <div class="d-flex flex-row"
+               style="max-width: 90%; overflow-x: scroll;">
+            <div *ngFor="let result of results"
+                 class="me-3">
+              <span class="badge rounded-pill bg-primary">{{result}}</span>
             </div>
           </div>
         </div>
 
+        <div class="justify-content-end">
+          <button type="button"
+                  *ngIf="loggedUserRole!=='DOCTOR'"
+                  class="btn btn-danger"
+                  (click)="onDelete(post?.id!)">
+            Remove
+          </button>
+          <div class="d-flex justify-content-between">
+            <form (ngSubmit)="onSendPoll(post?.id!)"
+                  #formRef="ngForm"
+                  *ngIf="loggedUserRole==='DOCTOR'">
+              <input type="text"
+                     class="form-control form-control-lg"
+                     placeholder="Type answer"
+                     type="text"
+                     id="answer"
+                     [(ngModel)]="answer"
+                     name="answer">
 
+
+            </form>
+            <button class="btn btn-primary text-white"
+                    *ngIf="loggedUserRole==='DOCTOR'"
+                    (click)="onSendPoll(post!.id!)">Send</button>
+         
+            <form (ngSubmit)="onSendMessage(selectedPostUserId!)"
+                  #formRef="ngForm"
+                  *ngIf="loggedUserRole==='DOCTOR'">
+              <input type="text"
+                     class="form-control form-control-lg"
+                     placeholder="Type message"
+                     type="text"
+                     id="message"
+                     [(ngModel)]="message"
+                     name="message">
+
+            </form>
+
+            <button class="btn btn-success text-white"
+                    *ngIf="loggedUserRole==='DOCTOR'"
+                    (click)="onSendMessage(post!.idUser)">Send message</button>
+
+            <button class="btn btn-primary text-white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    *ngIf="loggedUserRole==='DOCTOR'">Add</button>
+
+
+            <div class="modal fade"
+                 #exampleModal
+                 id="exampleModal"
+                 tabindex="-1"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title"
+                        id="exampleModalLabel"></h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                            (click)="onCloseModal()"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="div">
+                      <mat-form-field class="example-full-width"
+                                      appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput
+                               [matDatepicker]="picker"
+                               [(ngModel)]="date">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix
+                                               [for]="picker">
+                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker
+                                        panelClass="my-datepicker-popup"></mat-datepicker>
+                      </mat-form-field>
+                      <button class="btn btn-success text-white"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModal"
+                              (click)="onSolicitaProgramare(post!.idUser)">Add Appointment</button>
+
+                    </div>
+
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
 

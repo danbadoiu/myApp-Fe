@@ -34,7 +34,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { PollComponent } from './shared/components/Poll/Poll.component';
 import { MatChipsModule } from '@angular/material/chips';
 
 
@@ -82,9 +81,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MessageReceivedComponent,
     AppointmentsComponent,
     AppointmentDetailComponent,
-    ModalForAppointmentComponent,
-    PollComponent
-    
+    ModalForAppointmentComponent    
   ],
 
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy },{

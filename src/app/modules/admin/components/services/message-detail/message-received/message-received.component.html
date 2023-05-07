@@ -9,7 +9,7 @@
                  [src]="pictureMessage"
                  alt="message image"
                  style="max-width: 100%;"
-                 class="messageImage"></p>
+                 class="messageImage" [ngClass]="{'enlarge': isHovered}" (mouseover)="isHovered = true" (mouseleave)="isHovered = false"></p>
 
 
           <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{message!.date}}</p>

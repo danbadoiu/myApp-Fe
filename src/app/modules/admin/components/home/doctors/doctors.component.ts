@@ -12,6 +12,7 @@ import { UserService } from 'src/app/modules/admin/shared/services/user.service'
 })
 export class DoctorsComponent implements OnInit {
   message: any;
+  isHovered = false;
 
   @Input() user: User | undefined;
   users: User[] | undefined;

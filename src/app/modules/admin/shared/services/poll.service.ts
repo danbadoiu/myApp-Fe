@@ -24,26 +24,24 @@ export class PollService {
   // }
   public addPoll(poll: Poll): Observable<Poll> {
     const formData = new FormData();
-    formData.append('question', poll.question);
-    formData.append('keys', poll.keys);
-    formData.append('options', poll.options);
+    formData.append('idPost',poll.idPost)
+    formData.append('answer', poll.answer);
     return this.http.post<Poll>(
       // `${environment.apiUrl}/core/api/v1/users`,
       'http://localhost:8080/poll',
       formData
     );
   }
-  public deletePost(postId: string): Observable<unknown> {
-    return this.http.delete(`http://localhost:8080/post/${postId}`);
+  public deletePoll(pollId: string): Observable<unknown> {
+    return this.http.delete(`http://localhost:8080/poll/${pollId}`);
   }
   public updatePoll(
     pollId: string,
     poll: Poll
   ): Observable<unknown> {
     const formData = new FormData();
-    formData.append('question', poll.question);
-    formData.append('keys', poll.keys);
-    formData.append('options', poll.options);
+    formData.append('answer', poll.answer);
+    formData.append('idPost', poll.idPost);
     return this.http.put<Poll>(
       // `${environment.apiUrl}/core/api/v1/users`,
       `http://localhost:8080/poll/${pollId}`,

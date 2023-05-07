@@ -6,6 +6,7 @@ import { User } from 'src/app/models/login.model';
 import { Post } from 'src/app/models/posts.model';
 import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
 import { PostService } from 'src/app/modules/admin/shared/services/post.service';
+import { Poll } from '../../shared/models/poll.model';
 import { PollService } from '../../shared/services/poll.service';
 
 @Component({
@@ -30,6 +31,7 @@ export class PostsComponent implements OnInit {
   loggedUserRole: string | undefined;
   keys: string[] | undefined = [];
   values: string[] = [];
+  poll: Poll[] | undefined = [];
 
   search() {
     // if (this.searchTerm === '') {
@@ -111,21 +113,27 @@ export class PostsComponent implements OnInit {
         this.createProfileImage(arrayItem.image);
       });
     }
+    this.http
+      .get<Poll[]>('http://localhost:8080/poll')
+      .pipe(
+        map((responseData) => {
+          this.poll = responseData;
+        })
+      )
+      .toPromise();
   }
   onPostAction(refreshData: boolean) {
     this.getData();
   }
-  onPollAction(refreshData: { [key: string]: number }) {
-    Object.values(refreshData).forEach((value) => {
-      this.values?.push(value.toString());
-    });
-    console.log(this.values)
-    this.pollService.updatePoll('1', {
-      question: 'sd',
-      keys: 'sdd',
-      options: this.values.toString(),
-    }).subscribe();
-  }
-  
-
+  // onPollAction(refreshData: { [key: string]: number }) {
+  //   Object.values(refreshData).forEach((value) => {
+  //     this.values?.push(value.toString());
+  //   });
+  //   console.log(this.values)
+  //   this.pollService.updatePoll('1', {
+  //     question: 'sd',
+  //     keys: 'sdd',
+  //     options: this.values.toString(),
+  //   }).subscribe();
+  // }
 }

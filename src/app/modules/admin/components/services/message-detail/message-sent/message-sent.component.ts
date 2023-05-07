@@ -17,6 +17,7 @@ export class MessageSentComponent implements OnInit {
 
   profilePic: any;
   messageDate: string | null = '';
+  isHovered = false;
 
   email: string | undefined;
   password: string | undefined;

@@ -12,3 +12,13 @@ body {
 .cdk-overlay-container {
   z-index: 9999;
 }
+
+.custom-snackbar {
+  background-color: #ffe8d6;
+  color: black;
+  font-size: 18px;
+  
+}
+/* span.mat-button-wrapper {
+  color: white;
+} */

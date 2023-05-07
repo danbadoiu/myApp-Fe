@@ -5,4 +5,9 @@ img{
 button{
     height: 45px;
     margin-left: 10px;
+    margin-right: 10px;
 }
+.enlarge:hover {
+    transform: scale(1.5);
+  }
+

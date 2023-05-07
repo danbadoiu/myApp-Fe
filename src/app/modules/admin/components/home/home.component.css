@@ -97,3 +97,29 @@ h1 em {
 img {
   width: 100px !important;
 }
+
+@media only screen and (max-width: 575px) {
+  .card {
+    margin-left: 40px;
+    height: 400px;
+  }
+  h1 {
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+
+    margin-left: 10px;
+    margin-top: 20px;
+  }
+  span {
+    margin-left: 10px;
+    font-size: 10px;
+  }
+  .two {
+    margin-left: 50px;
+  }
+}
