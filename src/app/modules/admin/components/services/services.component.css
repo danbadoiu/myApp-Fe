@@ -1,21 +1,25 @@
 #chat3 .form-control {
-    border-color: transparent;
-    }
-    
-    #chat3 .form-control:focus {
-    border-color: transparent;
-    box-shadow: inset 0px 0px 0px 1px transparent;
-    }
-    
-    .badge-dot {
-    border-radius: 50%;
-    height: 10px;
-    width: 10px;
-    margin-left: 2.9rem;
-    margin-top: -.75rem;
-    }
-    
+  border-color: transparent;
+}
+
+#chat3 .form-control:focus {
+  border-color: transparent;
+  box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.badge-dot {
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  margin-left: 2.9rem;
+  margin-top: -0.75rem;
+}
 
 /* .container{
     margin-left: 220px;
 } */
+section {
+  background-image: url("https://img.freepik.com/free-photo/modern-hospital-with-clear-walls_1203-1539.jpg?w=1480&t=st=1683546678~exp=1683547278~hmac=bee392abb36ea827cb1d13e279e076dc6f8ec02a8329b019a2c068da2333b888");
+  background-size: 100%;
+  background-size: cover;
+}

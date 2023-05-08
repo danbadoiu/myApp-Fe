@@ -1,5 +1,5 @@
 <mat-toolbar color="primary"
-             class="d-flex">
+             class="d-flex mat-bar">
   <span>
     <mat-icon>eco</mat-icon>Health
   </span>
@@ -17,20 +17,20 @@
       <li><a mat-button
            routerLink="./home"
            *ngIf="loggedUserRole!=='DOCTOR'"
-           [ngClass]="{'hover': isRouteActive('./home')}">Acasa</a></li>
+           [ngClass]="{'hover': isRouteActive('./home')}">Home</a></li>
       <li><a mat-button
            routerLink="./appointments"
-           [ngClass]="{'hover': isRouteActive('./appointments')}">Programari</a></li>
+           [ngClass]="{'hover': isRouteActive('./appointments')}">Appointments</a></li>
 
       <a mat-button
          routerLink="./messages"
-         [ngClass]="{'hover': isRouteActive('./messages')}">Mesaje</a>
+         [ngClass]="{'hover': isRouteActive('./messages')}">Chat</a>
       <li><a mat-button
            routerLink="./posts"
-           [ngClass]="{'hover': isRouteActive('./posts')}">Postari</a></li>
+           [ngClass]="{'hover': isRouteActive('./posts')}">Posts</a></li>
       <li><a mat-button
            routerLink="location"
-           [ngClass]="{'hover': isRouteActive('location')}">Localizare</a></li>
+           [ngClass]="{'hover': isRouteActive('location')}">Location</a></li>
       <li><button mat-button
                 routerLink="profile">Profile</button></li>
       <li><button mat-button
@@ -45,20 +45,20 @@
     <a mat-button
        routerLink="./home"
        *ngIf="loggedUserRole!=='DOCTOR'"
-       [ngClass]="{'hover': isRouteActive('./home')}">Acasa</a>
+       [ngClass]="{'hover': isRouteActive('./home')}">Home</a>
     <a mat-button
        routerLink="./appointments"
-       [ngClass]="{'hover': isRouteActive('./appointments')}">Programari</a>
+       [ngClass]="{'hover': isRouteActive('./appointments')}">Appointments</a>
 
     <a mat-button
        routerLink="./messages"
-       [ngClass]="{'hover': isRouteActive('./messages')}">Mesaje</a>
+       [ngClass]="{'hover': isRouteActive('./messages')}">Chat</a>
     <a mat-button
        routerLink="./posts"
-       [ngClass]="{'hover': isRouteActive('./posts')}">Postari</a>
+       [ngClass]="{'hover': isRouteActive('./posts')}">Posts</a>
     <a mat-button
        routerLink="location"
-       [ngClass]="{'hover': isRouteActive('location')}">Localizare</a>
+       [ngClass]="{'hover': isRouteActive('location')}">Location</a>
 
     <div class="dropdown">
       <a mat-raised-button

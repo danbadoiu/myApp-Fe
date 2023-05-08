@@ -36,7 +36,6 @@ export class AppointmentDetailComponent implements OnInit {
 
   medicinesBox: Post[] = [];
   searchTerm = '';
-  // filteredPosts: Post[] | undefined = [];
   message: string | undefined;
   idLoggedUser: string | undefined;
   selectedPostUserId: string | undefined;
@@ -75,7 +74,6 @@ export class AppointmentDetailComponent implements OnInit {
       (user) => user.id === this.appointment?.idDoctor
     );
 
-    // this.createProfileImage(this.post?.image!);
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
     this.loggedUserRole = storedUser.userDetails.role;

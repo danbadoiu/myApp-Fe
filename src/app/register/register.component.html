@@ -1,5 +1,8 @@
 <div class="col-md-12">
   <div class="card card-container">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
     <img *ngIf="!profilePic"
          id="profile-img"
          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"

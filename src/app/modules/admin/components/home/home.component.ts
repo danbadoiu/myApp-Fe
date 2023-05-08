@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/login.model';
@@ -14,8 +15,8 @@ import { UserService } from 'src/app/modules/admin/shared/services/user.service'
 export class HomeComponent implements OnInit {
   onCancel() {
     this.myForm.reset();
-    
   }
+  @ViewChild(MatAccordion) accordion: MatAccordion | undefined;
   user?: User | undefined;
   selectedUser?: User | null;
   usersObservable?: Observable<User[]>;
@@ -31,20 +32,41 @@ export class HomeComponent implements OnInit {
   loggedUserId: string | undefined;
   @ViewChild('formRef') myForm: any;
   domain: string | undefined = '';
-  domains: string[] | undefined = ['DERMATOLOGIE', 'GINECOLOGIE','PEDIATRIE','GERIATRIE','UROLOGIE','CHIRURGIE','FIZIOLOGIE','CARDIOLOGIE','BOLI INFECTIOASE','ALERGOLOGIE'];
+  domains: string[] | undefined = [
+    'DERMATOLOGIE',
+    'GINECOLOGIE',
+    'PEDIATRIE',
+    'GERIATRIE',
+    'UROLOGIE',
+    'CHIRURGIE',
+    'FIZIOLOGIE',
+    'CARDIOLOGIE',
+    'BOLI INFECTIOASE',
+    'ALERGOLOGIE',
+  ];
+  @ViewChild('searchbar') searchbar: ElementRef | undefined;
+  searchText = '';
+
+  toggleSearch: boolean = false;
 
   search() {
     if (this.searchTerm === '') {
-      this.filteredUsers = this.users;
+      this.filteredUsers = this.users!;
     } else {
-      this.filteredUsers = this.users.filter(
+      const filtered = this.users!.filter(
         (user) =>
           user.firstName
             .toLowerCase()
             .includes(this.searchTerm.toLowerCase()) ||
           user.lastName.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
+      this.users = filtered.length ? filtered : [];
     }
+  }
+  isExpanded = false;
+
+  toggleExpanded() {
+    this.isExpanded = !this.isExpanded;
   }
 
   constructor(
@@ -54,7 +76,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
@@ -113,5 +134,14 @@ export class HomeComponent implements OnInit {
   }
   onSearchDoctors() {
     this.router.navigate(['admin/doctors']);
+  }
+
+  openSearch() {
+    this.toggleSearch = true;
+    this.searchbar!.nativeElement.focus();
+  }
+  searchClose() {
+    this.searchText = '';
+    this.toggleSearch = false;
   }
 }

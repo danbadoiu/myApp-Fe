@@ -1,14 +1,21 @@
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<!-- <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script> -->
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css'
       rel='stylesheet' />
 <!-- <button (click)="findClosestMarker()">Apasa</button> -->
-<div class="map-container col-10"
+<div class="row ">
+  <div class="col d-flex justify-content-center"><button class="btn btn-success text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="findClosestMarker()">Find the closest hospital</button></div>
+</div>
+
+<div class="map-container"
      id='map'></div>
 <div class="col-2">
-  <button class="btn btn-success text-white"
+  <!-- <button class="btn btn-success text-white"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
-          (click)="findClosestMarker()">Gaseste</button>
+          (click)="findClosestMarker()">Gaseste</button> -->
 
 
   <div class="modal fade"
@@ -42,11 +49,11 @@
       </div>
     </div>
   </div>
-  <script>
+  <!-- <script>
     mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
     var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11'
     });
 
-  </script>
+  </script> -->

@@ -14,10 +14,14 @@ body {
 }
 
 .custom-snackbar {
-  background-color: #ffe8d6;
+  background-color: white;
   color: black;
-  font-size: 18px;
+  font-size: 20px;
   
+  
+}
+.mat-simple-snackbar-action {
+  color: #6b705c;
 }
 /* span.mat-button-wrapper {
   color: white;

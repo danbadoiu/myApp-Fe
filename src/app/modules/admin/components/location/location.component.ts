@@ -41,6 +41,8 @@ export class LocationComponent implements OnInit {
 
   ngOnInit() {
     
+
+    
     this.buildMap();
     this.markerService.getUsers().subscribe((data) => {
       this.markersList = data;

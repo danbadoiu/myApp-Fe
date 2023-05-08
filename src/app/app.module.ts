@@ -17,7 +17,7 @@ import { AuthGuard } from './modules/admin/authguard.guard';
 import { UserService } from './modules/admin/shared/services/user.service';
 import { AuthInterceptorService } from './modules/admin/auth-interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     MatTableModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule
+    
   
   ],
   

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/models/login.model';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/modules/admin/shared/services/login.service';
 
 @Component({
@@ -9,9 +8,8 @@ import { LoginService } from 'src/app/modules/admin/shared/services/login.servic
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  cartItemCount = 0
-  loggedUserRole: string|undefined
-  constructor(private router: Router, private loginService: LoginService, private route: ActivatedRoute) {}
+  loggedUserRole: string | undefined;
+  constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit() {
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
@@ -21,7 +19,7 @@ export class HeaderComponent implements OnInit {
     this.loginService.logout();
     this.router.navigate(['/login']);
   }
- 
+
   isRouteActive(route: string): boolean {
     return this.router.url.includes(route);
   }

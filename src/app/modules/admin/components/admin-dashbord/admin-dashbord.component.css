@@ -1,10 +1,12 @@
 body {
+height: 1000px;
   min-height: auto;
   display: flex;
   flex-direction: column;
 }
 .main {
   flex: 1;
+  padding-top: 80px;
 }
 footer {
   margin-top: auto;

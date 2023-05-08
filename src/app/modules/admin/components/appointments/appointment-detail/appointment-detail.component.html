@@ -48,19 +48,19 @@
                 *ngIf="loggedUserRole!=='DOCTOR' && appointment?.status==='PENDING'"
                 class="btn btn-danger"
                 (click)="onDelete(appointment?.id!)">
-          Sterge
+          Delete
         </button>
         <button type="button"
                 *ngIf="(loggedUserRole==='DOCTOR' && appointment?.status==='PENDING')||(appointment?.idMarker === null)"
                 class="btn btn-success"
                 (click)="onAccept(appointment?.id!)">
-          Accepta
+          Accept
         </button>
         <button type="button"
                 *ngIf="loggedUserRole==='DOCTOR' && appointment?.status==='PENDING'"
                 class="btn btn-danger"
                 (click)="onRefuse(appointment?.id!)">
-          Refuza
+          Refuse
         </button>
 
 

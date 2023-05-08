@@ -1,6 +1,17 @@
-.map-container{
-   width: 80%;
-   height: 100%;
-   position: relative;
+.map-container {
+  margin-top: 40px;
+  margin-left: 150px;
+  width: 80%;
+  height: 80%;
+  position: relative;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 575px) {
+  .map-container {
+    margin-left: 50px;
   }
-  
+}

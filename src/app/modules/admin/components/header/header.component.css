@@ -2,8 +2,8 @@
   flex: 1 1 auto;
 }
 .mat-toolbar.mat-primary {
-  background: #6b705c
-  /* color: #fff; */
+  background: #6b705c;
+  height:80px
 }
 a:hover{
   background-color: white;
@@ -12,4 +12,22 @@ a:hover{
 a.active {
   background-color: white;
   color: #6b705c;
+}
+
+.mat-bar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999; 
+}
+
+
+@media only screen and (max-width: 575px) {
+  /* .mat-toolbar.mat-primary {
+    width: 90%;
+  } */
+  .dropdown{
+    margin-right: 20px;
+  }
 }

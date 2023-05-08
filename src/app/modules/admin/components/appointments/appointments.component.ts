@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map } from 'rxjs';
 import { User } from 'src/app/models/login.model';
@@ -7,7 +7,6 @@ import { Post } from 'src/app/models/posts.model';
 import { Appointment } from 'src/app/modules/admin/shared/models/appointment.model';
 import { AppointmentService } from 'src/app/modules/admin/shared/services/appointment.service';
 import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
-import { PostService } from 'src/app/modules/admin/shared/services/post.service';
 import { NotificationService } from '../../shared/services/notification.service';
 @Component({
   selector: 'app-appointments',
@@ -29,22 +28,15 @@ export class AppointmentsComponent implements OnInit {
   picture: File | undefined;
   profileImage: SafeUrl | undefined;
   loggedUserRole: string | undefined;
+  notificationDoctor: User | undefined;
 
   search() {
-    // if (this.searchTerm === '') {
     this.filteredPosts = this.appointments!;
-    // } else {
-    //   this.filteredMedicines = this.medicines!.filter((medicine) =>
-    //     medicine.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-    //   );
-    // }
   }
   constructor(
-    private postService: PostService,
     private http: HttpClient,
     private messageService: MessageService,
     private sanitizer: DomSanitizer,
-    private cdRef: ChangeDetectorRef,
     private appointmentService: AppointmentService,
     private notification: NotificationService
   ) {}
@@ -90,24 +82,20 @@ export class AppointmentsComponent implements OnInit {
             if (appointment.date < new Date()) {
               this.appointmentService.deleteAppointment(appointment.id!);
             }
-            if (appointment.idMarker === null)
+            if (appointment.idMarker === null) {
               this.notification.show(
                 'You received an appointment from ' + appointment.idDoctor
               );
+            }
           });
         })
       )
       .toPromise();
-    // if(this.appointments){this.posts!.forEach((arrayItem) => {
-    //   this.createProfileImage(arrayItem.image);
-    // });}
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
     this.loggedUserRole = storedUser.userDetails.role;
-    // this.users = await
     this.http
-      // .get<{ items: User[] }>(`${environment.apiUrl}/core/api/v1/users`)
       .get<User[]>('http://localhost:8080/user')
       .pipe(
         map((responseData) => {

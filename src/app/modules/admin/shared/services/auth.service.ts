@@ -6,19 +6,25 @@ import { Observable, of, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  hasPermission(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   hasRole(role: any) {
     if (role == 'DOCTOR') {
       return true;
     } else return false;
   }
   isAuthenticated() {
-    return true;
+    if (localStorage.getItem('userData')) {
+      return true;
+    } else {
+      return false;
+    }
   }
   constructor(private router: Router) {}
-  getLoggedInUserRole(): string{
+  getLoggedInUserRole(): string {
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     return storedUser.userDetails.role;
-   
   }
 
   setToken(token: string): void {
@@ -38,11 +44,5 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
-  login({ email, password }: any): Observable<any> {
-    if (email === 'admin@gmail.com' && password === 'admin123') {
-      this.setToken('abcdefghijklmnopqrstuvwxyz');
-      return of({ name: 'Tarique Akhtar', email: 'admin@gmail.com' });
-    }
-    return throwError(new Error('Failed to login'));
-  }
+  
 }
