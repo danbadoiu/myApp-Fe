@@ -1,8 +1,19 @@
 <div class="col-md-12">
   <div class="card card-container">
-    <button mat-icon-button (click)="goBack()">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
+    <div class="d-flex justify-content-between">
+      <div class="justify-content-start">
+        <button mat-icon-button
+                (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+      <div class="justify-content-end">
+        <span>
+          <mat-icon>eco</mat-icon>Health
+        </span>
+      </div>
+    </div>
+
     <img *ngIf="!profilePic"
          id="profile-img"
          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
