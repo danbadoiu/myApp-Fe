@@ -36,6 +36,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ModalForAppointmentWithoutHospitalComponent } from './components/location/modal-for-appointment-without-hospital/modal-for-appointment-without-hospital.component';
 
 
 
@@ -83,7 +84,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MessageReceivedComponent,
     AppointmentsComponent,
     AppointmentDetailComponent,
-    ModalForAppointmentComponent    
+    ModalForAppointmentComponent,
+    ModalForAppointmentWithoutHospitalComponent 
   ],
 
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy },{

@@ -6,7 +6,12 @@
   <div class="col d-flex justify-content-center"><button class="btn btn-success text-white"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            (click)="findClosestMarker()">Find the closest hospital</button></div>
+            (click)="findClosestMarker()">Find the closest hospital</button>
+    <button class="btn btn-success text-white btn2"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal2">Add an appointment</button>
+  </div>
+
 </div>
 
 <div class="map-container"
@@ -42,6 +47,33 @@
             <app-modal-for-appointment [idMarker]="closestMarkerName"></app-modal-for-appointment>
           </div>
 
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade"
+       #exampleModal2
+       id="exampleModal2"
+       tabindex="-1"
+       aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"
+              id="exampleModalLabel"></h5>
+          <button type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  (click)="onCloseModal()"></button>
+        </div>
+        <div class="modal-body">
+        
+<app-modal-for-appointment-without-hospital [markersList]="markersList"></app-modal-for-appointment-without-hospital>
 
 
 
