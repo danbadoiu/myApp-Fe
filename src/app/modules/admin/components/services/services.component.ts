@@ -17,6 +17,7 @@ export class ServicesComponent implements OnInit, OnChanges {
   username?: string;
   messages: Message[] | undefined = [];
   filteredMessages: Message[] | undefined = [];
+  showList = true
   adauga() {}
 
   constructor(private message: MessageService, private http: HttpClient) {}
@@ -42,6 +43,7 @@ export class ServicesComponent implements OnInit, OnChanges {
           obj.idSender === this.loggedUser?.id
         );
       });
+      console.log(this.filteredMessages)
     });
     
 
@@ -78,10 +80,19 @@ export class ServicesComponent implements OnInit, OnChanges {
           obj.idSender === this.loggedUser?.id
         );
       });
+      this.filteredMessages!.sort((a, b) => {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      });
     });
   }
   onSelectedUser(user: User): void {
     this.selectedUser = user;
     this.showUserDetails = true;
+  }
+  onExit(refreshData: boolean) {
+    // if(refreshData){
+    //   this.selectedUser=null
+    //   this.showUserDetails = false;
+    // }
   }
 }

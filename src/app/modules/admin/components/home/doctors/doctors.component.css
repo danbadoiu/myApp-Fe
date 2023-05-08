@@ -1,11 +1,6 @@
 .gradient-custom {
   background: #2b2d42;
-  background: linear-gradient(
-    90deg,
-    #6b705c 0%,
-    #a5a58d 39%,
-    #b7b7a4 100%
-  );
+  background: linear-gradient(90deg, #6b705c 0%, #a5a58d 39%, #b7b7a4 100%);
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -14,21 +9,20 @@ button {
   background-color: #6b705c;
   border: #6b705c;
 }
-button:hover{
+button:hover {
   background-color: #b7b7a4;
 }
-button:active{
+button:active {
   background-color: #b7b7a4;
 }
-button:focus{
+button:focus {
   background-color: #b7b7a4;
   border: #a5a58d;
   box-shadow: 0 0 0 0.2rem #a5a58d;
 }
-:not(.btn-check)+.btn:active {
-
+:not(.btn-check) + .btn:active {
   background-color: #b7b7a4;
- border-color: #b7b7a4; 
+  border-color: #b7b7a4;
 }
 img {
   margin-top: 20px;
@@ -36,21 +30,24 @@ img {
   width: 70px;
 }
 
-
 @media only screen and (max-width: 575px) {
   img {
-    margin-top: 20px;
-    height: 50px;
-    width: 50px;
+    margin-top: 0px !important;
+    height: 40px;
+    width: 40px;
   }
-  p{
+  p {
     margin: 0px;
     font-size: 10px;
   }
   .enlarge:hover {
     transform: scale(2);
   }
-
-
-  
+  .gradient-custom {
+    height: 50px;
+    margin-bottom: 0px;
+  }
+  h4 {
+    display: none;
+  }
 }

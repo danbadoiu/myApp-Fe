@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
   QueryList,
+  SimpleChanges,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
@@ -37,6 +38,8 @@ export class MessageDetailComponent implements OnInit {
   profileImageLoggedUser: SafeUrl | undefined;
   pictureMessage: SafeUrl | undefined;
   selected: string | undefined = 'false';
+  show = true;
+  @Output() exited = new EventEmitter<boolean>();
   constructor(
     private messageService: MessageService,
     private sanitizer: DomSanitizer
@@ -49,6 +52,15 @@ export class MessageDetailComponent implements OnInit {
       this.createProfileImageMessage(arrayItem.picture);
     });
     this.scrollToBottom();
+    
+    this.messages!.sort((a, b) => {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    });
+    console.log(this.messages)
+    
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    this.show = true;
   }
 
   createProfileImage(image: Blob): void {
@@ -79,6 +91,8 @@ export class MessageDetailComponent implements OnInit {
       })
       .subscribe(() => {
         this.savedChanges.emit(true);
+        this.picture = undefined;
+        this.expanded = false;
         this.myForm.reset();
       });
   }
@@ -105,7 +119,6 @@ export class MessageDetailComponent implements OnInit {
       .subscribe(() => this.savedChanges.emit(true));
   }
 
-
   ngAfterViewInit() {
     this.scrollToBottom();
     this.messages2?.changes.subscribe(this.scrollToBottom);
@@ -117,4 +130,9 @@ export class MessageDetailComponent implements OnInit {
         this.content!.nativeElement.scrollHeight;
     } catch (err) {}
   };
+
+  onCancel() {
+    this.exited.emit(true)
+    this.show = false;
+  }
 }

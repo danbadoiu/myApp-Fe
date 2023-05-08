@@ -63,7 +63,7 @@
                     *ngIf="loggedUserRole==='DOCTOR'"
                     (click)="onSendPoll(post!.id!)">Send</button>
          
-            <form (ngSubmit)="onSendMessage(selectedPostUserId!)"
+            <form (ngSubmit)="onSendMessage(selectedPostUserId!)" class="form-message"
                   #formRef="ngForm"
                   *ngIf="loggedUserRole==='DOCTOR'">
               <input type="text"
@@ -76,7 +76,7 @@
 
             </form>
 
-            <button class="btn btn-success text-white"
+            <button class="btn btn-success text-white btn-message"
                     *ngIf="loggedUserRole==='DOCTOR'"
                     (click)="onSendMessage(post!.idUser)">Send message</button>
 

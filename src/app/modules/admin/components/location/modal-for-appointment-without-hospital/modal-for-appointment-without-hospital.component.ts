@@ -24,6 +24,26 @@ export class ModalForAppointmentWithoutHospitalComponent implements OnInit {
   marker: string | undefined;
   @Input() markersList: Marker[] | undefined;
 
+  selectedHospital: string | undefined;
+
+  onHospitalSelect() {
+    let markerFinal: Marker | undefined;
+    this.markersList?.forEach((marker) => {
+      if (marker.name.toString() === this.marker!.toString()) {
+        markerFinal = marker;
+      }
+    });
+    if (markerFinal?.doctors) {
+      let doctorsArray = markerFinal.doctors.split(',').map(String);
+      doctorsArray.forEach((doctor) => {
+        this.doctorOptions?.push(
+          this.getDoctor(doctor)?.firstName! +
+            ' ' +
+            this.getDoctor(doctor)?.lastName!
+        );
+      });
+    }
+  }
   onCancel() {
     this.date = undefined;
     this.myForm.reset();
@@ -49,40 +69,19 @@ export class ModalForAppointmentWithoutHospitalComponent implements OnInit {
 
         this.doctors = doctorsArray;
       }
-      // this.doctors?.forEach((doctor) => {
-      //   this.options?.push(
-      //     this.getDoctor(doctor)?.firstName! +
-      //       ' ' +
-      //       this.getDoctor(doctor)?.lastName!
-      //   );
-      // });
-      
+
       this.markersList?.forEach((marker) => {
         this.options?.push(marker.name);
       });
 
       let doctorsArray = this.doctor!.split(' ').map(String);
-    const doctorId = this.users?.find((user) => {
-      return (
-        user.firstName === doctorsArray[0] && user.lastName === doctorsArray[1]
-      );
-    })?.id;
-    
-      this.markersList?.forEach((marker) => {
-       
-        let doctorsArray = marker.doctors!.split(',').map(String);
-        doctorsArray.forEach((doctor)=>{
-    
-          this.doctorOptions?.push(
-            this.getDoctor(doctor)?.firstName! +
-              ' ' +
-              this.getDoctor(doctor)?.lastName!
-          );
-        })
- 
-      });
+      const doctorId = this.users?.find((user) => {
+        return (
+          user.firstName === doctorsArray[0] &&
+          user.lastName === doctorsArray[1]
+        );
+      })?.id;
     });
-
   }
 
   createPost() {
@@ -93,7 +92,11 @@ export class ModalForAppointmentWithoutHospitalComponent implements OnInit {
       );
     })?.id;
 
-    this.markersList?.forEach((marker)=>{if(marker.name.toString()===this.marker!.toString()){this.marker = marker.id}})
+    this.markersList?.forEach((marker) => {
+      if (marker.name.toString() === this.marker!.toString()) {
+        this.marker = marker.id;
+      }
+    });
     this.appointmentService
       .addAppointment({
         idUser: this.loggedUser!,

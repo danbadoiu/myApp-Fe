@@ -6,7 +6,7 @@
           #formRef="ngForm">
           <select name="marker"
           class="form-select form-select-lg form-element"
-          [(ngModel)]="marker">
+          [(ngModel)]="marker" (change)="onHospitalSelect()">
     <option value=""
             disabled
             selected>Select a hospital</option>
