@@ -151,12 +151,13 @@ export class AppointmentDetailComponent implements OnInit {
     }
   }
   onRefuse(id: string) {
+    const dateObject = new Date(this.appointment?.date!);
     this.appointmentService
       .updateAppointment(id, {
         idUser: this.appointment?.idUser!,
         idDoctor: this.appointment?.idDoctor!,
         idMarker: this.appointment?.idMarker!,
-        date: this.appointment?.date!,
+        date: dateObject,
         status: 'REJECTED',
       })
       .subscribe(() => this.savedChanges.emit(true));

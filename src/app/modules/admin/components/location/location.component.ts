@@ -36,6 +36,14 @@ export class LocationComponent implements OnInit {
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
     });
+    const environment = {
+      production: false,
+      apiUrl: 'http://localhost:8081',
+      mapbox:{
+        accessToken:'pk.eyJ1IjoiZGFuaWJhZG9pdSIsImEiOiJjbGVlNWZ5d2wwZGlrM3BveWtmZXh0OHR4In0.AIbejDigEnXHUl2x8DeBCw'
+      }
+    
+    };
     (mapboxgl as any).accessToken = environment.mapbox.accessToken;
   }
 
