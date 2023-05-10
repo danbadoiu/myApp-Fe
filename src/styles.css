@@ -26,3 +26,8 @@ body {
 /* span.mat-button-wrapper {
   color: white;
 } */
+.centered-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

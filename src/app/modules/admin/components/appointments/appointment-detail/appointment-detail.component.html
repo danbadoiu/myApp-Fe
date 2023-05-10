@@ -51,20 +51,20 @@
       <div class="d-flex justify-content-end">
         <button type="button"
                 *ngIf="loggedUserRole!=='DOCTOR' && appointment?.status==='PENDING'"
-                class="btn btn-danger"
-                (click)="onDelete(appointment?.id!)">
+                class="btn btn-danger centered-button"
+                (click)="onDelete(appointment?.id!)"><mat-icon>delete</mat-icon>
           Delete
         </button>
         <button type="button"
                 *ngIf="(loggedUserRole==='DOCTOR' && appointment?.status==='PENDING')||(appointment?.idMarker === null)"
-                class="btn btn-success"
-                (click)="onAccept(appointment?.id!)">
+                class="btn btn-success centered-button"
+                (click)="onAccept(appointment?.id!)"><mat-icon>check_circle</mat-icon>
           Accept
         </button>
         <button type="button"
                 *ngIf="loggedUserRole==='DOCTOR' && appointment?.status==='PENDING'"
-                class="btn btn-danger"
-                (click)="onRefuse(appointment?.id!)">
+                class="btn btn-danger centered-button"
+                (click)="onRefuse(appointment?.id!)"><mat-icon>remove_circle</mat-icon>
           Refuse
         </button>
 

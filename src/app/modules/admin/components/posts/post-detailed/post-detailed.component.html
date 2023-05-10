@@ -41,8 +41,9 @@
         <div class="justify-content-end">
           <button type="button"
                   *ngIf="loggedUserRole!=='DOCTOR'"
-                  class="btn btn-danger"
+                  class="btn btn-danger centered-button"
                   (click)="onDelete(post?.id!)">
+            <mat-icon>delete</mat-icon>
             Remove
           </button>
           <div class="d-flex justify-content-between">
@@ -59,9 +60,11 @@
 
 
             </form>
-            <button class="btn btn-primary text-white"
+            <button class="btn btn-primary text-white centered-button"
                     *ngIf="loggedUserRole==='DOCTOR'"
-                    (click)="onSendPoll(post!.id!)">Send</button>
+                    (click)="onSendPoll(post!.id!)">
+              <mat-icon> local_hospital</mat-icon>Send
+            </button>
 
             <form (ngSubmit)="onSendMessage(selectedPostUserId!)"
                   class="form-message"
@@ -77,14 +80,18 @@
 
             </form>
 
-            <button class="btn btn-success text-white btn-message"
+            <button class="btn btn-success text-white btn-message centered-button"
                     *ngIf="loggedUserRole==='DOCTOR'"
-                    (click)="onSendMessage(post!.idUser)">Send message</button>
+                    (click)="onSendMessage(post!.idUser)">
+              <mat-icon> message</mat-icon>Send message
+            </button>
 
-            <button class="btn btn-primary text-white"
+            <button class="btn btn-primary text-white centered-button"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
-                    *ngIf="loggedUserRole==='DOCTOR'">Add</button>
+                    *ngIf="loggedUserRole==='DOCTOR'">
+              <mat-icon>add_box</mat-icon>Add
+            </button>
 
 
             <div class="modal fade"
@@ -120,10 +127,12 @@
                         <mat-datepicker #picker
                                         panelClass="my-datepicker-popup"></mat-datepicker>
                       </mat-form-field>
-                      <button class="btn btn-success text-white"
+                      <button class="btn btn-success text-white centered-button"
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
-                              (click)="onSolicitaProgramare(post!.idUser)">Add Appointment</button>
+                              (click)="onSolicitaProgramare(post!.idUser)">
+                        <mat-icon>add_box</mat-icon>Add Appointment
+                      </button>
 
                     </div>
 
