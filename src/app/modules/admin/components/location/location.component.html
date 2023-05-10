@@ -36,7 +36,7 @@
         </div>
         <div class="modal-body">
           <div class="div"
-               *ngIf="this.closestMarker">{{this.closestMarkerName?.name}}
+               *ngIf="this.closestMarker"><h2 class="text-center">{{this.closestMarkerName?.name}}</h2>
 
             <app-modal-for-appointment [idMarker]="closestMarkerName"></app-modal-for-appointment>
           </div>
