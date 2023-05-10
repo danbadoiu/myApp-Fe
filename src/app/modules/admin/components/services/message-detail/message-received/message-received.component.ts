@@ -28,6 +28,12 @@ export class MessageReceivedComponent implements OnInit {
   ngOnInit() {
     this.createProfileImage(this.selectedUser?.profilePicture!);
     this.createProfileImage2(this.message?.picture!);
+    let date;
+    if (this.message?.date) {
+      date = new Date(this.message?.date);
+      const dateString = date?.toISOString().replace('T', ' ').slice(0, 19);
+      this.messageDate = dateString!;
+    }
   }
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;

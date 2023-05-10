@@ -56,7 +56,6 @@ export class MessageDetailComponent implements OnInit {
     this.messages!.sort((a, b) => {
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     });
-    console.log(this.messages);
   }
   ngOnChanges(changes: SimpleChanges) {
     this.show = true;
@@ -120,14 +119,14 @@ export class MessageDetailComponent implements OnInit {
 
   ngAfterViewInit() {
     this.scrollToBottom();
-    this.messages2?.changes.subscribe(this.scrollToBottom);
+    this.messages2?.changes.subscribe(() => this.scrollToBottom());
   }
 
   scrollToBottom = () => {
-    try {
+    if (this.content?.nativeElement) {
       this.content!.nativeElement.scrollTop =
         this.content!.nativeElement.scrollHeight;
-    } catch (err) {}
+    }
   };
 
   onCancel() {

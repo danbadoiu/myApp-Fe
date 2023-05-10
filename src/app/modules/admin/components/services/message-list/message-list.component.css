@@ -18,4 +18,9 @@
 
 li:hover{
     background-color: gainsboro;
+    border-radius: 1rem;
+}
+
+table{
+    width: 100%;
 }

@@ -29,3 +29,11 @@ p{
 .enlarge:hover {
   transform: scale(1.5);
 }
+.btn{
+  /* font-size: 5px; */
+}
+.centered-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

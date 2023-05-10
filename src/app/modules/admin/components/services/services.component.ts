@@ -42,7 +42,6 @@ export class ServicesComponent implements OnInit, OnChanges {
           obj.idSender === this.loggedUser?.id
         );
       });
-      console.log(this.filteredMessages);
     });
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);

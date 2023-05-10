@@ -35,7 +35,7 @@ export class AppointmentDetailComponent implements OnInit {
   showCancelButton = false;
 
   options: string[] = [];
-
+  appointmentDate: string | undefined;
   medicinesBox: Post[] = [];
   searchTerm = '';
   message: string | undefined;
@@ -65,6 +65,15 @@ export class AppointmentDetailComponent implements OnInit {
       .get<User[]>('http://localhost:8080/user')
       .pipe(
         map((responseData) => {
+          let date;
+          if (this.appointment?.date) {
+            date = new Date(this.appointment?.date);
+            const dateString = date
+              ?.toISOString()
+              .replace('T', ' ')
+              .slice(0, 19);
+            this.appointmentDate = dateString!;
+          }
           return responseData;
         })
       )
