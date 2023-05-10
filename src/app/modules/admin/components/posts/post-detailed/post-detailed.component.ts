@@ -41,7 +41,7 @@ export class PostDetailedComponent implements OnInit {
   loggedUserRole: string | undefined;
   date: Date | undefined;
   @Output() savedChanges = new EventEmitter<boolean>();
-  results: string[] = []
+  results: string[] = [];
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -57,10 +57,10 @@ export class PostDetailedComponent implements OnInit {
 
   ngOnInit() {
     this.idUser = this.post?.idUser;
-    this.poll?.forEach((poll) => {if(poll.idPost.toString()===this.post?.id?.toString())
-      this.results = this.getResult(poll).split(',').map(String);
-      console.log(this.results, this.post?.id)
-      
+    this.poll?.forEach((poll) => {
+      if (poll.idPost.toString() === this.post?.id?.toString())
+        this.results = this.getResult(poll).split(',').map(String);
+      console.log(this.results, this.post?.id);
     });
 
     this.createProfileImage(this.post?.image!);
@@ -147,16 +147,14 @@ export class PostDetailedComponent implements OnInit {
     }
   }
 
-  getResult(poll: Poll):string {
+  getResult(poll: Poll): string {
     let answers = poll.answer.split(',').map(String);
-  
+
     // const doctorId = this.users?.find((user) => {
     //   return (
     //     user.firstName === doctorsArray[0] && user.lastName === doctorsArray[1]
     //   );
     // })?.id;
-
-    
 
     // Convert the sentences into an array of words
     const words = answers.join(' ').toLowerCase().split(' ');
@@ -187,17 +185,18 @@ export class PostDetailedComponent implements OnInit {
     //   console.log("No words found.");}
     const mostFrequentFrequency = wordFrequency[0][1];
 
-// Get an array of all the words with the most frequent frequency
-const mostFrequentWords = wordFrequency.filter(([word, frequency]) => frequency === mostFrequentFrequency).map(([word, frequency]) => word);
+    // Get an array of all the words with the most frequent frequency
+    const mostFrequentWords = wordFrequency
+      .filter(([word, frequency]) => frequency === mostFrequentFrequency)
+      .map(([word, frequency]) => word);
 
-// Display the most frequent words
-if (mostFrequentWords.length > 0) {
-  
-  // console.log(`The most frequent word(s) is/are "${mostFrequentWords.join('", "')}"" with a frequency of ${mostFrequentFrequency}.`);
-  return mostFrequentWords.join(',')
-} else {
-  console.log("No words found.");
-  return ''
-}
+    // Display the most frequent words
+    if (mostFrequentWords.length > 0) {
+      // console.log(`The most frequent word(s) is/are "${mostFrequentWords.join('", "')}"" with a frequency of ${mostFrequentFrequency}.`);
+      return mostFrequentWords.join(',');
+    } else {
+      console.log('No words found.');
+      return '';
+    }
   }
 }

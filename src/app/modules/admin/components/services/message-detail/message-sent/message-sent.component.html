@@ -1,16 +1,24 @@
 <div class="d-flex flex-row justify-content-end"
      (click)="onSelectMessage()">
-  <div>
-    <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">{{message!.message}} <img *ngIf="message!.picture"
-           [src]="pictureMessage"
-           alt="message image"
-           style="max-width: 100%;"
-           class="messageImage" [ngClass]="{'enlarge': isHovered}" (mouseover)="isHovered = true" (mouseleave)="isHovered = false"></p>
-    <p class="small me-3 mb-3 rounded-3 text-muted">{{message!.date}}</p>
-  </div>
-  <img [src]="profileImageLoggedUser"
-       alt="avatar 1"
-       style="width: 60px;">
+       <div>
+              <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">{{message!.message}} <img
+                          *ngIf="message!.picture"
+                          [src]="pictureMessage"
+                          alt="message image"
+                          style="max-width: 100%;"
+                          class="messageImage"
+                          [ngClass]="{'enlarge': isHovered}"
+                          (mouseover)="isHovered = true"
+                          (mouseleave)="isHovered = false"></p>
+              <p class="small me-3 mb-3 rounded-3 text-muted">{{message!.date}}</p>
+       </div>
+       <img [src]="profileImageLoggedUser"
+            alt="avatar 1"
+            style="width: 60px;">
 </div>
-<button class="btn btn-danger" *ngIf="selected==='true'" (click)="onDeleteMessage()">Sterge</button>
-<button class="btn btn-primary" *ngIf="selected==='true'" (click)="onUnSelectMessage()">Anuleaza</button>
+<button class="btn btn-danger"
+        *ngIf="selected==='true'"
+        (click)="onDeleteMessage()">Sterge</button>
+<button class="btn btn-primary"
+        *ngIf="selected==='true'"
+        (click)="onUnSelectMessage()">Anuleaza</button>

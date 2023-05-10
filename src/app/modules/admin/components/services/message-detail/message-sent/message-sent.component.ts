@@ -46,7 +46,7 @@ export class MessageSentComponent implements OnInit {
   }
   onDeleteMessage() {
     this.selected = 'true';
-    this.savedChanges.emit(this.message?.id)
+    this.savedChanges.emit(this.message?.id);
   }
   onUnSelectMessage() {
     this.selected = 'false';

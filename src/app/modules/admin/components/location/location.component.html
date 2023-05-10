@@ -1,7 +1,6 @@
 <!-- <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script> -->
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css'
       rel='stylesheet' />
-<!-- <button (click)="findClosestMarker()">Apasa</button> -->
 <div class="row ">
   <div class="col d-flex justify-content-center"><button class="btn btn-success text-white"
             data-bs-toggle="modal"
@@ -17,11 +16,6 @@
 <div class="map-container"
      id='map'></div>
 <div class="col-2">
-  <!-- <button class="btn btn-success text-white"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          (click)="findClosestMarker()">Gaseste</button> -->
-
 
   <div class="modal fade"
        #exampleModal
@@ -72,8 +66,9 @@
                   (click)="onCloseModal()"></button>
         </div>
         <div class="modal-body">
-        
-<app-modal-for-appointment-without-hospital [markersList]="markersList"></app-modal-for-appointment-without-hospital>
+
+          <app-modal-for-appointment-without-hospital [markersList]="markersList">
+          </app-modal-for-appointment-without-hospital>
 
 
 

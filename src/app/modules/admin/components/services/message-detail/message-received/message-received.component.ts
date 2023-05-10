@@ -6,10 +6,9 @@ import { Message } from 'src/app/modules/admin/shared/models/message.model';
 @Component({
   selector: 'app-message-received',
   templateUrl: './message-received.component.html',
-  styleUrls: ['./message-received.component.css']
+  styleUrls: ['./message-received.component.css'],
 })
 export class MessageReceivedComponent implements OnInit {
-
   @Input() selectedUser?: User | null;
   @Input() message: Message | undefined;
   @Input() loggedUser: User | undefined;
@@ -24,11 +23,11 @@ export class MessageReceivedComponent implements OnInit {
   profileImage: SafeUrl | undefined;
   profileImageLoggedUser: SafeUrl | undefined;
   pictureMessage: SafeUrl | undefined;
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-    this.createProfileImage(this.selectedUser?.profilePicture!)
-    this.createProfileImage2(this.message?.picture!)
+    this.createProfileImage(this.selectedUser?.profilePicture!);
+    this.createProfileImage2(this.message?.picture!);
   }
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
@@ -36,8 +35,6 @@ export class MessageReceivedComponent implements OnInit {
   }
   createProfileImage2(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
-    this.pictureMessage =
-      this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    this.pictureMessage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
   }
-
 }

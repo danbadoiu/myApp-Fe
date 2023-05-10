@@ -3,7 +3,6 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { Message } from 'src/app/modules/admin/shared/models/message.model';
-import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
 
 @Component({
   selector: 'app-services',
@@ -17,10 +16,10 @@ export class ServicesComponent implements OnInit, OnChanges {
   username?: string;
   messages: Message[] | undefined = [];
   filteredMessages: Message[] | undefined = [];
-  showList = true
+  showList = true;
   adauga() {}
 
-  constructor(private message: MessageService, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
   ngOnChanges(changes: SimpleChanges): void {}
 
   users: User[] | undefined = [];
@@ -36,16 +35,15 @@ export class ServicesComponent implements OnInit, OnChanges {
       .toPromise();
     this.getData2().subscribe((responseData) => {
       this.messages = responseData;
-      
+
       this.filteredMessages = this.messages?.filter((obj) => {
         return (
           obj.idReceiver === this.loggedUser?.id ||
           obj.idSender === this.loggedUser?.id
         );
       });
-      console.log(this.filteredMessages)
+      console.log(this.filteredMessages);
     });
-    
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.username = storedUser.userDetails.username;
@@ -89,10 +87,5 @@ export class ServicesComponent implements OnInit, OnChanges {
     this.selectedUser = user;
     this.showUserDetails = true;
   }
-  onExit(refreshData: boolean) {
-    // if(refreshData){
-    //   this.selectedUser=null
-    //   this.showUserDetails = false;
-    // }
-  }
+  onExit(refreshData: boolean) {}
 }

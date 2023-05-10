@@ -4,7 +4,8 @@
             <div class="col-10">
                 <div class="card card-news">
                     <div class="card-body card-news-body">
-                        <div  class="card-empty" *ngIf="users?.length===0">No doctors found!</div>
+                        <div class="card-empty"
+                             *ngIf="users?.length===0">No doctors found!</div>
                         <ul class="list-group"
                             *ngFor="let user of users">
                             <li class="list-group-item"

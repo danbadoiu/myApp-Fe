@@ -2,7 +2,6 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/login.model';
-import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
 import { UserService } from 'src/app/modules/admin/shared/services/user.service';
 
 @Component({
@@ -21,18 +20,17 @@ export class DoctorsComponent implements OnInit {
   idLoggedUser: string | undefined;
   @ViewChild('formRef') myForm: any;
   picture: File | undefined;
-  userId:string|undefined
+  userId: string | undefined;
 
   profileImage: SafeUrl | undefined;
   constructor(
     private userService: UserService,
     private sanitizer: DomSanitizer,
-    private messageService: MessageService,
     private route: Router
   ) {}
 
   ngOnInit(): void {
-    this.userId = this.user?.id
+    this.userId = this.user?.id;
     this.createProfileImage(this.user?.profilePicture!);
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
@@ -56,20 +54,7 @@ export class DoctorsComponent implements OnInit {
     }
   }
 
-  
   onSendMessage() {
-    this.route.navigate(['admin/messages'])
-    // this.messageService
-    //   .addMessage({
-    //     message: this.message!,
-    //     idSender: this.user?.id!,
-    //     idReceiver: this.idLoggedUser!,
-    //     date: new Date(),
-    //     picture: this.picture!,
-    //   })
-    //   .subscribe(() => {
-    //     console.log(this.userId, this.idLoggedUser,"user:",this.user)
-    //     this.myForm.reset();
-    //   });
+    this.route.navigate(['admin/messages']);
   }
 }

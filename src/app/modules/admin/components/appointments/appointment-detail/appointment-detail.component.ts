@@ -14,8 +14,6 @@ import { Post } from 'src/app/models/posts.model';
 import { Appointment } from 'src/app/modules/admin/shared/models/appointment.model';
 import { AppointmentService } from 'src/app/modules/admin/shared/services/appointment.service';
 import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
-import { PostService } from 'src/app/modules/admin/shared/services/post.service';
-import { UserService } from 'src/app/modules/admin/shared/services/user.service';
 import { Marker } from '../../../shared/models/marker.model';
 import { MarkerService } from '../../../shared/services/marker.service';
 
@@ -25,12 +23,16 @@ import { MarkerService } from '../../../shared/services/marker.service';
   styleUrls: ['./appointment-detail.component.css'],
 })
 export class AppointmentDetailComponent implements OnInit {
+  onCancel() {
+    this.onDelete(this.appointment?.id!);
+  }
   @Input() appointment: Appointment | undefined;
   profileImage: SafeUrl | undefined;
   loggedUser: User | undefined;
   @ViewChild('formRef') myForm: any;
   marker: string | undefined;
   markersList: Marker[] | undefined;
+  showCancelButton = false;
 
   options: string[] = [];
 
@@ -49,9 +51,7 @@ export class AppointmentDetailComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private messageService: MessageService,
-    private postService: PostService,
     private appointmentService: AppointmentService,
-    private userService: UserService,
     private http: HttpClient,
     private markerService: MarkerService
   ) {}
@@ -81,6 +81,11 @@ export class AppointmentDetailComponent implements OnInit {
       (user) => user.id === this.appointment?.idUser
     );
     this.getMarkers();
+    let date =
+      new Date(this.appointment?.date!).getTime() - new Date().getTime();
+    if (date < 0) {
+      this.showCancelButton = true;
+    }
   }
 
   onSendMessage(id: string) {

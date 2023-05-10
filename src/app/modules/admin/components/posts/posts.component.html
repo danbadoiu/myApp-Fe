@@ -4,7 +4,8 @@
         *ngFor="let post of posts">
       <li class="list-group-item"
           *ngIf="(loggedUserRole === 'DOCTOR' &&loggedUser?.domain ===post.domain)||post.idUser === idLoggedUser">
-        <app-post-detailed [post]="post" [poll]="poll"
+        <app-post-detailed [post]="post"
+                           [poll]="poll"
                            (savedChanges)="onPostAction($event)"></app-post-detailed>
       </li>
       <li class="list-group-item"
@@ -15,4 +16,3 @@
     </ul>
   </div>
 </div>
-<!-- <app-poll (savedChanges)="onPollAction($event)"></app-poll> -->

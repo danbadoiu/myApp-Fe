@@ -52,12 +52,11 @@ export class MessageDetailComponent implements OnInit {
       this.createProfileImageMessage(arrayItem.picture);
     });
     this.scrollToBottom();
-    
+
     this.messages!.sort((a, b) => {
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     });
-    console.log(this.messages)
-    
+    console.log(this.messages);
   }
   ngOnChanges(changes: SimpleChanges) {
     this.show = true;
@@ -132,7 +131,7 @@ export class MessageDetailComponent implements OnInit {
   };
 
   onCancel() {
-    this.exited.emit(true)
+    this.exited.emit(true);
     this.show = false;
   }
 }

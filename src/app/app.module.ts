@@ -1,9 +1,9 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,19 +12,14 @@ import { RegisterComponent } from './register/register.component';
 
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthInterceptorService } from './modules/admin/auth-interceptor.service';
 import { AuthGuard } from './modules/admin/authguard.guard';
 import { UserService } from './modules/admin/shared/services/user.service';
-import { AuthInterceptorService } from './modules/admin/auth-interceptor.service';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent
-
-  ],
+  declarations: [AppComponent, LoginComponent, RegisterComponent],
   providers: [
     UserService,
     AuthGuard,
@@ -32,8 +27,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
   imports: [
@@ -48,10 +43,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatTableModule,
     MatIconModule,
     MatSnackBarModule,
-    MatExpansionModule
-    
-  
+    MatExpansionModule,
   ],
-  
 })
 export class AppModule {}

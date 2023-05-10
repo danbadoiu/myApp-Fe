@@ -4,17 +4,18 @@
 
     <form (ngSubmit)="createPost()"
           #formRef="ngForm">
-          <select name="marker"
-          class="form-select form-select-lg form-element"
-          [(ngModel)]="marker" (change)="onHospitalSelect()">
-    <option value=""
-            disabled
-            selected>Select a hospital</option>
-    <option *ngFor="let option of options"
-            [value]="option">{{ option }}</option>
-  </select>
+      <select name="marker"
+              class="form-select form-select-lg form-element"
+              [(ngModel)]="marker"
+              (change)="onHospitalSelect()">
+        <option value=""
+                disabled
+                selected>Select a hospital</option>
+        <option *ngFor="let option of options"
+                [value]="option">{{ option }}</option>
+      </select>
 
-          <select name="doctor"
+      <select name="doctor"
               class="form-select form-select-lg form-element"
               [(ngModel)]="doctor">
         <option value=""

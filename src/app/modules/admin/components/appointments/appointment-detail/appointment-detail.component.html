@@ -1,5 +1,9 @@
 <div class="row">
   <div class="col-md-12">
+    <div class="d-flex justify-content-end"
+         *ngIf="showCancelButton"><span>
+        <mat-icon (click)="onCancel()">cancel</mat-icon>
+      </span></div>
     <div class="card-body p-4">
       <h6>Patient Name:</h6>
       <div class="row pt-1">
@@ -35,14 +39,15 @@
       </div>
       <select name="marker"
               class="form-select form-select-lg form-element"
-              [(ngModel)]="marker" *ngIf="appointment?.idMarker === null">
+              [(ngModel)]="marker"
+              *ngIf="appointment?.idMarker === null">
         <option value=""
                 disabled
                 selected>Select a hospital</option>
         <option *ngFor="let option of options"
                 [value]="option">{{ option }}</option>
       </select>
-     
+
       <div class="d-flex justify-content-end">
         <button type="button"
                 *ngIf="loggedUserRole!=='DOCTOR' && appointment?.status==='PENDING'"

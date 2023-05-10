@@ -22,8 +22,8 @@ export class ModalForAppointmentComponent implements OnInit {
   addedAppointment = 'false';
 
   onCancel() {
-    this.date = undefined
-    this.myForm.reset()
+    this.date = undefined;
+    this.myForm.reset();
   }
 
   constructor(
@@ -37,7 +37,6 @@ export class ModalForAppointmentComponent implements OnInit {
     });
   }
   ngOnInit() {
-    
     this.userService.getUsers().subscribe((data) => {
       this.users = data;
       let storedUser = JSON.parse(localStorage.getItem('userData')!);
@@ -64,7 +63,7 @@ export class ModalForAppointmentComponent implements OnInit {
         user.firstName === doctorsArray[0] && user.lastName === doctorsArray[1]
       );
     })?.id;
-    console.log(this.date)
+    console.log(this.date);
 
     this.appointmentService
       .addAppointment({

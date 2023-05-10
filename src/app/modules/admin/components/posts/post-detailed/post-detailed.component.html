@@ -62,8 +62,9 @@
             <button class="btn btn-primary text-white"
                     *ngIf="loggedUserRole==='DOCTOR'"
                     (click)="onSendPoll(post!.id!)">Send</button>
-         
-            <form (ngSubmit)="onSendMessage(selectedPostUserId!)" class="form-message"
+
+            <form (ngSubmit)="onSendMessage(selectedPostUserId!)"
+                  class="form-message"
                   #formRef="ngForm"
                   *ngIf="loggedUserRole==='DOCTOR'">
               <input type="text"
