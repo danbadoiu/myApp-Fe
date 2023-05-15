@@ -8,6 +8,7 @@ import { Appointment } from 'src/app/modules/admin/shared/models/appointment.mod
 import { AppointmentService } from 'src/app/modules/admin/shared/services/appointment.service';
 import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
 import { NotificationService } from '../../shared/services/notification.service';
+import { UserService } from '../../shared/services/user.service';
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
@@ -24,7 +25,7 @@ export class AppointmentsComponent implements OnInit {
   message: string | undefined;
   idLoggedUser: string | undefined;
   selectedPostUserId: string | undefined;
-  users: User[] | undefined = [];
+  users: User[] | undefined;
   picture: File | undefined;
   profileImage: SafeUrl | undefined;
   loggedUserRole: string | undefined;
@@ -38,7 +39,8 @@ export class AppointmentsComponent implements OnInit {
     private messageService: MessageService,
     private sanitizer: DomSanitizer,
     private appointmentService: AppointmentService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -66,6 +68,8 @@ export class AppointmentsComponent implements OnInit {
       });
   }
   getData() {
+    
+    
     this.http
       .get<Appointment[]>('http://localhost:8080/appointment')
       .pipe(
@@ -78,10 +82,13 @@ export class AppointmentsComponent implements OnInit {
               appointment.idUser === this.idLoggedUser
             );
           });
+         
+         
           this.appointments.forEach((appointment) => {
             if (appointment.date < new Date()) {
               this.appointmentService.deleteAppointment(appointment.id!);
             }
+            
             if (appointment.idMarker === null) {
               this.notification.show(
                 'You received an appointment from ' + appointment.idDoctor
@@ -90,7 +97,9 @@ export class AppointmentsComponent implements OnInit {
           });
         })
       )
+      
       .toPromise();
+      
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
@@ -106,6 +115,7 @@ export class AppointmentsComponent implements OnInit {
     this.loggedUser = this.users?.find(
       (employee) => employee.id === this.idLoggedUser
     );
+    
 
     this.filteredPosts = this.appointments?.filter((obj) => {
       return obj.idUser === this.idLoggedUser;

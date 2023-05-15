@@ -48,10 +48,11 @@ export class HomeComponent implements OnInit {
   searchText = '';
 
   toggleSearch: boolean = false;
+  searchedUsers: User[] = [];
 
   search() {
     if (this.searchTerm === '') {
-      this.filteredUsers = this.users!;
+      this.users = this.searchedUsers!;
     } else {
       const filtered = this.users!.filter(
         (user) =>
@@ -60,7 +61,7 @@ export class HomeComponent implements OnInit {
             .includes(this.searchTerm.toLowerCase()) ||
           user.lastName.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
-      this.users = filtered.length ? filtered : [];
+      this.users = filtered.length ? filtered : this.searchedUsers;
     }
   }
   isExpanded = false;
@@ -83,6 +84,7 @@ export class HomeComponent implements OnInit {
     this.userSubscription = this.userService.getUsers().subscribe((data) => {
       this.users = data;
       this.filteredUsers = data;
+      this.searchedUsers = data;
     });
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);

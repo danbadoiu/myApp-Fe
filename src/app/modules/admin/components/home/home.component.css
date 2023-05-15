@@ -47,7 +47,7 @@
 .list-group-item {
   height: 300px;
 }
-.card2{
+.card2 {
   margin-right: 0px !important;
 }
 h1 {
@@ -114,29 +114,27 @@ img {
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
 
-    
     margin-top: 20px;
   }
   span {
-    
     font-size: 10px;
   }
   .two {
     margin-left: 20px;
   }
-  .post-card{
+  .post-card {
     margin-left: 30px;
     margin-bottom: 20px;
     width: 350px;
   }
 }
 
-.body{
-  height: 650 px;  
+.body {
+  height: 650 px;
   color: #fff;
-  background-image: url("https://img.freepik.com/free-photo/modern-hospital-with-clear-walls_1203-1539.jpg?w=1480&t=st=1683546678~exp=1683547278~hmac=bee392abb36ea827cb1d13e279e076dc6f8ec02a8329b019a2c068da2333b888");  
+  background-image: url("https://img.freepik.com/free-photo/modern-hospital-with-clear-walls_1203-1539.jpg?w=1480&t=st=1683546678~exp=1683547278~hmac=bee392abb36ea827cb1d13e279e076dc6f8ec02a8329b019a2c068da2333b888");
   /* background-size: 100%;   */
-  background-size:cover;  
+  background-size: cover;
 }
 button {
   min-width: 100px;
@@ -148,4 +146,8 @@ button {
 
 button {
   margin-left: 10px;
+}
+.material-icons {
+  margin-top: 10px;
+  font-size: 30px;
 }
