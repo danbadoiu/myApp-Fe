@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/login.model';
@@ -21,6 +21,7 @@ export class DoctorsComponent implements OnInit {
   @ViewChild('formRef') myForm: any;
   picture: File | undefined;
   userId: string | undefined;
+  @Output() sendMessage= new EventEmitter<User>()
 
   profileImage: SafeUrl | undefined;
   constructor(
@@ -55,6 +56,7 @@ export class DoctorsComponent implements OnInit {
   }
 
   onSendMessage() {
+    this.sendMessage.emit(this.user)
     this.route.navigate(['admin/messages']);
   }
 }

@@ -165,4 +165,7 @@ export class HomeComponent implements OnInit {
   filter() {
     this.showModal2 = true;
   }
+  onSendMessage(user:User){
+    localStorage.setItem("sendMessageTo",user.id!)
+  }
 }

@@ -1,5 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { Message } from 'src/app/modules/admin/shared/models/message.model';
@@ -9,7 +15,7 @@ import { Message } from 'src/app/modules/admin/shared/models/message.model';
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css'],
 })
-export class ServicesComponent implements OnInit, OnChanges {
+export class ServicesComponent implements OnInit, OnChanges, OnDestroy {
   selectedUser?: User | null;
   loggedUser?: User;
   showUserDetails = false;
@@ -20,6 +26,9 @@ export class ServicesComponent implements OnInit, OnChanges {
   adauga() {}
 
   constructor(private http: HttpClient) {}
+  ngOnDestroy(): void {
+    localStorage.removeItem('sendMessageTo');
+  }
   ngOnChanges(changes: SimpleChanges): void {}
 
   users: User[] | undefined = [];
@@ -43,6 +52,12 @@ export class ServicesComponent implements OnInit, OnChanges {
         );
       });
     });
+    if (localStorage.getItem('sendMessageTo')) {
+      this.selectedUser = this.users?.find((user) => {
+        return user.id?.toString() === localStorage.getItem('sendMessageTo');
+      });
+      this.showUserDetails = true;
+    }
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.username = storedUser.userDetails.username;

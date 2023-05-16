@@ -13,7 +13,7 @@
                             *ngFor="let user of users">
                             <li class="list-group-item"
                                 *ngIf="user.role==='DOCTOR'">
-                                <app-doctors [user]="user"></app-doctors>
+                                <app-doctors [user]="user" (sendMessage)="onSendMessage(user)"></app-doctors>
                             </li>
                         </ul>
                     </div>
