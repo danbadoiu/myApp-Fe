@@ -50,11 +50,11 @@ export class MessageListComponent implements OnInit, OnChanges {
       (obj) => obj.idReceiver === id || obj.idSender === id
     );
     if (filteredList && filteredList.length > 0) {
-      if(filteredList[filteredList.length - 1].message===''){
+      if (filteredList[filteredList.length - 1].message === '') {
         return 'Image';
+      } else {
+        return filteredList[filteredList.length - 1].message!;
       }
-      else{return filteredList[filteredList.length - 1].message!;}
-      
     } else {
       return '';
     }
@@ -88,6 +88,6 @@ export class MessageListComponent implements OnInit, OnChanges {
   selectUser(user: User): void {
     this.selectedUser = user;
     // this.selectedUserChanged.emit(this.selectedUser);
-    this.selectedUserChanged.emit({...this.selectedUser});
+    this.selectedUserChanged.emit({ ...this.selectedUser });
   }
 }

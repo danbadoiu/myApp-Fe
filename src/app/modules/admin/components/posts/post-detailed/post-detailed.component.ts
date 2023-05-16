@@ -13,6 +13,7 @@ import { MessageService } from 'src/app/modules/admin/shared/services/message.se
 import { PostService } from 'src/app/modules/admin/shared/services/post.service';
 import { Poll } from '../../../shared/models/poll.model';
 import { AppointmentService } from '../../../shared/services/appointment.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 import { PollService } from '../../../shared/services/poll.service';
 
 @Component({
@@ -42,13 +43,16 @@ export class PostDetailedComponent implements OnInit {
   date: Date | undefined;
   @Output() savedChanges = new EventEmitter<boolean>();
   results: string[] = [];
+  answers: string[] = [];
+isExpanded = false;
 
   constructor(
     private sanitizer: DomSanitizer,
     private messageService: MessageService,
     private postService: PostService,
     private appointmentService: AppointmentService,
-    private pollService: PollService
+    private pollService: PollService,
+    private notification: NotificationService
   ) {}
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
@@ -56,17 +60,20 @@ export class PostDetailedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.idUser = this.post?.idUser;
-    this.poll?.forEach((poll) => {
-      if (poll.idPost.toString() === this.post?.id?.toString())
-        this.results = this.getResult(poll).split(',').map(String);
-      console.log(this.results, this.post?.id);
-    });
-
     this.createProfileImage(this.post?.image!);
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
     this.loggedUserRole = storedUser.userDetails.role;
+    this.idUser = this.post?.idUser;
+    this.poll?.forEach((poll) => {
+      if (poll.idPost.toString() === this.post?.id?.toString())
+        this.results = this.getResult(poll).split(',').map(String);
+      if (this.results.length > 0&& this.loggedUserRole==='PATIENT') {
+        this.notification.show('You received a result of your problem!');
+      }
+    });
+
+   
   }
 
   onSendMessage(id: string) {
@@ -149,7 +156,8 @@ export class PostDetailedComponent implements OnInit {
 
   getResult(poll: Poll): string {
     let answers = poll.answer.split(',').map(String);
-
+    console.log(answers);
+    this.answers = answers;
     // const doctorId = this.users?.find((user) => {
     //   return (
     //     user.firstName === doctorsArray[0] && user.lastName === doctorsArray[1]
@@ -177,12 +185,6 @@ export class PostDetailedComponent implements OnInit {
     // Sort the wordFrequency array by frequency in descending order
     wordFrequency.sort((a, b) => b[1] - a[1]);
 
-    // Print the top 5 most frequent words
-    // console.log(wordFrequency.slice(0, 5));
-    // if (wordFrequency.length > 0) {
-    //   console.log(`The most frequent word is "${wordFrequency[0][0]}" with a frequency of ${wordFrequency[0][1]}.`);
-    // } else {
-    //   console.log("No words found.");}
     const mostFrequentFrequency = wordFrequency[0][1];
 
     // Get an array of all the words with the most frequent frequency
@@ -192,11 +194,15 @@ export class PostDetailedComponent implements OnInit {
 
     // Display the most frequent words
     if (mostFrequentWords.length > 0) {
+      console.log(mostFrequentWords);
       // console.log(`The most frequent word(s) is/are "${mostFrequentWords.join('", "')}"" with a frequency of ${mostFrequentFrequency}.`);
       return mostFrequentWords.join(',');
     } else {
       console.log('No words found.');
       return '';
     }
+  }
+  toggleExpanded() {
+    this.isExpanded = !this.isExpanded;
   }
 }

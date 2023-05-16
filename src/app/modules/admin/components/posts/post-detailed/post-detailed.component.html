@@ -35,6 +35,21 @@
                  class="me-3">
               <span class="badge rounded-pill bg-primary">{{result}}</span>
             </div>
+
+            <span class="badge rounded-pill bg-secondary me-3 expandBadge"
+                  (click)="toggleExpanded()"
+                  [class.expanded]="isExpanded">all</span>
+            <div class="d-flex expand">
+
+              <div *ngIf="isExpanded">
+                <div *ngFor="let answer of answers">
+                  <td>{{answer}},</td>
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
         </div>
 

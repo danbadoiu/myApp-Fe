@@ -1,43 +1,52 @@
-img{
-    margin-top: 20px;
-    height: 200px;
+img {
+  margin-top: 20px;
+  height: 200px;
 }
-button{
-    height: 45px;
-    margin-left: 10px;
-    margin-right: 10px;
+button {
+  height: 45px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .enlarge:hover {
-    transform: scale(1.5);
-  }
+  transform: scale(1.5);
+}
 
-
-  @media only screen and (max-width: 575px) {
-    img {
-      margin-top: 0px !important;
-      height: 50px;
-      width: 70px;
-    }
-    p{
-      margin: 0px;
-      font-size: 10px;
-    }
-    .enlarge:hover {
-      transform: scale(2);
-    }
-    .gradient-custom{
-      height: 50px;
-      margin-bottom: 0px;
-      
-    }
-    h6{
-      font-size: 10px;
-      margin: 0px ;
-    }
-    .form-message,.btn-message{
-        display: none;
-    }
-  
-  
-    
+@media only screen and (max-width: 575px) {
+  img {
+    margin-top: 0px !important;
+    height: 50px;
+    width: 70px;
   }
+  p {
+    margin: 0px;
+    font-size: 10px;
+  }
+  .enlarge:hover {
+    transform: scale(2);
+  }
+  .gradient-custom {
+    height: 50px;
+    margin-bottom: 0px;
+  }
+  h6 {
+    font-size: 10px;
+    margin: 0px;
+  }
+  .form-message,
+  .btn-message {
+    display: none;
+  }
+}
+
+.expand {
+  border-radius: 0.7rem;
+  background-color: #e8e8e8;
+  z-index: 9999;
+  border-color: black;
+}
+.expandBadge {
+  max-height: 30px;
+}
+td {
+  margin-left: 5px;
+}

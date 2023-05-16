@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { map } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { Post } from 'src/app/models/posts.model';
 import { Appointment } from 'src/app/modules/admin/shared/models/appointment.model';
@@ -30,6 +30,7 @@ export class AppointmentsComponent implements OnInit {
   profileImage: SafeUrl | undefined;
   loggedUserRole: string | undefined;
   notificationDoctor: User | undefined;
+  messageSubscription = new Subscription();
 
   search() {
     this.filteredPosts = this.appointments!;
@@ -54,7 +55,10 @@ export class AppointmentsComponent implements OnInit {
     this.selectedPostUserId = idUser;
   }
   sendMessage(id: string) {
-    this.messageService
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+    }
+    this.messageSubscription = this.messageService
       .addMessage({
         id: '',
         message: this.message!,
@@ -68,54 +72,72 @@ export class AppointmentsComponent implements OnInit {
       });
   }
   getData() {
-    
-    
-    this.http
-      .get<Appointment[]>('http://localhost:8080/appointment')
-      .pipe(
-        map((responseData) => {
-          this.appointments = responseData;
-          this.appointments = this.appointments.filter((appointment) => {
-            return (
-              (this.loggedUserRole === 'DOCTOR' &&
-                this.idLoggedUser === appointment.idDoctor) ||
-              appointment.idUser === this.idLoggedUser
-            );
-          });
-         
-         
-          this.appointments.forEach((appointment) => {
-            if (appointment.date < new Date()) {
-              this.appointmentService.deleteAppointment(appointment.id!);
-            }
-            
-            if (appointment.idMarker === null) {
-              this.notification.show(
-                'You received an appointment from ' + appointment.idDoctor
-              );
-            }
-          });
-        })
-      )
-      
-      .toPromise();
-      
+    this.appointmentService.getAppointments().subscribe((responseData) => {
+      this.appointments = responseData;
+      this.appointments = this.appointments.filter((appointment) => {
+        return (
+          (this.loggedUserRole === 'DOCTOR' &&
+            this.idLoggedUser === appointment.idDoctor) ||
+          appointment.idUser === this.idLoggedUser
+        );
+      });
+
+      this.appointments.forEach((appointment) => {
+        if (appointment.date < new Date()) {
+          this.appointmentService.deleteAppointment(appointment.id!);
+        }
+
+        if (appointment.idMarker === null) {
+          this.notification.show(
+            'You received an appointment from ' + appointment.idDoctor
+          );
+        }
+      });
+    });
+    // this.http
+    //   .get<Appointment[]>('http://localhost:8080/appointment')
+    //   .pipe(
+    //     map((responseData) => {
+    //       this.appointments = responseData;
+    //       this.appointments = this.appointments.filter((appointment) => {
+    //         return (
+    //           (this.loggedUserRole === 'DOCTOR' &&
+    //             this.idLoggedUser === appointment.idDoctor) ||
+    //           appointment.idUser === this.idLoggedUser
+    //         );
+    //       });
+
+    //       this.appointments.forEach((appointment) => {
+    //         if (appointment.date < new Date()) {
+    //           this.appointmentService.deleteAppointment(appointment.id!);
+    //         }
+
+    //         if (appointment.idMarker === null) {
+    //           this.notification.show(
+    //             'You received an appointment from ' + appointment.idDoctor
+    //           );
+    //         }
+    //       });
+    //     })
+    //   )
+
+    //   .toPromise();
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
     this.loggedUserRole = storedUser.userDetails.role;
-    this.http
-      .get<User[]>('http://localhost:8080/user')
-      .pipe(
-        map((responseData) => {
-          return responseData;
-        })
-      )
-      .toPromise();
-    this.loggedUser = this.users?.find(
-      (employee) => employee.id === this.idLoggedUser
-    );
-    
+    // this.userService.getUsers().subscribe()
+    // this.http
+    //   .get<User[]>('http://localhost:8080/user')
+    //   .pipe(
+    //     map((responseData) => {
+    //       return responseData;
+    //     })
+    //   )
+    //   .toPromise();
+    // this.loggedUser = this.users?.find(
+    //   (employee) => employee.id === this.idLoggedUser
+    // );
 
     this.filteredPosts = this.appointments?.filter((obj) => {
       return obj.idUser === this.idLoggedUser;
