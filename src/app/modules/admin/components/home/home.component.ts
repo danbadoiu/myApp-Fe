@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.showModal = true;
+    // this.showModal = true;
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
@@ -149,7 +149,7 @@ export class HomeComponent implements OnInit {
     this.searchText = '';
     this.toggleSearch = false;
   }
-  showModal: boolean = false;
+  showModal2: boolean | undefined = false;
 
   onFilterUsersAction(refreshData: User[]) {
     if (refreshData) {
@@ -159,6 +159,10 @@ export class HomeComponent implements OnInit {
     }
   }
   resetFilters() {
+    this.showModal2 = false;
     this.users = this.usersReset;
+  }
+  filter() {
+    this.showModal2 = true;
   }
 }

@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
     this.loggedUserRole = storedUser.userDetails.role;
   }
   onLogout() {
+    localStorage.setItem('hasShownModal', 'false');
     this.loginService.logout();
     this.router.navigate(['/login']);
   }

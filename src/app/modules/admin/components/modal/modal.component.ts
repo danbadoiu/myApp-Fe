@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { User } from 'src/app/models/login.model';
 
 @Component({
@@ -6,11 +6,17 @@ import { User } from 'src/app/models/login.model';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css'],
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit,OnChanges {
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.showModal2){
+      this.showModal = this.showModal2
+    }
+  }
   @Input() users: User[] | undefined;
   filteredUsers:User[]|undefined
   @Output() savedChanges = new EventEmitter<User[]>();
   showModal: boolean = false;
+  @Input() showModal2:boolean|undefined
   form: any = {
     domain: null,
   };
@@ -28,11 +34,21 @@ export class ModalComponent implements OnInit {
     'ALERGOLOGIE',
   ];
   ngOnInit() {
-    this.showModal = true;
+    // this.showModal = true;
+    const hasShownModal = localStorage.getItem('hasShownModal');
+
+    if (hasShownModal==='false') {
+      this.showModal = true;
+
+      localStorage.setItem('hasShownModal', 'true');
   }
+  
+  
+}
 
   closeModal() {
     this.showModal = false;
+    this.showModal2 = false;
   }
   onFilterUsers() {
     this.filteredUsers = this.users?.filter((user) => {
