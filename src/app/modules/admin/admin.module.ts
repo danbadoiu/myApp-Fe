@@ -63,6 +63,7 @@ import * as components from './components/index';
     components.AppointmentsComponent,
     components.ModalForAppointmentComponent,
     components.ModalForAppointmentWithoutHospitalComponent,
+    components.ModalComponent
   ],
 
   providers: [

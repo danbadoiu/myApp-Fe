@@ -148,6 +148,14 @@ button {
   margin-left: 10px;
 }
 .search{
+  color: black;
   margin-top: 10px;
   font-size: 30px;
+}
+.filter-row{
+  margin-top: 10px;
+  height: 20px;
+}
+svg{
+  color: black;
 }

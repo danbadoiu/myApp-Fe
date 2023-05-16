@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   usersObservable?: Observable<User[]>;
   filterUsersForm?: FormGroup;
   users: User[] = [];
+  usersReset: User[] = [];
   showUserDetails = false;
   private userSubscription = new Subscription();
   searchTerm = '';
@@ -77,6 +78,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.showModal = true;
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
@@ -85,6 +87,7 @@ export class HomeComponent implements OnInit {
       this.users = data;
       this.filteredUsers = data;
       this.searchedUsers = data;
+      this.usersReset = data;
     });
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
@@ -145,5 +148,17 @@ export class HomeComponent implements OnInit {
   searchClose() {
     this.searchText = '';
     this.toggleSearch = false;
+  }
+  showModal: boolean = false;
+
+  onFilterUsersAction(refreshData: User[]) {
+    if (refreshData) {
+      this.users = refreshData;
+      this.filteredUsers = refreshData;
+      this.searchedUsers = refreshData;
+    }
+  }
+  resetFilters() {
+    this.users = this.usersReset;
   }
 }
