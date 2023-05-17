@@ -50,3 +50,18 @@ button {
 td {
   margin-left: 5px;
 }
+.expand-on-hover {
+  transition: transform 0.3s;
+}
+
+.expand-on-hover:hover {
+  transform: scale(1);
+}
+
+.expanded-text {
+  display: none;
+}
+
+.expand-on-hover:hover .expanded-text {
+  display: inline-block;
+}

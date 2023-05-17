@@ -63,36 +63,24 @@ export class AppointmentDetailComponent implements OnInit {
     this.profileImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
   }
 
-  ngOnInit() {
-    this.userService.getUsers().subscribe((responseData) => {
-      let date;
-      if (this.appointment?.date) {
-        date = new Date(this.appointment?.date);
-        const dateString = date
-          ?.toISOString()
-          .replace('T', ' ')
-          .slice(0, 19);
-        this.appointmentDate = dateString!;
-      }
-      return responseData;
-    })
-    // this.users = await this.http
-    //   .get<User[]>('http://localhost:8080/user')
-    //   .pipe(
-    //     map((responseData) => {
-    //       let date;
-    //       if (this.appointment?.date) {
-    //         date = new Date(this.appointment?.date);
-    //         const dateString = date
-    //           ?.toISOString()
-    //           .replace('T', ' ')
-    //           .slice(0, 19);
-    //         this.appointmentDate = dateString!;
-    //       }
-    //       return responseData;
-    //     })
-    //   )
-    //   .toPromise();
+  async ngOnInit() {
+    this.users = await this.http
+      .get<User[]>('http://localhost:8080/user')
+      .pipe(
+        map((responseData) => {
+          let date;
+          if (this.appointment?.date) {
+            date = new Date(this.appointment?.date);
+            const dateString = date
+              ?.toISOString()
+              .replace('T', ' ')
+              .slice(0, 19);
+            this.appointmentDate = dateString!;
+          }
+          return responseData;
+        })
+      )
+      .toPromise();
     this.idUser = this.appointment?.idUser;
     this.doctor = this.users?.find(
       (user) => user.id === this.appointment?.idDoctor
@@ -104,6 +92,7 @@ export class AppointmentDetailComponent implements OnInit {
     this.loggedUser = this.users?.find(
       (user) => user.id === this.appointment?.idUser
     );
+    console.log(this.loggedUser)
     this.getMarkers();
     let date =
       new Date(this.appointment?.date!).getTime() - new Date().getTime();
