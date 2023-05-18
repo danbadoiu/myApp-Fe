@@ -2,12 +2,16 @@
   <div class="col-md-4 gradient-custom text-center text-white"
        style=" border-radius: .5rem;">
 
+       
     <img [src]="profileImage"
          alt="avatar 1"
          [ngClass]="{'enlarge': isHovered}"
          (mouseover)="isHovered = true"
          (mouseleave)="isHovered = false">
     <h4>{{user?.domain}}</h4>
+    <button (click)="addToFavorites()" *ngIf="!exists">Add To Favorites</button>
+    <button (click)="removeFavorites(user?.id!)"  *ngIf="exists">Remove</button>
+
 
     <i class="far fa-edit mb-5"></i>
   </div>

@@ -8,9 +8,18 @@
       <select name="doctor"
               class="form-select form-select-lg form-element"
               [(ngModel)]="doctor">
-        <option value=""
+              <option value=""
                 disabled
                 selected>Select a doctor</option>
+              <option value=""
+                disabled
+                selected>Favorites</option>
+        <option *ngFor="let option of favOptions"
+                [value]="option">{{ option }}</option>
+                <option value=""
+                disabled
+                selected>All</option>
+        
         <option *ngFor="let option of options"
                 [value]="option">{{ option }}</option>
       </select>

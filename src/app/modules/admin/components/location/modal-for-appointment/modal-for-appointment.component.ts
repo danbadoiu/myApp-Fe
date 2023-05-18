@@ -3,6 +3,7 @@ import { User } from 'src/app/models/login.model';
 import { Marker } from 'src/app/modules/admin/shared/models/marker.model';
 import { AppointmentService } from 'src/app/modules/admin/shared/services/appointment.service';
 import { UserService } from 'src/app/modules/admin/shared/services/user.service';
+import { FavoriteDoctorsService } from '../../../shared/services/favorite-doctors.service';
 
 @Component({
   selector: 'app-modal-for-appointment',
@@ -20,6 +21,7 @@ export class ModalForAppointmentComponent implements OnInit {
   options: string[] = [];
   @Input() idMarker: Marker | undefined;
   addedAppointment = 'false';
+  favOptions: string[] = [];
 
   onCancel() {
     this.date = undefined;
@@ -28,7 +30,8 @@ export class ModalForAppointmentComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,
+    private favoriteDoctorsService: FavoriteDoctorsService
   ) {}
 
   getDoctor(id: string): User | undefined {
@@ -52,6 +55,26 @@ export class ModalForAppointmentComponent implements OnInit {
             ' ' +
             this.getDoctor(doctor)?.lastName!
         );
+      });
+      this.favoriteDoctorsService.getFavoriteDoctors().subscribe((data) => {
+        let favDoc;
+        favDoc = data.find((favDoc) => {
+          if (favDoc.idPatient.toString() === this.loggedUser?.toString()) {
+            return favDoc;
+          } else return undefined;
+        });
+        if (favDoc) {
+          let doctorsArray = favDoc.doctors.split(',').map(String);
+          doctorsArray?.forEach((doctor) => {
+            if (doctor !== '') {
+              this.favOptions?.push(
+                this.getDoctor(doctor)?.firstName! +
+                  ' ' +
+                  this.getDoctor(doctor)?.lastName!
+              );
+            }
+          });
+        }
       });
     });
   }

@@ -1,8 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/login.model';
 import { UserService } from 'src/app/modules/admin/shared/services/user.service';
+import { FavoriteDoctors } from '../../../shared/models/favorite-doctors.model';
+import { FavoriteDoctorsService } from '../../../shared/services/favorite-doctors.service';
 
 @Component({
   selector: 'app-doctors',
@@ -12,6 +21,7 @@ import { UserService } from 'src/app/modules/admin/shared/services/user.service'
 export class DoctorsComponent implements OnInit {
   message: any;
   isHovered = false;
+  exists=false;
 
   @Input() user: User | undefined;
   users: User[] | undefined;
@@ -21,13 +31,14 @@ export class DoctorsComponent implements OnInit {
   @ViewChild('formRef') myForm: any;
   picture: File | undefined;
   userId: string | undefined;
-  @Output() sendMessage= new EventEmitter<User>()
+  @Output() sendMessage = new EventEmitter<User>();
 
   profileImage: SafeUrl | undefined;
   constructor(
     private userService: UserService,
     private sanitizer: DomSanitizer,
-    private route: Router
+    private route: Router,
+    private favoriteDoctorsService: FavoriteDoctorsService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +46,25 @@ export class DoctorsComponent implements OnInit {
     this.createProfileImage(this.user?.profilePicture!);
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
+    this.favoriteDoctorsService.getFavoriteDoctors().subscribe((data) => {
+      let favDoc = data.find((favDoc) => {
+        if (favDoc.idPatient.toString() === this.idLoggedUser?.toString()) {
+          return favDoc;
+        } else return undefined;
+      });
+      if(favDoc!==undefined){
+        let doctorsArray = favDoc.doctors.split(',').map(String);
+        let doctor = doctorsArray.find(
+          (doctor) => doctor.toString() === this.user?.id!.toString()
+        );
+        if(doctor){
+          this.exists = true
+        }
+
+       
+      }
+      
+    });
   }
   name: string | undefined;
   email = '';
@@ -56,7 +86,60 @@ export class DoctorsComponent implements OnInit {
   }
 
   onSendMessage() {
-    this.sendMessage.emit(this.user)
+    this.sendMessage.emit(this.user);
     this.route.navigate(['admin/messages']);
+  }
+  addToFavorites() {
+    let exists = false;
+    let favDoctor: FavoriteDoctors | undefined;
+    this.favoriteDoctorsService.getFavoriteDoctors().subscribe((data) => {
+      let favDoc;
+      favDoc = data.find((favDoc) => {
+        if (favDoc.idPatient.toString() === this.idLoggedUser?.toString()) {
+          return favDoc;
+        } else return undefined;
+      });
+      console.log(favDoc);
+      if (favDoc) {
+        this.favoriteDoctorsService
+          .updateFavoriteDoctors(favDoc!.id!, {
+            idPatient: favDoc?.idPatient!,
+            doctors: favDoc?.doctors! + ',' + this.user?.id,
+          })
+          .subscribe(() => this.exists=true);
+      } else {
+        this.favoriteDoctorsService
+          .addFavoriteDoctors({
+            idPatient: this.idLoggedUser!,
+            doctors: this.user?.id!,
+          })
+          .subscribe(() => {});
+      }
+    });
+  }
+  removeFavorites(doctorId: string) {
+    // let exists = false;
+    // let favDoctor: FavoriteDoctors | undefined;
+    this.favoriteDoctorsService.getFavoriteDoctors().subscribe((data) => {
+      let favDoc;
+      favDoc = data.find((favDoc) => {
+        if (favDoc.idPatient.toString() === this.idLoggedUser?.toString()) {
+          return favDoc;
+        } else return undefined;
+      });
+      if (favDoc) {
+        let doctorsArray = favDoc.doctors.split(',').map(String);
+        doctorsArray = doctorsArray.filter(
+          (doctor) => doctor.toString() !== doctorId.toString()
+        );
+
+        this.favoriteDoctorsService
+          .updateFavoriteDoctors(favDoc!.id!, {
+            idPatient: favDoc?.idPatient!,
+            doctors: doctorsArray!.toString(),
+          })
+          .subscribe(() => this.exists = false);
+      }
+    });
   }
 }
