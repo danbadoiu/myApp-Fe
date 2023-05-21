@@ -30,6 +30,7 @@
                [ngClass]="{'hover': isRouteActive('./posts')}">Posts</a></li>
          <li><a mat-button
                routerLink="location"
+               *ngIf="loggedUserRole!=='DOCTOR'"
                [ngClass]="{'hover': isRouteActive('location')}">Location</a></li>
          <li><button mat-button
                     routerLink="profile">Profile</button></li>
@@ -57,6 +58,7 @@
          routerLinkActive="active">Posts</a>
       <a mat-button
          routerLink="location"
+         *ngIf="loggedUserRole!=='DOCTOR'"
          routerLinkActive="active">Location</a>
       <div class="dropdown">
          <a mat-raised-button
