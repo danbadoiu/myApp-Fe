@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Poll } from '../models/poll.model';
 
 @Injectable({ providedIn: 'root' })
@@ -9,7 +10,7 @@ export class PollService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getPolls(): Observable<Poll[]> {
-    return this.http.get<Poll[]>('http://localhost:8080/poll').pipe(
+    return this.http.get<Poll[]>(`${environment.apiUrl}/poll`).pipe(
       map((responseData) => {
         return responseData;
       })
@@ -28,12 +29,12 @@ export class PollService {
     formData.append('answer', poll.answer);
     return this.http.post<Poll>(
       // `${environment.apiUrl}/core/api/v1/users`,
-      'http://localhost:8080/poll',
+      `${environment.apiUrl}/poll`,
       formData
     );
   }
   public deletePoll(pollId: string): Observable<unknown> {
-    return this.http.delete(`http://localhost:8080/poll/${pollId}`);
+    return this.http.delete(`${environment.apiUrl}/poll/${pollId}`);
   }
   public updatePoll(
     pollId: string,
@@ -44,7 +45,7 @@ export class PollService {
     formData.append('idPost', poll.idPost);
     return this.http.put<Poll>(
       // `${environment.apiUrl}/core/api/v1/users`,
-      `http://localhost:8080/poll/${pollId}`,
+      `${environment.apiUrl}/poll/${pollId}`,
       formData
     );
   }

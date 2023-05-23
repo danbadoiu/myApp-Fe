@@ -38,11 +38,11 @@ export class MessageService {
 
     return this.http.post<Message>(
       // `${environment.apiUrl}/core/api/v1/users`,
-      'http://localhost:8080/message',
+      `${environment.apiUrl}/message`,
       formData
     );
   }
   public deleteMessage(id: string): Observable<unknown> {
-    return this.http.delete(`http://localhost:8080/message/${id}`);
+    return this.http.delete(`${environment.apiUrl}/message/${id}`);
   }
 }

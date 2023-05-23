@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { Post } from 'src/app/models/posts.model';
 import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
+import { environment } from 'src/environments/environment';
 import { Poll } from '../../shared/models/poll.model';
 
 @Component({
@@ -69,7 +70,7 @@ export class PostsComponent implements OnInit {
     this.idLoggedUser = storedUser.userDetails.id;
     this.loggedUserRole = storedUser.userDetails.role;
     this.http
-      .get<User[]>('http://localhost:8080/user')
+      .get<User[]>(`${environment.apiUrl}/user`)
       .pipe(
         map((responseData) => {
           this.loggedUser = responseData.find(
@@ -90,7 +91,7 @@ export class PostsComponent implements OnInit {
     }
 
     this.http
-      .get<Post[]>('http://localhost:8080/post')
+      .get<Post[]>(`${environment.apiUrl}/post`)
       .pipe(
         map((responseData) => {
           this.posts = responseData;
@@ -103,7 +104,7 @@ export class PostsComponent implements OnInit {
       });
     }
     this.http
-      .get<Poll[]>('http://localhost:8080/poll')
+      .get<Poll[]>(`${environment.apiUrl}/poll`)
       .pipe(
         map((responseData) => {
           this.poll = responseData;

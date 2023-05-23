@@ -33,13 +33,13 @@ export class PostService {
     formData.append('domain', post.domain);
     return this.http.post<Post>(
       // `${environment.apiUrl}/core/api/v1/users`,
-      'http://localhost:8080/post',
+      `${environment.apiUrl}/post`,
       formData
     );
   }
   public deletePost(postId: string):Observable<unknown>{
     return this.http.delete(
-      `http://localhost:8080/post/${postId}`
+      `${environment.apiUrl}/post/${postId}`
     );
   }
  

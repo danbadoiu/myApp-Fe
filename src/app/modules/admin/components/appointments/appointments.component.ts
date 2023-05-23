@@ -74,14 +74,15 @@ export class AppointmentsComponent implements OnInit {
   getData() {
     this.appointmentService.getAppointments().subscribe((responseData) => {
       this.appointments = responseData;
+      console.log(this.appointments,this.loggedUserRole,this.idLoggedUser)
       this.appointments = this.appointments.filter((appointment) => {
         return (
           (this.loggedUserRole === 'DOCTOR' &&
             this.idLoggedUser === appointment.idDoctor) ||
-          appointment.idUser === this.idLoggedUser
+          appointment.idUser.toString() === this.idLoggedUser?.toString()
         );
       });
-
+      console.log(this.appointments,this.loggedUserRole,this.idLoggedUser)
       this.appointments.forEach((appointment) => {
         if (appointment.date < new Date()) {
           this.appointmentService.deleteAppointment(appointment.id!);

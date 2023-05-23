@@ -9,6 +9,7 @@ import {
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { Message } from 'src/app/modules/admin/shared/models/message.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-services',
@@ -35,7 +36,7 @@ export class ServicesComponent implements OnInit, OnChanges, OnDestroy {
 
   async ngOnInit() {
     this.users = await this.http
-      .get<User[]>('http://localhost:8080/user')
+      .get<User[]>(`${environment.apiUrl}/user`)
       .pipe(
         map((responseData) => {
           return responseData;
@@ -74,7 +75,7 @@ export class ServicesComponent implements OnInit, OnChanges, OnDestroy {
   }
   getData2(): Observable<Message[] | undefined> {
     return this.http
-      .get<Message[] | undefined>('http://localhost:8080/message')
+      .get<Message[] | undefined>(`${environment.apiUrl}/message`)
       .pipe(
         map((responseData) => {
           return responseData;

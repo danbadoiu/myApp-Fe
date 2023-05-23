@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Marker } from '../models/marker.model';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class MarkerService {
 
   getUsers(): Observable<Marker[]> {
     return this.http
-      .get<Marker[]>('http://localhost:8080/marker')
+      .get<Marker[]>(`${environment.apiUrl}/marker`)
       .pipe(
         map((responseData) => {
           return responseData;

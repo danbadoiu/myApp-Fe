@@ -18,8 +18,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthInterceptorService } from './modules/admin/auth-interceptor.service';
 import { AuthGuard } from './modules/admin/authguard.guard';
 import { UserService } from './modules/admin/shared/services/user.service';
+import { SpinnerComponent } from './modules/admin/components';
+import { LoadingInterceptor } from './modules/admin/shared/services/loader.interceptor';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent,SpinnerComponent],
   providers: [
     UserService,
     AuthGuard,
@@ -29,6 +31,9 @@ import { UserService } from './modules/admin/shared/services/user.service';
       useClass: AuthInterceptorService,
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    }
   ],
   bootstrap: [AppComponent],
   imports: [

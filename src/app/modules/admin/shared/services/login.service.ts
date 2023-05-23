@@ -31,8 +31,8 @@ export class LoginService {
     return (
       this.http
         // .post<User>(`${environment.apiUrl}/core/api/v1/login`,
-
-        .post<AuthResponse>('http://localhost:8080/auth/login', {
+        .post<AuthResponse>(`${environment.apiUrl}/auth/login`, {
+        // .post<AuthResponse>('http://18.185.125.149:8080/auth/login', {
           username,
           password,
         })

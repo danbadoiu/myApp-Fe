@@ -18,4 +18,5 @@ export * from './services/message-detail/message-received/message-received.compo
 export * from './services/message-detail/message-sent/message-sent.component';
 export * from './services/message-list/message-list.component';
 export * from './services/services.component';
-export * from './modal/modal.component'
+export * from './modal/modal.component';
+export * from './spinner/spinner.component'

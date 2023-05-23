@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Appointment } from '../models/appointment.model';
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class AppointmentService {
 
   getAppointments(): Observable<Appointment[]> {
     return this.http
-      .get<Appointment[]>('http://localhost:8080/appointment')
+      .get<Appointment[]>(`${environment.apiUrl}/appointment`)
       .pipe(
         map((responseData) => {
           return responseData;
@@ -32,14 +33,14 @@ export class AppointmentService {
     formData.append('status', appointment.status);
     return this.http.post<Appointment>(
       // `${environment.apiUrl}/core/api/v1/users`,
-      'http://localhost:8080/appointment',
+      `${environment.apiUrl}/appointment`,
       formData
     );
   }
 
   public deleteAppointment(appointmentId: string): Observable<unknown> {
     return this.http.delete(
-      `http://localhost:8080/appointment/${appointmentId}`
+      `${environment.apiUrl}/appointment/${appointmentId}`
     );
   }
   public updateAppointment(
@@ -56,7 +57,7 @@ export class AppointmentService {
     formData.append('status', appointment.status);
     return this.http.put<Appointment>(
       // `${environment.apiUrl}/core/api/v1/users`,
-      `http://localhost:8080/appointment/${appointmentId}`,
+      `${environment.apiUrl}/appointment/${appointmentId}`,
       formData
     );
   }

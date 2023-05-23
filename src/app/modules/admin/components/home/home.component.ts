@@ -6,6 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { PostService } from 'src/app/modules/admin/shared/services/post.service';
 import { UserService } from 'src/app/modules/admin/shared/services/user.service';
+import { LoaderService } from '../../shared/services/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -74,7 +75,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private userService: UserService,
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit() {
@@ -168,4 +170,6 @@ export class HomeComponent implements OnInit {
   onSendMessage(user:User){
     localStorage.setItem("sendMessageTo",user.id!)
   }
+
+  
 }

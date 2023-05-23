@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   async ngOnInit() {
     this.users = await this.http
-      .get<User[]>('http://localhost:8080/user')
+      .get<User[]>(`${environment.apiUrl}/user`)
       .pipe(
         map((responseData) => {
           return responseData;

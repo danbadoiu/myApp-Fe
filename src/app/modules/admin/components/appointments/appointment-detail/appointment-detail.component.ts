@@ -14,6 +14,7 @@ import { Post } from 'src/app/models/posts.model';
 import { Appointment } from 'src/app/modules/admin/shared/models/appointment.model';
 import { AppointmentService } from 'src/app/modules/admin/shared/services/appointment.service';
 import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
+import { environment } from 'src/environments/environment';
 import { Marker } from '../../../shared/models/marker.model';
 import { MarkerService } from '../../../shared/services/marker.service';
 import { UserService } from '../../../shared/services/user.service';
@@ -65,7 +66,7 @@ export class AppointmentDetailComponent implements OnInit {
 
   async ngOnInit() {
     this.users = await this.http
-      .get<User[]>('http://localhost:8080/user')
+      .get<User[]>(`${environment.apiUrl}/user`)
       .pipe(
         map((responseData) => {
           let date;
