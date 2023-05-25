@@ -6,7 +6,7 @@
         <ul class="list-group">
           <li class="list-group-item">
             <app-appointment-detail [appointment]="appointment"
-                                    (savedChanges)="onPostAction($event)"></app-appointment-detail>
+                                    (savedChanges)="onPostAction($event)" [markers]="markers"></app-appointment-detail>
           </li>
         </ul>
       </div>

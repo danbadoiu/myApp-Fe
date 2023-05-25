@@ -17,6 +17,7 @@ import { MessageService } from 'src/app/modules/admin/shared/services/message.se
 import { environment } from 'src/environments/environment';
 import { Marker } from '../../../shared/models/marker.model';
 import { MarkerService } from '../../../shared/services/marker.service';
+import { SendEmailService } from '../../../shared/services/send-email.service';
 import { UserService } from '../../../shared/services/user.service';
 
 @Component({
@@ -29,6 +30,7 @@ export class AppointmentDetailComponent implements OnInit {
     this.onDelete(this.appointment?.id!);
   }
   @Input() appointment: Appointment | undefined;
+  @Input() markers: Marker[] | undefined;
   profileImage: SafeUrl | undefined;
   loggedUser: User | undefined;
   @ViewChild('formRef') myForm: any;
@@ -50,6 +52,7 @@ export class AppointmentDetailComponent implements OnInit {
   @Output() savedChanges = new EventEmitter<boolean>();
   doctor: User | undefined;
   appointmentSubscription = new Subscription();
+  appointmentUser: User | undefined;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -57,14 +60,15 @@ export class AppointmentDetailComponent implements OnInit {
     private appointmentService: AppointmentService,
     private http: HttpClient,
     private markerService: MarkerService,
-    private userService: UserService
+    private userService: UserService,
+    private emailService: SendEmailService
   ) {}
   createProfileImage(image: Blob): void {
     const objectURL = 'data:image/png;base64,' + image;
     this.profileImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
   }
 
-  async ngOnInit() {
+   async ngOnInit() {
     this.users = await this.http
       .get<User[]>(`${environment.apiUrl}/user`)
       .pipe(
@@ -86,14 +90,15 @@ export class AppointmentDetailComponent implements OnInit {
     this.doctor = this.users?.find(
       (user) => user.id === this.appointment?.idDoctor
     );
-
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
     this.loggedUserRole = storedUser.userDetails.role;
     this.loggedUser = this.users?.find(
       (user) => user.id === this.appointment?.idUser
     );
-    console.log(this.loggedUser)
+    this.appointmentUser = this.users?.find(
+      (user) => user.id === this.appointment?.idUser
+    );
     this.getMarkers();
     let date =
       new Date(this.appointment?.date!).getTime() - new Date().getTime();
@@ -140,6 +145,14 @@ export class AppointmentDetailComponent implements OnInit {
       .subscribe(() => this.savedChanges.emit(true));
   }
   onAccept(id: string) {
+    this.emailService
+      .sendEmail(
+        this.appointmentUser?.email.toString()!,
+        this.appointmentUser?.email.toString()!,
+        'Appointment accepted',
+        'The appointment was accepted!'
+      )
+      .subscribe();
     if (this.appointment?.idMarker === null) {
       this.markerService.getUsers().subscribe((data) => {
         data.forEach((marker) => {
@@ -157,7 +170,9 @@ export class AppointmentDetailComponent implements OnInit {
                 date: dateObject,
                 status: 'ACCEPTED',
               })
-              .subscribe(() => this.savedChanges.emit(true));
+              .subscribe(() => {
+                this.savedChanges.emit(true);
+              });
           }
         });
       });
@@ -174,7 +189,9 @@ export class AppointmentDetailComponent implements OnInit {
           date: dateObject,
           status: 'ACCEPTED',
         })
-        .subscribe(() => this.savedChanges.emit(true));
+        .subscribe(() => {
+          this.savedChanges.emit(true);
+        });
     }
   }
   onRefuse(id: string) {
@@ -190,11 +207,20 @@ export class AppointmentDetailComponent implements OnInit {
         date: dateObject,
         status: 'REJECTED',
       })
-      .subscribe(() => this.savedChanges.emit(true));
+      .subscribe(() => {
+        this.savedChanges.emit(true);
+        this.emailService
+          .sendEmail(
+            this.appointmentUser?.email.toString()!,
+            this.appointmentUser?.email.toString()!,
+            'Appointment rejected',
+            'The appointment was rejected'
+          )
+          .subscribe();
+      });
   }
   getMarkers() {
-    this.markerService.getUsers().subscribe((data) => {
-      this.markersList = data;
+    this.markersList = this.markers;
       this.markersList = this.markersList?.filter((marker) => {
         let doctorsArray = marker.doctors.split(',').map(String);
         doctorsArray?.forEach((doctor) => {
@@ -203,6 +229,16 @@ export class AppointmentDetailComponent implements OnInit {
           }
         });
       });
-    });
+    // this.markerService.getUsers().subscribe((data) => {
+    //   this.markersList = data;
+    //   this.markersList = this.markersList?.filter((marker) => {
+    //     let doctorsArray = marker.doctors.split(',').map(String);
+    //     doctorsArray?.forEach((doctor) => {
+    //       if (doctor.toString() === this.appointment?.idDoctor.toString()) {
+    //         this.options?.push(marker.name);
+    //       }
+    //     });
+    //   });
+    // });
   }
 }

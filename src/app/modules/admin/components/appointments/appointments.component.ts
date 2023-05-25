@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { map, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { Post } from 'src/app/models/posts.model';
 import { Appointment } from 'src/app/modules/admin/shared/models/appointment.model';
 import { AppointmentService } from 'src/app/modules/admin/shared/services/appointment.service';
 import { MessageService } from 'src/app/modules/admin/shared/services/message.service';
+import { Marker } from '../../shared/models/marker.model';
+import { MarkerService } from '../../shared/services/marker.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import { UserService } from '../../shared/services/user.service';
 @Component({
@@ -31,6 +33,7 @@ export class AppointmentsComponent implements OnInit {
   loggedUserRole: string | undefined;
   notificationDoctor: User | undefined;
   messageSubscription = new Subscription();
+  markers: Marker[] | undefined;
 
   search() {
     this.filteredPosts = this.appointments!;
@@ -41,7 +44,8 @@ export class AppointmentsComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private appointmentService: AppointmentService,
     private notification: NotificationService,
-    private userService: UserService
+    private userService: UserService,
+    private markerService: MarkerService
   ) {}
 
   ngOnInit() {
@@ -72,9 +76,12 @@ export class AppointmentsComponent implements OnInit {
       });
   }
   getData() {
+    this.markerService.getUsers().subscribe((data) => {
+      this.markers = data;
+    });
     this.appointmentService.getAppointments().subscribe((responseData) => {
       this.appointments = responseData;
-      console.log(this.appointments,this.loggedUserRole,this.idLoggedUser)
+      console.log(this.appointments, this.loggedUserRole, this.idLoggedUser);
       this.appointments = this.appointments.filter((appointment) => {
         return (
           (this.loggedUserRole === 'DOCTOR' &&
@@ -82,7 +89,7 @@ export class AppointmentsComponent implements OnInit {
           appointment.idUser.toString() === this.idLoggedUser?.toString()
         );
       });
-      console.log(this.appointments,this.loggedUserRole,this.idLoggedUser)
+      console.log(this.appointments, this.loggedUserRole, this.idLoggedUser);
       this.appointments.forEach((appointment) => {
         if (appointment.date < new Date()) {
           this.appointmentService.deleteAppointment(appointment.id!);
@@ -95,50 +102,10 @@ export class AppointmentsComponent implements OnInit {
         }
       });
     });
-    // this.http
-    //   .get<Appointment[]>('http://localhost:8080/appointment')
-    //   .pipe(
-    //     map((responseData) => {
-    //       this.appointments = responseData;
-    //       this.appointments = this.appointments.filter((appointment) => {
-    //         return (
-    //           (this.loggedUserRole === 'DOCTOR' &&
-    //             this.idLoggedUser === appointment.idDoctor) ||
-    //           appointment.idUser === this.idLoggedUser
-    //         );
-    //       });
-
-    //       this.appointments.forEach((appointment) => {
-    //         if (appointment.date < new Date()) {
-    //           this.appointmentService.deleteAppointment(appointment.id!);
-    //         }
-
-    //         if (appointment.idMarker === null) {
-    //           this.notification.show(
-    //             'You received an appointment from ' + appointment.idDoctor
-    //           );
-    //         }
-    //       });
-    //     })
-    //   )
-
-    //   .toPromise();
 
     let storedUser = JSON.parse(localStorage.getItem('userData')!);
     this.idLoggedUser = storedUser.userDetails.id;
     this.loggedUserRole = storedUser.userDetails.role;
-    // this.userService.getUsers().subscribe()
-    // this.http
-    //   .get<User[]>('http://localhost:8080/user')
-    //   .pipe(
-    //     map((responseData) => {
-    //       return responseData;
-    //     })
-    //   )
-    //   .toPromise();
-    // this.loggedUser = this.users?.find(
-    //   (employee) => employee.id === this.idLoggedUser
-    // );
 
     this.filteredPosts = this.appointments?.filter((obj) => {
       return obj.idUser === this.idLoggedUser;

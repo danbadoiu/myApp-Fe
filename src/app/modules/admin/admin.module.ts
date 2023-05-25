@@ -21,6 +21,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import * as modules from './index'
 import * as components from './components/index';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import * as components from './components/index';
     MatInputModule,
     MatChipsModule,
     MatExpansionModule,
+    MatTooltipModule
   ],
   declarations: [
     components.AdminDashbordComponent,

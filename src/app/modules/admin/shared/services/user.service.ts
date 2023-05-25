@@ -52,7 +52,7 @@ export class UserService {
     formData.append('domain', user.domain!);
 
     return this.http.post<User>(
-      'http://18.185.125.149:8080/auth/signup',
+      `${environment.apiUrl}/auth/signup`,
       formData
     );
   }

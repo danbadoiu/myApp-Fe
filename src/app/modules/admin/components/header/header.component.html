@@ -1,7 +1,12 @@
+
+
+
+
 <mat-toolbar color="primary"
-             class="d-flex mat-bar">
+             class="mat-bar">
+          
    <span>
-      <mat-icon>eco</mat-icon>DocConnect
+      <mat-icon>healing</mat-icon>DocConnect
    </span>
    <div [style.visibility]="'hidden'"></div>
    <div class="spacer"></div>
@@ -31,7 +36,7 @@
          <li><a mat-button
                routerLink="location"
                *ngIf="loggedUserRole!=='DOCTOR'"
-               [ngClass]="{'hover': isRouteActive('location')}">Location</a></li>
+               [ngClass]="{'hover': isRouteActive('location')}">Localize</a></li>
          <li><button mat-button
                     routerLink="profile">Profile</button></li>
          <li><button mat-button
@@ -59,12 +64,12 @@
       <a mat-button
          routerLink="location"
          *ngIf="loggedUserRole!=='DOCTOR'"
-         routerLinkActive="active">Location</a>
+         routerLinkActive="active" matTooltip="Localize the nearest hospital or add an apointment.">Localize</a>
       <div class="dropdown">
          <a mat-raised-button
             type="button"
             data-bs-toggle="dropdown"
-            aria-expanded="false">
+            aria-expanded="false">{{userLogged}}
             <mat-icon>expand_more</mat-icon>
          </a>
          <ul class="dropdown-menu">

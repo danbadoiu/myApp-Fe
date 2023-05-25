@@ -7,6 +7,7 @@ import { User } from 'src/app/models/login.model';
 import { PostService } from 'src/app/modules/admin/shared/services/post.service';
 import { UserService } from 'src/app/modules/admin/shared/services/user.service';
 import { LoaderService } from '../../shared/services/loader.service';
+import { SendEmailService } from '../../shared/services/send-email.service';
 
 @Component({
   selector: 'app-home',
@@ -76,7 +77,6 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private postService: PostService,
     private router: Router,
-    private loaderService: LoaderService
   ) {}
 
   ngOnInit() {

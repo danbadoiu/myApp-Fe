@@ -21,7 +21,7 @@
             </div>
 
             <div class="col-2 ">
-                <div class="row filter-row">
+                <div class="row filter-row" matTooltip="Filter doctors">
                 <svg (click)="resetFilters()" *ngIf="showModal2"
                      xmlns="http://www.w3.org/2000/svg"
                      >
@@ -37,7 +37,7 @@
 
                 <span class="material-icons search"
                       (click)="toggleExpanded()"
-                      [class.expanded]="isExpanded">search</span>
+                      [class.expanded]="isExpanded" matTooltip="Search doctors">search</span>
                 <div class="d-flex">
 
                     <div *ngIf="isExpanded">
@@ -84,7 +84,7 @@
                            class="form-control form-element mb-3"
                            id="customFile"
                            name="image"
-                           (change)="onFileChanged($event)" />
+                           (change)="onFileChanged($event)" matTooltip="Select an image describing your medical problem."/>
                     <form (ngSubmit)="createPost()"
                           #formRef="ngForm">
 
@@ -94,14 +94,14 @@
                                type="text"
                                id="message"
                                [(ngModel)]="message"
-                               name="message">
+                               name="message" matTooltip="Describe your medical problem.">
 
                         <select name="domain"
                                 class="form-select form-select-lg form-element"
-                                [(ngModel)]="domain">
+                                [(ngModel)]="domain" matTooltip="Select the specialization.">
                             <option disabled
                                     selected
-                                    value>Select domain</option>
+                                    value>Select specialization</option>
                             <option *ngFor="let option of domains"
                                     [value]="option">{{ option }}</option>
                         </select>
