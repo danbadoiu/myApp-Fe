@@ -9,8 +9,9 @@
          (mouseover)="isHovered = true"
          (mouseleave)="isHovered = false">
     <h4>{{user?.domain}}</h4>
-    <button (click)="addToFavorites()" *ngIf="!exists">Add To Favorites</button>
-    <button (click)="removeFavorites(user?.id!)"  *ngIf="exists">Remove</button>
+    
+    <mat-icon (click)="addToFavorites()" *ngIf="!exists" matTooltip="Add to favorite">turned_in_not</mat-icon>
+    <mat-icon (click)="removeFavorites(user?.id!)"  *ngIf="exists" matTooltip="Remove from favorite">turned_in</mat-icon>
 
 
     <i class="far fa-edit mb-5"></i>

@@ -1,5 +1,17 @@
 <div class="container py-5 h-100 col-12">
   <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="d-flex flex-row justify-content-center"
+         style="max-width: 100%; overflow-x: scroll;">
+      <div *ngFor="let result of doctors"
+           class="me-3">
+        <span class="badge rounded-pill bg-primary" matTooltip="Favorite doctors" > <img class="favorite" src="https://www.saffronhealth.ca/wp-content/uploads/2021/12/Dr-Goldie-300x271.png"
+               alt="avatar 1"
+               style="width: 50px; height: 60%;">{{result.firstName }} {{result.lastName}}<mat-icon (click)="onCancel(result.id!)">cancel</mat-icon></span>
+      </div>
+
+
+
+    </div>
     <div class="col col-lg-8 mb-4 mb-lg-0">
       <div class="card mb-3"
            style="border-radius: .5rem;">

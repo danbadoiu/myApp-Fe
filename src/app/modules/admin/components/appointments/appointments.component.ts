@@ -81,7 +81,6 @@ export class AppointmentsComponent implements OnInit {
     });
     this.appointmentService.getAppointments().subscribe((responseData) => {
       this.appointments = responseData;
-      console.log(this.appointments, this.loggedUserRole, this.idLoggedUser);
       this.appointments = this.appointments.filter((appointment) => {
         return (
           (this.loggedUserRole === 'DOCTOR' &&
@@ -89,7 +88,6 @@ export class AppointmentsComponent implements OnInit {
           appointment.idUser.toString() === this.idLoggedUser?.toString()
         );
       });
-      console.log(this.appointments, this.loggedUserRole, this.idLoggedUser);
       this.appointments.forEach((appointment) => {
         if (appointment.date < new Date()) {
           this.appointmentService.deleteAppointment(appointment.id!);
