@@ -1,6 +1,8 @@
-<div class="card d-flex justify-content-start card-news">
+<!-- <div class="card d-flex justify-content-start">
   <div class="card-body card-news-body">
     <div class="row">
+      <div class="col-8">
+        <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6"
            *ngFor="let appointment of appointments">
         <ul class="list-group">
@@ -19,5 +21,49 @@
         </ul>
       </div>
     </div>
+  </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="row">
+  <div class="col-8">
+    <div class="wrapper">
+      <div class="item"
+           *ngFor="let appointment of appointments">
+        <app-appointment-detail [appointment]="appointment"
+                                (savedChanges)="onPostAction($event)"
+                                [markers]="markers"></app-appointment-detail>
+      </div>
+    </div>
+  </div>
+  <div class="col-2"></div>
+</div> -->
+<div class="row">
+  <div class="col-12 col-sm-8">
+    <div class="container">
+      <div class="row scrollable-row">
+        <div class="col-sm-4 col-12">
+          <div class="card-columns">
+            <div class="card"
+                 *ngFor="let appointment of appointments">
+
+              <app-appointment-detail [appointment]="appointment"
+                                      (savedChanges)="onPostAction($event)"
+                                      [markers]="markers"></app-appointment-detail>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="col-sm-4 col-12">
+    <img class="favorite"
+         src="https://media.licdn.com/dms/image/C4E12AQF7kSRej43TcQ/article-cover_image-shrink_600_2000/0/1623773838856?e=2147483647&v=beta&t=C0tiVM1-SAIpW6d5r-mmllOirJqhfMlxvf5zveWfBYU"
+         alt="avatar 1"
+         style="width: 90%; height: 60%;">
   </div>
 </div>

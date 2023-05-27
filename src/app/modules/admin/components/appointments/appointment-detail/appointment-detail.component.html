@@ -1,10 +1,13 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="d-flex justify-content-end"
+    <div class="d-flex justify-content-end cancelButton"
          *ngIf="showCancelButton"><span>
         <mat-icon (click)="onCancel()">cancel</mat-icon>
       </span></div>
     <div class="card-body p-4">
+      <img class="favorite" src="https://www.saffronhealth.ca/wp-content/uploads/2021/12/Dr-Goldie-300x271.png"
+               alt="avatar 1"
+               style="width: 50px; height: 60%;">
       <h6>Patient Name:</h6>
       <div class="row pt-1">
         <div class="col-6 mb-3">

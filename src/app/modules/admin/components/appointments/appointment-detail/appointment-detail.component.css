@@ -4,3 +4,6 @@ button {
 .form-select {
   margin-bottom: 10px;
 }
+.cancelButton{
+  margin: 10px;
+}

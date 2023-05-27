@@ -2,7 +2,7 @@
   flex: 1 1 auto;
 }
 .mat-toolbar.mat-primary {
-  background: #6b705c;
+  background: #6a8a86;
   height:80px
 }
 a:hover{
@@ -22,7 +22,9 @@ a.active {
   z-index: 999; 
  
 }
-
+span{
+  font-size: 30px;
+}
 a{
   margin-right: 5px;
 }

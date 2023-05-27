@@ -6,8 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 import { PostService } from 'src/app/modules/admin/shared/services/post.service';
 import { UserService } from 'src/app/modules/admin/shared/services/user.service';
-import { LoaderService } from '../../shared/services/loader.service';
-import { SendEmailService } from '../../shared/services/send-email.service';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -77,6 +76,7 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private postService: PostService,
     private router: Router,
+    private notification: NotificationService
   ) {}
 
   ngOnInit() {
@@ -123,7 +123,10 @@ export class HomeComponent implements OnInit {
         domain: this.domain!,
         date: new Date(),
       })
-      .subscribe(this.myForm.reset());
+      .subscribe(() => {
+        this.myForm.reset();
+        this.notification.show('Congratulations! Your post has been added.');
+      });
   }
   onFileChanged(event: any) {
     this.image = '';
@@ -167,9 +170,7 @@ export class HomeComponent implements OnInit {
   filter() {
     this.showModal2 = true;
   }
-  onSendMessage(user:User){
-    localStorage.setItem("sendMessageTo",user.id!)
+  onSendMessage(user: User) {
+    localStorage.setItem('sendMessageTo', user.id!);
   }
-
-  
 }

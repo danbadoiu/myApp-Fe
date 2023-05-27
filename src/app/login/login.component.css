@@ -45,7 +45,14 @@ span{
   border-radius: 50%;
 }
 
+
 .btn-block{
-  background-color: #848b73;
+  background-color: #2c7464;
   color: white;
+}
+.btn-block:active{
+  background-color: #505f5d;
+}
+.btn-block:hover{
+  background-color: #505f5d;
 }

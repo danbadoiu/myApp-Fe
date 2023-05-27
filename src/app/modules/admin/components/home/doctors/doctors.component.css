@@ -1,23 +1,23 @@
 .gradient-custom {
   background: #2b2d42;
-  background: linear-gradient(90deg, #6b705c 0%, #a5a58d 39%, #b7b7a4 100%);
+  background: linear-gradient(90deg, #505f5d 0%, #61786f 39%, #a3d3c3 100%);
   margin-bottom: 20px;
   margin-top: 20px;
 }
 button {
   font-size: small;
-  background-color: #6b705c;
-  border: #6b705c;
+  background-color: #505f5d;
+  border: #505f5d;
 }
 button:hover {
-  background-color: #b7b7a4;
+  background-color: #a3d3c3;
 }
 button:active {
-  background-color: #b7b7a4;
+  background-color: #a3d3c3;
 }
 button:focus {
-  background-color: #b7b7a4;
-  border: #a5a58d;
+  background-color: #a3d3c3;
+  border: #a3d3c3;
   box-shadow: 0 0 0 0.2rem #a5a58d;
 }
 :not(.btn-check) + .btn:active {

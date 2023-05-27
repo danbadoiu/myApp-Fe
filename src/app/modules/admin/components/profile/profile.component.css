@@ -2,19 +2,8 @@
   /* fallback for old browsers */
   background: #f6d365;
 
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to right bottom,
-    rgba(246, 211, 101, 1),
-    rgba(253, 160, 133, 1)
-  );
+  background: linear-gradient(90deg, #505f5d 0%, #61786f 39%, #a3d3c3 100%);
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(
-    to right bottom,
-    rgba(246, 211, 101, 1),
-    rgba(253, 160, 133, 1)
-  );
 }
 
 img {
@@ -28,5 +17,11 @@ img {
   }
   img {
     width: 90px !important;
+  }
+}
+
+@media screen and (min-width: 575px) {
+  .image{
+    margin-top: 20px;
   }
 }
