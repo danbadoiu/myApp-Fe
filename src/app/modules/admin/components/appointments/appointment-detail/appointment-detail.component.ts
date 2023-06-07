@@ -68,7 +68,7 @@ export class AppointmentDetailComponent implements OnInit {
     this.profileImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
   }
 
-   async ngOnInit() {
+  async ngOnInit() {
     this.users = await this.http
       .get<User[]>(`${environment.apiUrl}/user`)
       .pipe(
@@ -221,24 +221,13 @@ export class AppointmentDetailComponent implements OnInit {
   }
   getMarkers() {
     this.markersList = this.markers;
-      this.markersList = this.markersList?.filter((marker) => {
-        let doctorsArray = marker.doctors.split(',').map(String);
-        doctorsArray?.forEach((doctor) => {
-          if (doctor.toString() === this.appointment?.idDoctor.toString()) {
-            this.options?.push(marker.name);
-          }
-        });
+    this.markersList = this.markersList?.filter((marker) => {
+      let doctorsArray = marker.doctors.split(',').map(String);
+      doctorsArray?.forEach((doctor) => {
+        if (doctor.toString() === this.appointment?.idDoctor.toString()) {
+          this.options?.push(marker.name);
+        }
       });
-    // this.markerService.getUsers().subscribe((data) => {
-    //   this.markersList = data;
-    //   this.markersList = this.markersList?.filter((marker) => {
-    //     let doctorsArray = marker.doctors.split(',').map(String);
-    //     doctorsArray?.forEach((doctor) => {
-    //       if (doctor.toString() === this.appointment?.idDoctor.toString()) {
-    //         this.options?.push(marker.name);
-    //       }
-    //     });
-    //   });
-    // });
+    });
   }
 }

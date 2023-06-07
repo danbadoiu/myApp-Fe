@@ -21,7 +21,7 @@ import { FavoriteDoctorsService } from '../../../shared/services/favorite-doctor
 export class DoctorsComponent implements OnInit {
   message: any;
   isHovered = false;
-  exists=false;
+  exists = false;
 
   @Input() user: User | undefined;
   users: User[] | undefined;
@@ -52,18 +52,15 @@ export class DoctorsComponent implements OnInit {
           return favDoc;
         } else return undefined;
       });
-      if(favDoc!==undefined){
+      if (favDoc !== undefined) {
         let doctorsArray = favDoc.doctors.split(',').map(String);
         let doctor = doctorsArray.find(
           (doctor) => doctor.toString() === this.user?.id!.toString()
         );
-        if(doctor){
-          this.exists = true
+        if (doctor) {
+          this.exists = true;
         }
-
-       
       }
-      
     });
   }
   name: string | undefined;
@@ -106,7 +103,7 @@ export class DoctorsComponent implements OnInit {
             idPatient: favDoc?.idPatient!,
             doctors: favDoc?.doctors! + ',' + this.user?.id,
           })
-          .subscribe(() => this.exists=true);
+          .subscribe(() => (this.exists = true));
       } else {
         this.favoriteDoctorsService
           .addFavoriteDoctors({
@@ -118,8 +115,6 @@ export class DoctorsComponent implements OnInit {
     });
   }
   removeFavorites(doctorId: string) {
-    // let exists = false;
-    // let favDoctor: FavoriteDoctors | undefined;
     this.favoriteDoctorsService.getFavoriteDoctors().subscribe((data) => {
       let favDoc;
       favDoc = data.find((favDoc) => {
@@ -138,7 +133,7 @@ export class DoctorsComponent implements OnInit {
             idPatient: favDoc?.idPatient!,
             doctors: doctorsArray!.toString(),
           })
-          .subscribe(() => this.exists = false);
+          .subscribe(() => (this.exists = false));
       }
     });
   }

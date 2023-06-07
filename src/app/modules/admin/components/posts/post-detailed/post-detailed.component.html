@@ -77,7 +77,8 @@
             </form>
             <button class="btn btn-primary text-white centered-button"
                     *ngIf="loggedUserRole==='DOCTOR'"
-                    (click)="onSendPoll(post!.id!)" [disabled]="!answer">
+                    (click)="onSendPoll(post!.id!)"
+                    [disabled]="!answer">
               <mat-icon> local_hospital</mat-icon>Send
             </button>
 
@@ -97,7 +98,8 @@
 
             <button class="btn btn-success text-white btn-message centered-button"
                     *ngIf="loggedUserRole==='DOCTOR'"
-                    (click)="onSendMessage(post!.idUser)" [disabled]="!message">
+                    (click)="onSendMessage(post!.idUser)"
+                    [disabled]="!message">
               <mat-icon> message</mat-icon>Send message
             </button>
 
@@ -105,7 +107,7 @@
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     *ngIf="loggedUserRole==='DOCTOR'">
-              <mat-icon>add_box</mat-icon>Add 
+              <mat-icon>add_box</mat-icon>Add
               <span class="expanded-text"> +appointment</span>
             </button>
 

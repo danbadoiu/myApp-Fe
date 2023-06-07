@@ -87,7 +87,6 @@ export class MessageListComponent implements OnInit, OnChanges {
 
   selectUser(user: User): void {
     this.selectedUser = user;
-    // this.selectedUserChanged.emit(this.selectedUser);
     this.selectedUserChanged.emit({ ...this.selectedUser });
   }
 }

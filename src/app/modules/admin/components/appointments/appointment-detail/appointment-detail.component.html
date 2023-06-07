@@ -5,9 +5,10 @@
         <mat-icon (click)="onCancel()">cancel</mat-icon>
       </span></div>
     <div class="card-body p-4">
-      <img class="favorite" src="https://www.saffronhealth.ca/wp-content/uploads/2021/12/Dr-Goldie-300x271.png"
-               alt="avatar 1"
-               style="width: 50px; height: 60%;">
+      <img class="favorite"
+           src="https://www.saffronhealth.ca/wp-content/uploads/2021/12/Dr-Goldie-300x271.png"
+           alt="avatar 1"
+           style="width: 50px; height: 60%;">
       <h6>Patient Name:</h6>
       <div class="row pt-1">
         <div class="col-6 mb-3">
@@ -55,19 +56,22 @@
         <button type="button"
                 *ngIf="loggedUserRole!=='DOCTOR' && appointment?.status==='PENDING'"
                 class="btn btn-danger centered-button"
-                (click)="onDelete(appointment?.id!)"><mat-icon>delete</mat-icon>
+                (click)="onDelete(appointment?.id!)">
+          <mat-icon>delete</mat-icon>
           Delete
         </button>
         <button type="button"
                 *ngIf="(loggedUserRole==='DOCTOR' && appointment?.status==='PENDING')||(appointment?.idMarker === null)"
                 class="btn btn-success centered-button"
-                (click)="onAccept(appointment?.id!)"><mat-icon>check_circle</mat-icon>
+                (click)="onAccept(appointment?.id!)">
+          <mat-icon>check_circle</mat-icon>
           Accept
         </button>
         <button type="button"
                 *ngIf="loggedUserRole==='DOCTOR' && appointment?.status==='PENDING'"
                 class="btn btn-danger centered-button"
-                (click)="onRefuse(appointment?.id!)"><mat-icon>remove_circle</mat-icon>
+                (click)="onRefuse(appointment?.id!)">
+          <mat-icon>remove_circle</mat-icon>
           Refuse
         </button>
 

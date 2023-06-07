@@ -80,7 +80,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.showModal = true;
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }

@@ -9,20 +9,6 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/modules/admin/shared/services/auth.service';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AuthguardGuard implements CanActivate {
-//   constructor(private user: UserService){
-
-//   }
-//   canActivate(
-//     route: ActivatedRouteSnapshot,
-//     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-//     return this.user.getUserLoggedIn();
-//   }
-
-// }
 @Injectable({
   providedIn: 'root',
 })

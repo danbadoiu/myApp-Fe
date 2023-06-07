@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { User } from 'src/app/models/login.model';
 
 @Component({
@@ -6,17 +14,17 @@ import { User } from 'src/app/models/login.model';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css'],
 })
-export class ModalComponent implements OnInit,OnChanges {
+export class ModalComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.showModal2){
-      this.showModal = this.showModal2
+    if (this.showModal2) {
+      this.showModal = this.showModal2;
     }
   }
   @Input() users: User[] | undefined;
-  filteredUsers:User[]|undefined
+  filteredUsers: User[] | undefined;
   @Output() savedChanges = new EventEmitter<User[]>();
   showModal: boolean = false;
-  @Input() showModal2:boolean|undefined
+  @Input() showModal2: boolean | undefined;
   form: any = {
     domain: null,
   };
@@ -37,14 +45,12 @@ export class ModalComponent implements OnInit,OnChanges {
     // this.showModal = true;
     const hasShownModal = localStorage.getItem('hasShownModal');
 
-    if (hasShownModal==='false') {
+    if (hasShownModal === 'false') {
       this.showModal = true;
 
       localStorage.setItem('hasShownModal', 'true');
+    }
   }
-  
-  
-}
 
   closeModal() {
     this.showModal = false;
@@ -52,10 +58,11 @@ export class ModalComponent implements OnInit,OnChanges {
   }
   onFilterUsers() {
     this.filteredUsers = this.users?.filter((user) => {
-      if (user && user.domain?.toString() === this.form.domain.toString()) return user;
-      else return undefined
+      if (user && user.domain?.toString() === this.form.domain.toString())
+        return user;
+      else return undefined;
     });
-    this.savedChanges.emit(this.filteredUsers)
-    this.closeModal()
+    this.savedChanges.emit(this.filteredUsers);
+    this.closeModal();
   }
 }

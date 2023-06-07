@@ -72,7 +72,6 @@ export class RegisterComponent implements OnInit {
   }
   onFileChanged(event: any) {
     const file = event.target.files[0];
-
     this.profilePicture = file;
     let reader = new FileReader();
     reader.readAsDataURL(this.profilePicture!);

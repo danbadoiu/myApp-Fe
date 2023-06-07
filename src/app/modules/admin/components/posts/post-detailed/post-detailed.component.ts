@@ -44,7 +44,7 @@ export class PostDetailedComponent implements OnInit {
   @Output() savedChanges = new EventEmitter<boolean>();
   results: string[] = [];
   answers: string[] = [];
-isExpanded = false;
+  isExpanded = false;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -68,17 +68,14 @@ isExpanded = false;
     this.poll?.forEach((poll) => {
       if (poll.idPost.toString() === this.post?.id?.toString())
         this.results = this.getResult(poll).split(',').map(String);
-      if (this.results.length > 0&& this.loggedUserRole==='PATIENT') {
+      if (this.results.length > 0 && this.loggedUserRole === 'PATIENT') {
         this.notification.show('You received a result of your problem!');
       }
     });
-
-   
   }
 
   onSendMessage(id: string) {
     this.selectedPostUserId = id;
-    console.log(this.selectedPostUserId);
     this.messageService
       .addMessage({
         message: this.message!,
@@ -92,7 +89,6 @@ isExpanded = false;
       });
   }
   sendMessage(idUser: string) {
-    console.log(this.idUser);
     this.messageService
       .addMessage({
         message: this.message!,
@@ -148,21 +144,13 @@ isExpanded = false;
           idPost: idPost,
           answer: this.answer!,
         })
-        .subscribe(() => {
-          // this.myForm.reset();
-        });
+        .subscribe(() => {});
     }
   }
 
   getResult(poll: Poll): string {
     let answers = poll.answer.split(',').map(String);
-    console.log(answers);
     this.answers = answers;
-    // const doctorId = this.users?.find((user) => {
-    //   return (
-    //     user.firstName === doctorsArray[0] && user.lastName === doctorsArray[1]
-    //   );
-    // })?.id;
 
     // Convert the sentences into an array of words
     const words = answers.join(' ').toLowerCase().split(' ');
@@ -194,11 +182,8 @@ isExpanded = false;
 
     // Display the most frequent words
     if (mostFrequentWords.length > 0) {
-      console.log(mostFrequentWords);
-      // console.log(`The most frequent word(s) is/are "${mostFrequentWords.join('", "')}"" with a frequency of ${mostFrequentFrequency}.`);
       return mostFrequentWords.join(',');
     } else {
-      console.log('No words found.');
       return '';
     }
   }

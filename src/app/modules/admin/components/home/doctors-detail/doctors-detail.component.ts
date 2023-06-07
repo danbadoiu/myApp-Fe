@@ -1,18 +1,24 @@
-import { Component, EventEmitter, HostListener, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/login.model';
 
-
-
 @Component({
   selector: 'app-doctors-detail',
   templateUrl: './doctors-detail.component.html',
-  styleUrls: ['./doctors-detail.component.css']
+  styleUrls: ['./doctors-detail.component.css'],
 })
-export class DoctorsDetailComponent implements OnInit, OnChanges, OnDestroy{
-
-
+export class DoctorsDetailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() selectedUser?: User | null;
   @Output() savedChanges = new EventEmitter<boolean>();
   mode?: 'ADD' | 'EDIT';
@@ -20,53 +26,16 @@ export class DoctorsDetailComponent implements OnInit, OnChanges, OnDestroy{
   private readonly subscription = new Subscription();
   private updateSubscription = new Subscription();
 
-  constructor(
+  constructor(private formBuilder: FormBuilder) {}
 
-    private formBuilder: FormBuilder,
-  ) {}
-
-  ngOnInit(): void {
-    // this.subscription.add(
-    //   this.service.getTeams().subscribe(data => {
-    //     this.teams = data;
-
-    //     this.teamList = this.teams.map(item => {
-    //       return {
-    //         value: item.id,
-    //         label: item.name,
-    //       };
-    //     });
-    //   })
-    // );
-
-    // this.subscription.add(
-    //   this.form?.controls.role.valueChanges.subscribe(val => {
-    //     if (val === 'HR') {
-    //       const teamId = this.teamList?.find(team => team.label === val);
-    //       this.form?.controls.teamId.setValue(teamId?.value);
-    //       this.form?.controls.teamId.disable();
-    //     } else {
-    //       this.form?.controls.teamId.enable();
-    //     }
-    //   })
-    // );
-  }
+  ngOnInit(): void {}
   private initFormGroup(): void {
     this.form = this.formBuilder.group({
-      firstName: this.formBuilder.control('', [
-
-      ]),
-      lastName: this.formBuilder.control('', [
-
-      ]),
-      username: this.formBuilder.control('', [
-
-      ]),
-      email: this.formBuilder.control('', [
-
-      ]),
+      firstName: this.formBuilder.control('', []),
+      lastName: this.formBuilder.control('', []),
+      username: this.formBuilder.control('', []),
+      email: this.formBuilder.control('', []),
       role: this.formBuilder.control(''),
-    
     });
   }
 
@@ -111,21 +80,12 @@ export class DoctorsDetailComponent implements OnInit, OnChanges, OnDestroy{
   private handleNewSelectedEmployee(): void {
     if (this.selectedUser) {
       this.form?.patchValue({
-        ...this.selectedUser
+        ...this.selectedUser,
       });
-     
     } else {
       this.form?.reset();
     }
   }
-  onSendMessage() {
-    
-    }
-    openModal() {
-      
-    }
-
-
-  
-
+  onSendMessage() {}
+  openModal() {}
 }

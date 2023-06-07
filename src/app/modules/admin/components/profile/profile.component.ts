@@ -81,9 +81,7 @@ export class ProfileComponent implements OnInit {
   name: string | undefined;
   email = '';
 
-  updateProfile() {
-    // code to update the user's information
-  }
+  updateProfile() {}
   uploadFile(event: any) {
     const file = event.target.files[0];
     this.profilePic = file;
