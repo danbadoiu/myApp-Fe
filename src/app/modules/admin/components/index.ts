@@ -19,4 +19,7 @@ export * from './services/message-detail/message-sent/message-sent.component';
 export * from './services/message-list/message-list.component';
 export * from './services/services.component';
 export * from './modal/modal.component';
-export * from './spinner/spinner.component'
+export * from './spinner/spinner.component';
+export * from './patients-info/patients-info.component';
+export * from './patients-info/patients-info-detailed/patients-info-detailed.component';
+export * from './patient-file/patient-file.component';

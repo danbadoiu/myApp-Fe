@@ -34,6 +34,8 @@ export class AppointmentsComponent implements OnInit {
   notificationDoctor: User | undefined;
   messageSubscription = new Subscription();
   markers: Marker[] | undefined;
+  doctors: User[] = [];
+
 
   search() {
     this.filteredPosts = this.appointments!;
@@ -79,6 +81,9 @@ export class AppointmentsComponent implements OnInit {
     this.markerService.getUsers().subscribe((data) => {
       this.markers = data;
     });
+    this.userService.getUsers().subscribe((data) => {
+      this.doctors = data.filter((user) => user.role === 'DOCTOR');
+    });
     this.appointmentService.getAppointments().subscribe((responseData) => {
       this.appointments = responseData;
       this.appointments = this.appointments.filter((appointment) => {
@@ -95,7 +100,7 @@ export class AppointmentsComponent implements OnInit {
 
         if (appointment.idMarker === null) {
           this.notification.show(
-            'You received an appointment from ' + appointment.idDoctor
+            'You received an appointment from ' + this.getDoctorName(appointment.idDoctor)
           );
         }
       });
@@ -114,5 +119,9 @@ export class AppointmentsComponent implements OnInit {
   }
   onPostAction(refreshData: boolean) {
     this.getData();
+  }
+  getDoctorName(idDoctor: string): string {
+    const doctor = this.doctors.find((user) => user.id === idDoctor);
+    return doctor ? `${doctor.firstName} ${doctor.lastName}` : 'Unknown Doctor';
   }
 }

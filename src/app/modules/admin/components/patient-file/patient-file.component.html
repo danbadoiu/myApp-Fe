@@ -1,0 +1,127 @@
+<div class="container mt-5">
+  <div class="card shadow-lg p-4">
+    <h2 class="text-center text-primary mb-4">Patient File Form</h2>
+    <h3 class="text-right text-secondary mb-4">Date: {{patientFile.date | time }}</h3>
+
+    <form (ngSubmit)="onSubmit()"
+          #patientForm="ngForm">
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="fullName"
+               class="font-weight-bold">Full Name</label>
+        <input type="text"
+               id="fullName"
+               class="form-control"
+               [(ngModel)]="patientFile.fullName"
+               name="fullName"
+               required />
+      </div>
+
+      <!-- Birth Date -->
+      <div class="form-group">
+        <label for="birthDate"
+               class="font-weight-bold">Birth Date</label>
+        <input type="date"
+               id="birthDate"
+               class="form-control"
+               [(ngModel)]="patientFile.birthDate"
+               name="birthDate"
+               required />
+      </div>
+
+      <!-- Gender -->
+      <div class="form-group">
+        <label for="gender"
+               class="font-weight-bold">Gender</label>
+        <select id="gender"
+                class="form-control"
+                [(ngModel)]="patientFile.gender"
+                name="gender"
+                required>
+          <option value=""
+                  disabled>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <!-- Blood Type -->
+      <div class="form-group">
+        <label for="bloodType"
+               class="font-weight-bold">Blood Type</label>
+        <select id="bloodType"
+                class="form-control"
+                [(ngModel)]="patientFile.bloodType"
+                name="bloodType">
+          <option value=""
+                  disabled>Select Blood Type</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+        </select>
+      </div>
+
+      <!-- Allergies -->
+      <div class="form-group">
+        <label for="allergies"
+               class="font-weight-bold">Allergies</label>
+        <input type="text"
+               id="allergies"
+               class="form-control"
+               [(ngModel)]="patientFile.allergies"
+               name="allergies"
+               placeholder="E.g., Peanuts, Dust, Pollen" />
+      </div>
+
+      <!-- Chronic Diseases -->
+      <div class="form-group">
+        <label for="chronicDiseases"
+               class="font-weight-bold">Chronic Diseases</label>
+        <input type="text"
+               id="chronicDiseases"
+               class="form-control"
+               [(ngModel)]="patientFile.chronicDiseases"
+               name="chronicDiseases"
+               placeholder="E.g., Diabetes, Hypertension" />
+      </div>
+
+      <!-- Current Medications -->
+      <div class="form-group">
+        <label for="currentMedications"
+               class="font-weight-bold">Current Medications</label>
+        <input type="text"
+               id="currentMedications"
+               class="form-control"
+               [(ngModel)]="patientFile.currentMedications"
+               name="currentMedications"
+               placeholder="E.g., Aspirin, Insulin" />
+      </div>
+
+      <!-- Emergency Contact -->
+      <div class="form-group">
+        <label for="emergencyContact"
+               class="font-weight-bold">Emergency Contact</label>
+        <input type="tel"
+               id="emergencyContact"
+               class="form-control"
+               [(ngModel)]="patientFile.emergencyContact"
+               name="emergencyContact"
+               placeholder="E.g., +123456789"
+               required />
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit"
+              class="btn btn-primary btn-block mt-3"
+              [disabled]="!patientForm.valid || !patientForm.dirty ">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

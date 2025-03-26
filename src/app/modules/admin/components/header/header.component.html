@@ -20,6 +20,12 @@
                *ngIf="loggedUserRole!=='DOCTOR'"
                [ngClass]="{'hover': isRouteActive('./home')}">Home</a></li>
          <li><a mat-button
+                  routerLink="./patients-info"
+                  *ngIf="loggedUserRole==='DOCTOR'"
+                  [ngClass]="{'hover': isRouteActive('./patients-info')}">Patients Info</a></li>
+                  <a mat-button [routerLink]="['/admin/patient-file', idLoggedUser]" routerLinkActive="active">Patient File</a>
+
+         <li><a mat-button
                routerLink="./appointments"
                [ngClass]="{'hover': isRouteActive('./appointments')}">Appointments</a></li>
 
@@ -48,6 +54,12 @@
          routerLink="./home"
          *ngIf="loggedUserRole !== 'DOCTOR'"
          routerLinkActive="active">Home</a>
+         <a mat-button
+         routerLink="./patients-info"
+         *ngIf="loggedUserRole==='DOCTOR'"
+         routerLinkActive="active">Patients Info</a>
+         <a mat-button [routerLink]="['/admin/patient-file', idLoggedUser]" routerLinkActive="active">Patient File</a>
+
       <a mat-button
          routerLink="./appointments"
          routerLinkActive="active">Appointments</a>

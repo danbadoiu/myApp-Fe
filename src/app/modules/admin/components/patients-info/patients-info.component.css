@@ -1,0 +1,29 @@
+/* Ensure the card and its body take up the full height */
+.card-news-body {
+    padding: 0;
+    height: 100%; /* Make sure the card body stretches fully */
+    overflow: hidden;
+  }
+  
+  /* Prevent li elements from stretching unnecessarily */
+  .list-group-item {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: auto !important;
+    padding: 0.75rem; /* You can adjust the padding as needed */
+  }
+  
+  /* If using a table, ensure it is scrollable */
+  .mat-table {
+    flex-grow: 1;
+    max-height: 300px; /* Set a maximum height for the table */
+    overflow-y: auto; /* Add scroll if the content exceeds the max-height */
+  }
+  
+  /* Optional: If you want the last li with no posts to be properly sized */
+  .list-group-item:last-child {
+    margin-bottom: 0;
+    height: auto; /* Ensure it doesn't stretch */
+  }
+  

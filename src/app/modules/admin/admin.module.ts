@@ -22,6 +22,9 @@ import { AuthInterceptorService } from './auth-interceptor.service';
 import * as modules from './index'
 import * as components from './components/index';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { DoctorNamePipe } from './shared/doctor-name.pipe';
+import { MarkerNamePipe } from './shared/marker-name.pipe';
+import { TimePipe } from './shared/time.pipe';
 
 @NgModule({
   imports: [
@@ -63,9 +66,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     components.MessageReceivedComponent,
     components.AppointmentDetailComponent,
     components.AppointmentsComponent,
+    components.PatientsInfoComponent,
+    components.PatientsInfoDetailedComponent,
     components.ModalForAppointmentComponent,
     components.ModalForAppointmentWithoutHospitalComponent,
     components.ModalComponent,
+    DoctorNamePipe,
+    MarkerNamePipe,
+    TimePipe,
+    components.PatientFileComponent
   ],
 
   providers: [

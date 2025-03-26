@@ -1,0 +1,21 @@
+<div class="card d-flex justify-content-start card-news">
+  <div class="card-body card-news-body">
+    <ul class="list-group"
+        *ngFor="let user of users">
+      <!-- List Item for each user -->
+      <li class="list-group-item"
+          *ngIf="(loggedUserRole === 'DOCTOR')"
+          style="display: flex; flex-direction: column;">
+        <app-patients-info-detailed [user]="user"
+                                    [poll]="poll"
+                                    (savedChanges)="onPostAction($event)">
+        </app-patients-info-detailed>
+      </li>
+      <!-- List Item for no posts message -->
+      <li class="list-group-item"
+          *ngIf="!posts">
+        You have no posts.
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,169 @@
+img {
+  margin-top: 20px;
+  height: 200px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.enlarge:hover {
+  transform: scale(1.5);
+}
+
+button {
+  height: 45px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.btn-generate-pdf {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-generate-pdf:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+.far.fa-edit {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.row.g-0 {
+  display: flex;
+}
+
+.col-md-8 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.table-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.mat-table {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.mat-row:last-child {
+  margin-bottom: 0;
+}
+
+.expand {
+  border-radius: 0.7rem;
+  background-color: #e8e8e8;
+  z-index: 9999;
+  border-color: black;
+}
+
+.expandBadge {
+  max-height: 30px;
+}
+
+.expand-on-hover {
+  transition: transform 0.3s;
+}
+
+.expand-on-hover:hover {
+  transform: scale(1);
+}
+
+.expanded-text {
+  display: none;
+}
+
+.expand-on-hover:hover .expanded-text {
+  display: inline-block;
+}
+
+.mat-mdc-table {
+  width: 100%;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.mat-column-name {
+  height: 100px;
+}
+
+@media only screen and (max-width: 575px) {
+  img {
+    margin-top: 0px !important;
+    height: 50px;
+    width: 70px;
+  }
+
+  p {
+    margin: 0px;
+    font-size: 10px;
+  }
+
+  .enlarge:hover {
+    transform: scale(2);
+  }
+
+  .gradient-custom {
+    height: 50px;
+    margin-bottom: 0px;
+  }
+
+  h6 {
+    font-size: 10px;
+    margin: 0px;
+  }
+
+  .form-message,
+  .btn-message {
+    display: none;
+  }
+}
+
+#chat3 .form-control {
+  border-color: transparent;
+}
+
+#chat3 .form-control:focus {
+  border-color: transparent;
+  box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.badge-dot {
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  margin-left: 2.9rem;
+  margin-top: -0.75rem;
+}
+
+section {
+  background-image: url("https://img.freepik.com/free-photo/blur-hospital-clinic-interior_1203-8618.jpg?w=1480&t=st=1684226874~exp=1684227474~hmac=2d8f7ee2ec6f631baee8be3074d2136f70863f794ec496becb3c170eb515c77e");
+  background-size: 100%;
+  background-size: cover;
+}
+
+.btn-patient-file {
+  margin-top: 10px;
+  background-color: #6a8a86;
+}
