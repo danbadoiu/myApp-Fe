@@ -75,4 +75,7 @@ export class PatientFileService {
   deletePatientFile(id: string): Observable<unknown> {
     return this.http.delete(`${environment.apiUrl}/patient-file/${id}`);
   }
+  getPatientsByDoctor(idDoctor: number): Observable<PatientFile[]> {
+    return this.http.get<PatientFile[]>(`${environment.apiUrl}/patients-file/${idDoctor}`);
+  }
 }

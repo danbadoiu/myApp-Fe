@@ -5,7 +5,10 @@
   background: linear-gradient(90deg, #505f5d 0%, #61786f 39%, #a3d3c3 100%);
 
 }
-
+.badge{
+  display: flex;
+  align-items: center;
+}
 img {
   /* margin-top: 10px; */
   border-radius: 2rem;

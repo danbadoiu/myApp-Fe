@@ -1,27 +1,48 @@
 <div class="row g-0"
      style=" display: flex;">
   <!-- Ensure the row takes full height -->
-  <div class="col-md-4 text-center align-center text-white"
-       style="border-radius: .5rem; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <div class="col-md-4">
+    <div class="card text-center text-white p-4 h-75 m-5"
+         style="border-radius: .5rem; background-color: #a3bbb9; min-height: fit-content;">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <img [src]="profileImage"
+             alt="avatar"
+             [ngClass]="{'enlarge': isHovered}"
+             (mouseover)="isHovered = true"
+             (mouseleave)="isHovered = false"
+             class="profile-image mb-3"
+             style="border-radius: 20%; width: 120px; height: 120px; object-fit: cover;">
 
-    <img [src]="profileImage"
-         alt="avatar 1"
-         [ngClass]="{'enlarge': isHovered}"
-         (mouseover)="isHovered = true"
-         (mouseleave)="isHovered = false"
-         class="profile-image">
-    <p class="mt-2"
-       style="font-size: 1.2rem; font-weight: bold; color: black;">
-      {{ firstName }} {{ lastName }}
-    </p>
-    <button (click)="generatePDF()"
-            class="btn-generate-pdf centered-button"><mat-icon>picture_as_pdf</mat-icon>Generate PDF</button>
+        <p class="mt-2 text-black"
+           style="font-size: 1.2rem; font-weight: bold;">
+          {{ firstName }} {{ lastName }}
+        </p>
 
-    <button (click)="patientFile()"
-            class="btn-patient-file btn-generate-pdf centered-button"><mat-icon>local_hospital</mat-icon> Patient File</button>
+        <!-- Styled Buttons -->
+        <button (click)="generatePDF()"
+                class="btn btn-light btn-sm my-2 w-75 d-flex align-items-center justify-content-center gap-2">
+          <mat-icon>picture_as_pdf</mat-icon> Generate PDF
+        </button>
 
-    <i class="far fa-edit mb-5"></i>
+        <button (click)="patientFile()"
+                class="btn btn-light btn-sm my-2 w-75 d-flex align-items-center justify-content-center gap-2">
+          <mat-icon>assignment_ind</mat-icon> Patient File
+        </button>
+
+        <button (click)="patientFileHistory()"
+                class="btn btn-light btn-sm my-2 w-75 d-flex align-items-center justify-content-center gap-2">
+          <mat-icon>history</mat-icon> Patient File History
+        </button>
+        <button (click)="openPatientRaport()"
+                class="btn btn-light btn-sm my-2 w-75 d-flex align-items-center justify-content-center gap-2">
+          <mat-icon>local_hospital</mat-icon> Raport
+        </button>
+
+        <i class="far fa-edit mt-3 text-white"></i>
+      </div>
+    </div>
   </div>
+
 
   <div class="col-md-8"
        style="display: flex; flex-direction: column; height: 100%;">
@@ -33,7 +54,7 @@
            id="chat3"
            style="border-radius: 15px; margin-bottom: 20px;"
            *ngIf="posts && posts?.length!>0">
-        <div class="card-body">
+        <div class="card-body tables-color">
           <h4>Posts</h4>
           <div class="row">
             <div class="col-12 mb-4 mb-md-0"

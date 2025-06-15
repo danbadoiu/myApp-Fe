@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { jsPDF } from 'jspdf';
@@ -16,11 +17,13 @@ import { Post } from 'src/app/models/posts.model';
 import { environment } from 'src/environments/environment.prod';
 import { Appointment } from '../../../shared/models/appointment.model';
 import { Marker } from '../../../shared/models/marker.model';
+import { PatientRaport } from '../../../shared/models/patient-raport.model';
 import { Poll } from '../../../shared/models/poll.model';
 import { AppointmentService } from '../../../shared/services/appointment.service';
 import { MarkerService } from '../../../shared/services/marker.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { UserService } from '../../../shared/services/user.service';
+import { PatientRaportComponent } from '../../patient-raport/patient-raport.component';
 
 @Component({
   selector: 'app-patients-info-detailed',
@@ -32,6 +35,7 @@ export class PatientsInfoDetailedComponent implements OnInit {
   dataSource: Post[] = [];
   dataSourceAppointments: Appointment[] = [];
   posts: Post[] | undefined;
+  showModal: boolean = false;
   @Input() user: User | undefined;
   @Input() poll: Poll[] | undefined;
   profileImage: SafeUrl | undefined;
@@ -67,7 +71,8 @@ export class PatientsInfoDetailedComponent implements OnInit {
     private userService: UserService,
     private markerService: MarkerService,
     private http: HttpClient,
-    private route: Router
+    private route: Router,
+    private dialog: MatDialog
   ) {}
 
   createProfileImage(image: Blob): void {
@@ -320,4 +325,30 @@ export class PatientsInfoDetailedComponent implements OnInit {
   patientFile() {
     this.route.navigate(['admin/patient-file', this.user?.id]);
   }
+
+  openPatientRaport() {
+    const dialogRef = this.dialog.open(PatientRaportComponent, {
+      width: '400px',
+      data: { idUser: this.user?.id },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Report Saved:', result);
+      }
+    });
+  }
+
+  // Handle modal close event
+  onModalClosed() {
+    this.showModal = false; // Close the modal from outside
+  }
+
+  onSaveChanges(users: PatientRaport) {
+    // Handle saved changes from the modal
+  }
+  patientFileHistory() {
+    this.route.navigate(['admin/patient-file', this.user?.id,'history']);
+  }
+
 }

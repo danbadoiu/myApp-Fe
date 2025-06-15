@@ -22,7 +22,12 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'appointments', component: AppointmentsComponent },
       { path: 'patients-info', component: PatientsInfoComponent },
-      { path: 'patient-file/:id', component: PatientFileComponent }, // Updated with ID parameter
+      { path: 'patient-file/:id', component: PatientFileComponent },
+      { path: 'patient-file/:id/history', component: PatientFileComponent },
+      {
+        path: 'patient-file/:idUser/history/:idFile',
+        component: PatientFileComponent,
+      },
       { path: 'posts', component: PostsComponent },
       {
         path: 'location',
